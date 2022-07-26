@@ -54,3 +54,9 @@
     clear: both;
     display: table;
   }
+
+  /* turn counter */
+  #turn-counter{
+    font-weight: 900;
+    font-size: 70px;
+  }
