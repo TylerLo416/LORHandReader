@@ -1,3 +1,4 @@
+//turn counter
 let counterDisplayElem = document.querySelector('.counter-display');
 let counterPlusElem = document.querySelector('.next-turn');
 
@@ -11,23 +12,24 @@ counterPlusElem.addEventListener("click",()=>{
 function updateDisplay(){
     counterDisplayElem.innerHTML = count;
 }
-/*let btnNextTurn = document.querySelector('next-turn');
-let input = document.querySelector('input');
 
-btnNextTurn.addEventListener('click', () =>{
-    input.value = parseInt(input.value) + 1;
-});*/
 
-/*var turnCounter = 0;
-
-const totalTurnCounter = document.getElementById("turn-counter");
-totalTurnCounter.innerHTML = turnCounter;
-const incrementCount = document.getElementById("next-turn");
-
-const handleIncrement = () => {
-    turnCounter++;
-    totalTurnCounter.innerHTML = count;
+//delete a card
+var on = 0;
+function Buttontoggle()
+{
+  if(on === 0){
+      on = 1;
+  }
+  else{
+      on = 0;
+  }
 }
-
-
-incrementCount.addEventListener("click", handleIncrement);*/
+function Deletecard(cardID)
+{
+    if(on == 1) {
+        document.getElementById(cardID).style.visibility = "hidden";//make display = "none" when needed for the cards to move
+        counterDisplayElem.innerHTML = cardID;
+        on = 0;
+    }
+}
