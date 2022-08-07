@@ -12,66 +12,66 @@
     <h1> LOR Hand Reader</h1>
 <div class="clearfix">
     <div class = "img-cards">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "Deletecard('LORCard1')" id = "LORCard1" alt="LOR Card" style="width:100%;height:100%;"/>
+        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard1')" id = "LORCard1" alt="LOR Card" style="width:100%;height:100%;"/>
     </div>
     <div class = "img-cards">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "Deletecard('LORCard2')" id = "LORCard2" alt="LOR Card" style="width:100%;height:100%;"/>
+        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard2')" id = "LORCard2" alt="LOR Card" style="width:100%;height:100%;"/>
     </div>
     <div class = "img-cards">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "Deletecard('LORCard3')" id = "LORCard3" alt="LOR Card" style="width:100%;height:100%;"/>
+        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard3')" id = "LORCard3" alt="LOR Card" style="width:100%;height:100%;"/>
     </div>
     <div class = "img-cards">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "Deletecard('LORCard4')" id = "LORCard4" alt="LOR Card" style="width:100%;height:100%;"/>
+        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard4')" id = "LORCard4" alt="LOR Card" style="width:100%;height:100%;"/>
     </div>
     <div class = "img-cards">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "Deletecard('LORCard5')" id = "LORCard5" alt="LOR Card" style="width:100%;height:100%;"/>
+        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard5')" id = "LORCard5" alt="LOR Card" style="width:100%;height:100%;"/>
     </div>
     <div class = "img-cards">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "Deletecard('LORCard6')" id = "LORCard6" alt="LOR Card" style="width:100%;height:100%;"/>
+        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard6')" id = "LORCard6" alt="LOR Card" style="width:100%;height:100%;"/>
     </div>
     <div class = "img-cards">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "Deletecard('LORCard7')" id = "LORCard7" alt="LOR Card" style="width:100%;height:100%;"/>
+        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard7')" id = "LORCard7" alt="LOR Card" style="width:100%;height:100%;"/>
     </div>
     <div class = "img-cards">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "Deletecard('LORCard8')" id = "LORCard8" alt="LOR Card" style="width:100%;height:100%;"/>
+        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard8')" id = "LORCard8" alt="LOR Card" style="width:100%;height:100%;"/>
     </div>
     <div class = "img-cards">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "Deletecard('LORCard9')" id = "LORCard9" alt="LOR Card" style="width:100%;height:100%;"/>
+        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard9')" id = "LORCard9" alt="LOR Card" style="width:100%;height:100%;"/>
     </div>
     <div class = "img-cards">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "Deletecard('LORCard10')" id = "LORCard10" alt="LOR Card" style="width:100%;height:100%;"/>
+        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard10')" id = "LORCard10" alt="LOR Card" style="width:100%;height:100%;"/>
     </div>
 </div>    
 <div>
   <h1 class="counter-display">(Turn Counter)</h1>
-
 </div>
 <div class="main-buttons">
-    <button class="next-turn">Next Turn</button>
-    <button class="button button1" onclick="Buttontoggle()">Discard/play (single toggle)</button>
-    <button class="button button1">Draw:</button>
-    <button class="button button1">Create:</button>
-    <button class="button button1">Manifest:</button>
-    <button class="button button1">Nab:</button>
-    <button class="button button1">fleeting</button>
+    <button class="button" id="next-turn">Next Turn</button>
+    <button class="button inactive" id="discard-play" onclick="ButtonSelected('discard-play')">Discard/play (single toggle)</button>
+    <button class="button" id="draw" onclick="ButtonSelected('draw')">Draw:</button>
+    <button class="button" id="create" onclick="ButtonSelected('create')">Create:</button>
+    <button class="button" id="manifest" onclick="ButtonSelected('manifest')">Manifest:</button>
+    <button class="button" id="nab" onclick="ButtonSelected('nab')">Nab:</button>
+    <button class="button" id="fleeting" onclick="ButtonSelected('fleeting')">fleeting</button>
+    <button class="button" id="predicted-draw">Predicted Draw</button>
+    <button class="button" id="shown">Shown(user input)</button>
     <p> mana </p>
-    <button class="button button1">1</button>
-    <button class="button button1">2</button>
-    <button class="button button1">3</button>
-    <button class="button button1">4</button>
-    <button class="button button1">5</button>
-    <button class="button button1">6</button>
-    <button class="button button1">7</button>
-    <button class="button button1">8</button>
-    <button class="button button1">9</button>
-    <button class="button button1">Predicted</button>
-    <button class="button button1">Shown(user input)</button>
-    <button class="button button1">unit</button>
-    <button class="button button1">spell</button>
-    <button class="button button1">champion</button>
-    <button class="button button1">landmark</button>
-    <button class="button button1">token</button>
-    <button class="button button1">restart</button>
+    <button class="button inactive" id="1">1</button>
+    <button class="button inactive" id="2">2</button>
+    <button class="button inactive" id="3">3</button>
+    <button class="button inactive" id="4">4</button>
+    <button class="button inactive" id="5">5</button>
+    <button class="button inactive" id="6">6</button>
+    <button class="button inactive" id="7">7</button>
+    <button class="button inactive" id="8">8</button>
+    <button class="button inactive" id="9">9</button>
+    <button class="button inactive" id="unit">unit</button>
+    <button class="button inactive" id="spell">spell</button>
+    <button class="button inactive" id="champion">champion</button>
+    <button class="button inactive" id="landmark">landmark</button>
+    <button class="button inactive" id="token">token</button>
+    <button class="button inactive" id="move-to-end">move to end</button>
+    <button class="button inactive" id="restart">restart</button>
 </div>
 
     <script src="script.js"></script>
