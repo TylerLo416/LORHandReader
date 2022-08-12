@@ -4,19 +4,20 @@ let counterPlusElem = document.getElementById('next-turn');
 
 let count = 0;
 
+var amtcards = 10;
+
 counterPlusElem.addEventListener("click",()=>{
     count++;
     updateDisplay();
 });
 
 function updateDisplay(){
-    counterDisplayElem.innerHTML = count;
+    counterDisplayElem.innerHTML = "Turn: " + count;
 }
 
 
 function Discardcard(cardID)
 {
-  counterDisplayElem.innerHTML = "i'm in the function discardcard"
     document.getElementById(cardID).style.visibility = "hidden";//make display = "none" when needed for the cards to move
 }
 
@@ -26,33 +27,24 @@ function Discardcard(cardID)
 //main function for cards
 function ButtonSelected(buttonID)
 {
-    counterDisplayElem.innerHTML = "i'm at the top of button selected";
     //remove all other active button classes - set them to inactive
     var buttons = document.getElementsByClassName("button active");
 
-    var querybuttons = document.querySelectorAll(".button active");
-    counterDisplayElem.innerHTML = "i'm past the first line";
+    //var querybuttons = document.querySelectorAll(".button active");
     for(var i = 0; i < buttons.length; i++){
-      counterDisplayElem.innerHTML = "in for loop";
       if(buttons[i].classList.contains("active")){
-        counterDisplayElem.innerHTML = "in first if";
-        buttons[i].classList.remove("active");
-        counterDisplayElem.innerHTML = "in first if1";
         buttons[i].classList.add("inactive");
-        counterDisplayElem.innerHTML = "in first if2";
+        buttons[i].classList.remove("active");
       }
     }
-    counterDisplayElem.innerHTML = "2nd line";
     
     var pressedbutton = document.getElementById(buttonID);
 
-    counterDisplayElem.innerHTML = "i'm past the first part" + pressedbutton.classList;
 
     //if statement for non-toggle buttons - if they are non-toggle class, go into a switch case to do the correct thing-
     if(pressedbutton.classList.contains("inactive")){
       pressedbutton.classList.remove("inactive");
       pressedbutton.classList.add("active");
-      counterDisplayElem.innerHTML = "this shd display: if statement" + pressedbutton.classList;
       return;
     }
 
@@ -68,18 +60,19 @@ function ButtonSelected(buttonID)
       case "restart":
       default: throw "Issue with button selection occured";
     }
+    amtcards = amtcards-1;
 }
 
 function cardSelected(selectedcard)
 {
     //check which button is currently active
     //use a switch case to choose the correct action based on which button is currently active
-    counterDisplayElem.innerHTML = "i'm in card selected";
     var activeButton = document.getElementsByClassName("button active");
-    switch(activeButton) {
+    switch(activeButton[0].id) {
       case "discard-play":
-        counterDisplayElem.innerHTML = "i'm in the switch";
-        Discardcard(activeButton[0]);
+        Discardcard(selectedcard);
+        activeButton[0].classList.add("inactive");
+        activeButton[0].classList.remove("active");
       case "1":
       case "2":
       case "3":
