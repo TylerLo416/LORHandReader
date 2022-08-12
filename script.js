@@ -16,9 +16,10 @@ function updateDisplay(){
 }
 
 
-function Discardcard(cardID)
+function Discardcard(cardID, cardlabel)
 {
     document.getElementById(cardID).style.visibility = "hidden";//make display = "none" when needed for the cards to move
+    document.getElementById(cardlabel).style.visibility = "hidden";
 }
 
 //seperate all cards into a div class of toggle cards that interact with clicking the cards (this may also need to be split into markers and deleting/adding)
@@ -63,14 +64,14 @@ function ButtonSelected(buttonID)
     amtcards = amtcards-1;
 }
 
-function cardSelected(selectedcard)
+function cardSelected(selectedcard, cardlabel)
 {
     //check which button is currently active
     //use a switch case to choose the correct action based on which button is currently active
     var activeButton = document.getElementsByClassName("button active");
     switch(activeButton[0].id) {
       case "discard-play":
-        Discardcard(selectedcard);
+        Discardcard(selectedcard, cardlabel);
         activeButton[0].classList.add("inactive");
         activeButton[0].classList.remove("active");
       case "1":
