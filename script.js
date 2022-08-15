@@ -72,24 +72,54 @@ function cardSelected(selectedcard, cardlabel)
     switch(activeButton[0].id) {
       case "discard-play":
         Discardcard(selectedcard, cardlabel);
-        activeButton[0].classList.add("inactive");
-        activeButton[0].classList.remove("active");
       case "1":
+        document.getElementById(cardlabel).innerHTML += " <br /> mana: 1";
+        break;
       case "2":
+        document.getElementById(cardlabel).innerHTML += " <br /> mana: 2";
+        break;
       case "3":
+        document.getElementById(cardlabel).innerHTML += " <br /> mana: 3";
+        break;
       case "4":
+        document.getElementById(cardlabel).innerHTML += " <br /> mana: 4";
+        break;
       case "5":
+        document.getElementById(cardlabel).innerHTML += " <br /> mana: 5";
+        break;
       case "6":
+        document.getElementById(cardlabel).innerHTML += " <br /> mana: 6";
+        break;
       case "7":
+        document.getElementById(cardlabel).innerHTML += " <br /> mana: 7";
+        break;
       case "8":
+        document.getElementById(cardlabel).innerHTML += " <br /> mana: 8";
+        break;
       case "9":
+        document.getElementById(cardlabel).innerHTML += " <br /> mana: 9";
+        break;
       case "unit":
+        document.getElementById(cardlabel).innerHTML += " <br /> unit";
+        break;
       case "spell":
+        document.getElementById(cardlabel).innerHTML += " <br /> spell";
+        break;
       case "champion":
+        document.getElementById(cardlabel).innerHTML += " <br /> champion";
+        break;
       case "landmark":
+        document.getElementById(cardlabel).innerHTML += " <br /> landmark";
+        break;
       case "token":
+        document.getElementById(cardlabel).innerHTML += " <br /> token";
+        break;
       case "shown":
+        document.getElementById(cardlabel).innerHTML += " <br /> shown";
+        break;
       case "move-to-end":
-      default: return;
+      default: //do nothing;
     }
+    activeButton[0].classList.add("inactive");
+    activeButton[0].classList.remove("active");
 }
