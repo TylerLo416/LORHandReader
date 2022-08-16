@@ -15,7 +15,6 @@ function updateDisplay(){
     counterDisplayElem.innerHTML = "Turn: " + count;
 }
 
-
 function Discardcard(cardID, cardlabel)
 {
     document.getElementById(cardID).style.visibility = "hidden";//make display = "none" when needed for the cards to move
@@ -52,7 +51,12 @@ function ButtonSelected(buttonID)
     switch(buttonID) {
 
       case "next-turn":
+        
       case "draw":
+          var newCard = document.createElement('img');
+          newCard.src = "Card-Back-Images/Summoner's-Rift.png";
+          newCard.setAttribute('class', 'img-cards');
+          document.getElementById('card-images').appendChild(newCard);
       case "create":
       case "manifest":
       case "nab":
