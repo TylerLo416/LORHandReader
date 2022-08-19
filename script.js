@@ -22,6 +22,50 @@ function Discardcard(cardID, cardlabel)
     document.getElementById(cardlabel).style.visibility = "hidden";
 }
 
+
+//function for the mana toggle labels
+function manalabel(cardlabel, number)
+{
+  const label = document.getElementById(cardlabel);
+  //if no mana 1
+  if(label.innerHTML.indexOf("mana") === -1){
+    label.innerHTML += "<br> mana: " + number;
+  }
+  //if mana: 1 already shown delete it
+  else if(label.innerHTML.indexOf("mana: " + number) !== -1){
+    //counterDisplayElem.innerHTML = "were here" + label.innerHTML.indexOf("mana") + " 0: " + label.innerHTML.charAt("1") + 
+    //  "char: " + label.innerHTML.charAt(12) + " length: " + label.innerText.length;
+    /*counterDisplayElem.innerHTML = "hi " + label.innerHTML.substring(0, label.innerHTML.indexOf("mana")-6);
+    label.innerHTML = label.innerHTML.substring(0, label.innerHTML.indexOf("<br /> mana")) + 
+      label.innerHTML.substring(label.innerHTML.indexOf("1"), label.innerHTML.length-1);//possible problem is label.length doesnt work*/
+    const labelArray = label.innerHTML.split("<br>");
+    label.innerHTML = "";
+    for(var i = 0; i < labelArray.length; i++) {
+      if(labelArray[i].indexOf("mana") === -1) {
+        label.innerHTML += labelArray[i] + "<br>";
+      }
+    }
+    label.innerHTML = label.innerHTML.substring(0, label.innerHTML.lastIndexOf("<br>"));
+      
+  }
+  //if other mana number
+  else {
+    counterDisplayElem.innerHTML = "hao";
+    const labelArray = label.innerHTML.split("<br>");
+    label.innerHTML = "";
+    for(var i = 0; i < labelArray.length; i++) {
+      if(labelArray[i].indexOf("mana") === -1) {
+        label.innerHTML += labelArray[i] + "<br>";
+      }
+      else {
+        label.innerHTML += labelArray[i].replace(/[0-9]/g, number) + "<br>";
+      }
+    }
+    label.innerHTML = label.innerHTML.substring(0, label.innerHTML.lastIndexOf("<br>"));
+  }
+}
+
+
 //seperate all cards into a div class of toggle cards that interact with clicking the cards (this may also need to be split into markers and deleting/adding)
 //the second group are cards that do not interact with clicking the cards
 
@@ -73,31 +117,31 @@ function cardSelected(selectedcard, cardlabel)
       case "discard-play":
         Discardcard(selectedcard, cardlabel);
       case "1":
-        document.getElementById(cardlabel).innerHTML += " <br /> mana: 1";
+        manalabel(cardlabel, 1);
         break;
       case "2":
-        document.getElementById(cardlabel).innerHTML += " <br /> mana: 2";
+        manalabel(cardlabel, 2);
         break;
       case "3":
-        document.getElementById(cardlabel).innerHTML += " <br /> mana: 3";
+        manalabel(cardlabel, 3);
         break;
       case "4":
-        document.getElementById(cardlabel).innerHTML += " <br /> mana: 4";
+        manalabel(cardlabel, 4);
         break;
       case "5":
-        document.getElementById(cardlabel).innerHTML += " <br /> mana: 5";
+        manalabel(cardlabel, 5);
         break;
       case "6":
-        document.getElementById(cardlabel).innerHTML += " <br /> mana: 6";
+        manalabel(cardlabel, 6);
         break;
       case "7":
-        document.getElementById(cardlabel).innerHTML += " <br /> mana: 7";
+        manalabel(cardlabel, 7);
         break;
       case "8":
-        document.getElementById(cardlabel).innerHTML += " <br /> mana: 8";
+        manalabel(cardlabel, 8);
         break;
       case "9":
-        document.getElementById(cardlabel).innerHTML += " <br /> mana: 9";
+        manalabel(cardlabel, 9);
         break;
       case "unit":
         document.getElementById(cardlabel).innerHTML += " <br /> unit";
