@@ -50,7 +50,6 @@ function manalabel(cardlabel, number)
   }
   //if other mana number
   else {
-    counterDisplayElem.innerHTML = "hao";
     const labelArray = label.innerHTML.split("<br>");
     label.innerHTML = "";
     for(var i = 0; i < labelArray.length; i++) {
@@ -65,6 +64,41 @@ function manalabel(cardlabel, number)
   }
 }
 
+function cardtypelabel(cardlabel, cardtype)
+{
+  const label = document.getElementById(cardlabel);
+  //if no cardtype
+  if(label.innerHTML.indexOf("unit") === -1 && label.innerHTML.indexOf("spell") === -1
+    && label.innerHTML.indexOf("champion") === -1 && label.innerHTML.indexOf("landmark") === -1){
+    label.innerHTML += "<br>" + cardtype;
+  }
+  //if same card type delete
+  else if(label.innerHTML.indexOf(cardtype) !== -1) {
+    const labelArray = label.innerHTML.split("<br>");
+    label.innerHTML = "";
+    for(var i = 0; i < labelArray.length; i++) {
+      if(labelArray[i].indexOf(cardtype) === -1) {
+        label.innerHTML += labelArray[i] + "<br>";
+      }
+    }
+    label.innerHTML = label.innerHTML.substring(0, label.innerHTML.lastIndexOf("<br>"));
+  }
+  //if different cardtype
+  else {
+    const labelArray = label.innerHTML.split("<br>");
+    label.innerHTML = "";
+    for(var i = 0; i < labelArray.length; i++) {
+      if(labelArray[i].indexOf("unit") === -1 && labelArray[i].indexOf("spell") === -1
+      && labelArray[i].indexOf("champion") === -1 && labelArray[i].indexOf("landmark") === -1) {
+        label.innerHTML += labelArray[i] + "<br>";
+      }
+      else {
+        label.innerHTML += cardtype + "<br>";
+      }
+    }
+    label.innerHTML = label.innerHTML.substring(0, label.innerHTML.lastIndexOf("<br>"));
+  }
+}
 
 //seperate all cards into a div class of toggle cards that interact with clicking the cards (this may also need to be split into markers and deleting/adding)
 //the second group are cards that do not interact with clicking the cards
@@ -105,7 +139,6 @@ function ButtonSelected(buttonID)
       case "restart":
       default: throw "Issue with button selection occured";
     }
-    amtcards = amtcards-1;
 }
 
 function cardSelected(selectedcard, cardlabel)
@@ -144,16 +177,16 @@ function cardSelected(selectedcard, cardlabel)
         manalabel(cardlabel, 9);
         break;
       case "unit":
-        document.getElementById(cardlabel).innerHTML += " <br /> unit";
+        cardtypelabel(cardlabel, "unit");
         break;
       case "spell":
-        document.getElementById(cardlabel).innerHTML += " <br /> spell";
+        cardtypelabel(cardlabel, "spell");
         break;
       case "champion":
-        document.getElementById(cardlabel).innerHTML += " <br /> champion";
+        cardtypelabel(cardlabel, "champion");
         break;
       case "landmark":
-        document.getElementById(cardlabel).innerHTML += " <br /> landmark";
+        cardtypelabel(cardlabel, "landmark");
         break;
       case "token":
         document.getElementById(cardlabel).innerHTML += " <br /> token";
