@@ -100,6 +100,27 @@ function cardtypelabel(cardlabel, cardtype)
   }
 }
 
+//sets the mana label to be the first label, then sorts the rest alphabeticalls
+function sortLabel(cardlabel)
+{
+  const label = document.getElementById(cardlabel);
+  const labelArray = label.innerHTML.split("<br>");
+  label.innerHTML = labelArray[0] + "<br>";
+
+  for(var i = 0; i < labelArray.length; i++) {
+    if(labelArray[i].indexOf("mana") === 1) {
+      label.innerHTML += labelArray[i] + "<br>";
+    }
+  }
+  for(var i = 1; i < labelArray.length; i++) {
+    if(labelArray[i].indexOf("mana") === -1) {
+      label.innerHTML += labelArray[i] + "<br>";
+    }
+  }
+  label.innerHTML = label.innerHTML.substring(0, label.innerHTML.lastIndexOf("<br>"));
+}
+
+
 //seperate all cards into a div class of toggle cards that interact with clicking the cards (this may also need to be split into markers and deleting/adding)
 //the second group are cards that do not interact with clicking the cards
 
@@ -137,6 +158,9 @@ function ButtonSelected(buttonID)
       case "fleeting":
       case "predicted-draw":
       case "restart":
+        counterDisplayElem.innerHTML = "hi";
+        location.reload();
+        return false;
       default: throw "Issue with button selection occured";
     }
 }
@@ -151,42 +175,55 @@ function cardSelected(selectedcard, cardlabel)
         Discardcard(selectedcard, cardlabel);
       case "1":
         manalabel(cardlabel, 1);
+        sortLabel(cardlabel);
         break;
       case "2":
         manalabel(cardlabel, 2);
+        sortLabel(cardlabel);
         break;
       case "3":
         manalabel(cardlabel, 3);
+        sortLabel(cardlabel);
         break;
       case "4":
         manalabel(cardlabel, 4);
+        sortLabel(cardlabel);
         break;
       case "5":
         manalabel(cardlabel, 5);
+        sortLabel(cardlabel);
         break;
       case "6":
         manalabel(cardlabel, 6);
+        sortLabel(cardlabel);
         break;
       case "7":
         manalabel(cardlabel, 7);
+        sortLabel(cardlabel);
         break;
       case "8":
         manalabel(cardlabel, 8);
+        sortLabel(cardlabel);
         break;
       case "9":
         manalabel(cardlabel, 9);
+        sortLabel(cardlabel);
         break;
       case "unit":
         cardtypelabel(cardlabel, "unit");
+        sortLabel(cardlabel);
         break;
       case "spell":
         cardtypelabel(cardlabel, "spell");
+        sortLabel(cardlabel);
         break;
       case "champion":
         cardtypelabel(cardlabel, "champion");
+        sortLabel(cardlabel);
         break;
       case "landmark":
         cardtypelabel(cardlabel, "landmark");
+        sortLabel(cardlabel);
         break;
       case "token":
         document.getElementById(cardlabel).innerHTML += " <br /> token";
