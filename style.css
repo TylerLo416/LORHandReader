@@ -39,22 +39,29 @@ body {
 }
 
 /* Styling Cards */
-* {
-  box-sizing: border-box;
-}
 .img-cards {
-  float: right;
-  width: 9%;
-  height: 9%;
+  /*float: right;*/
+  display: inline-block;
+  width: 8%;
+  height: 8%;
   padding: 0px;
   margin-right: 1%;
-  position: relative;
+  /*position: relative;*/
+  box-sizing: border-box;
 }
 .card-labels{
   position: absolute;
 }
 
-.card-images::after {
+#flex-card-image-container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  background-color: lightblue;
+}
+
+.flex-card-image-container::after {
   content:"";
   clear: both;
   display: table;

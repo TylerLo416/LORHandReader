@@ -18,8 +18,19 @@ function updateDisplay(){
 
 function Discardcard(cardID, cardlabel)
 {
-    document.getElementById(cardID).style.visibility = "hidden";//make display = "none" when needed for the cards to move
-    document.getElementById(cardlabel).style.visibility = "hidden";
+    //document.getElementById(cardID).style.visibility = "hidden";//make display = "none" when needed for the cards to move
+    //document.getElementById(cardlabel).style.visibility = "hidden";
+    const card = document.getElementById(cardID);
+    const label = document.getElementById(cardlabel);
+
+    card.style.display = "none";//make display = "none" when needed for the cards to move
+    label.style.display = "none";
+
+    document.getElementById('flex-card-image-container').style.justifyContent = 'center';
+    //document.getElementById('flex-card-image-container').style.justifyContent = 'center';
+    counterDisplayElem.innerHTML = "hi";
+    //document.getElementById(cardID).style.display = "none";//make display = "none" when needed for the cards to move
+    //document.getElementById(cardlabel).style.display = "none";
 }
 
 
