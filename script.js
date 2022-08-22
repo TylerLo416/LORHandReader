@@ -16,7 +16,7 @@ function updateDisplay(){
 }
 
 
-function Discardcard(cardID, cardlabel)
+function Discardcard(cardID, cardlabel, wrapperID)
 {
     //document.getElementById(cardID).style.visibility = "hidden";//make display = "none" when needed for the cards to move
     //document.getElementById(cardlabel).style.visibility = "hidden";
@@ -26,9 +26,11 @@ function Discardcard(cardID, cardlabel)
     card.style.display = "none";//make display = "none" when needed for the cards to move
     label.style.display = "none";
 
-    document.getElementById('flex-card-image-container').style.justifyContent = 'center';
+    document.getElementById(wrapperID).style.display = "none";
+
     //document.getElementById('flex-card-image-container').style.justifyContent = 'center';
-    counterDisplayElem.innerHTML = "hi";
+    //document.getElementById('flex-card-image-container').style.justifyContent = 'center';
+    //counterDisplayElem.innerHTML = "hi";
     //document.getElementById(cardID).style.display = "none";//make display = "none" when needed for the cards to move
     //document.getElementById(cardlabel).style.display = "none";
 }
@@ -176,14 +178,14 @@ function ButtonSelected(buttonID)
     }
 }
 
-function cardSelected(selectedcard, cardlabel)
+function cardSelected(selectedcard, cardlabel, wrapperID)
 {
     //check which button is currently active
     //use a switch case to choose the correct action based on which button is currently active
     var activeButton = document.getElementsByClassName("button active");
     switch(activeButton[0].id) {
       case "discard-play":
-        Discardcard(selectedcard, cardlabel);
+        Discardcard(selectedcard, cardlabel, wrapperID);
       case "1":
         manalabel(cardlabel, 1);
         sortLabel(cardlabel);
