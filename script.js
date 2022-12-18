@@ -16,6 +16,13 @@ function updateDisplay(){
 }
 
 
+//MAKE AN addCard function here:
+/*function addCard(tag)
+{
+
+}*/
+
+
 function Discardcard(cardID, cardlabel, wrapperID)
 {
     //document.getElementById(cardID).style.visibility = "hidden";//make display = "none" when needed for the cards to move
@@ -28,6 +35,8 @@ function Discardcard(cardID, cardlabel, wrapperID)
 
     document.getElementById(wrapperID).style.display = "none";
 
+    redoCardNums();
+
     //document.getElementById('flex-card-image-container').style.justifyContent = 'center';
     //document.getElementById('flex-card-image-container').style.justifyContent = 'center';
     //counterDisplayElem.innerHTML = "hi";
@@ -35,6 +44,9 @@ function Discardcard(cardID, cardlabel, wrapperID)
     //document.getElementById(cardlabel).style.display = "none";
 }
 
+function redoCardNums() {
+  //for each element in div id="flex-card-image-container"
+}
 
 //function for the mana toggle labels
 function manalabel(cardlabel, number)
@@ -165,6 +177,7 @@ function ButtonSelected(buttonID)
 
       case "next-turn":
       case "draw":
+        //addCard("drawn");
       case "create":
       case "manifest":
       case "nab":

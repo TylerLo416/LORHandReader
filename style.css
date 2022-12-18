@@ -59,6 +59,7 @@ body {
   text-align: center;
   justify-content: center;
   background-color: lightblue;
+  min-height: 200px;
 }
 
 .flex-card-image-container::after {
