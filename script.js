@@ -172,19 +172,19 @@ function ButtonSelected(buttonID)
       pressedbutton.classList.add("active");
       return;
     }
-
     switch(buttonID) {
-
       case "next-turn":
       case "draw":
-        //addCard("drawn");
+          //drawCard(drawn); - drawn is to be appended to id
+          drawCard();
+          return;
       case "create":
       case "manifest":
       case "nab":
       case "fleeting":
       case "predicted-draw":
       case "restart":
-        counterDisplayElem.innerHTML = "hi";
+        counterDisplayElem.innerHTML = buttonID;
         location.reload();
         return false;
       default: throw "Issue with button selection occured";
@@ -262,4 +262,17 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
     }
     activeButton[0].classList.add("inactive");
     activeButton[0].classList.remove("active");
+}
+
+function drawCard(/*drawtype*/) {
+  //var cardContainer = document.createElement('img-cards');
+  //need to implement the container around the card, give it the correct id, etc.
+  
+  var newCard = document.createElement('img');
+  newCard.src = 'Card-Back-Images/Summoner\'s-Rift.png';
+  newCard.className = 'img-cards';
+  //newCard
+  //newCard.setAttribute("src", "Card-Back-Images/Summoner's-Rift.png");
+  //newCard.setAttribute('class', 'img-cards');
+  document.getElementById('flex-card-image-container').appendChild(newCard);
 }
