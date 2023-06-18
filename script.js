@@ -1,3 +1,8 @@
+import { drawCard } from './toggleButtons.js';
+
+
+
+
 //turn counter
 let counterDisplayElem = document.querySelector('.counter-display');
 let counterPlusElem = document.getElementById('next-turn');
@@ -145,13 +150,64 @@ function sortLabel(cardlabel)
   label.innerHTML = label.innerHTML.substring(0, label.innerHTML.lastIndexOf("<br>"));
 }
 
-
 //seperate all cards into a div class of toggle cards that interact with clicking the cards (this may also need to be split into markers and deleting/adding)
 //the second group are cards that do not interact with clicking the cards
 
 //main function for cards
+var nextTurn = document.getElementById('next-turn');
+var discardPlay = document.getElementById('discard-play');
+var draw = document.getElementById('draw');
+var create = document.getElementById('create');
+var manifest = document.getElementById('manifest');
+var fleeting = document.getElementById('fleeting');
+var predictedDraw = document.getElementById('predicted-draw');
+var shown = document.getElementById('shown');
+var one = document.getElementById('1');
+var two = document.getElementById('2');
+var three = document.getElementById('3');
+var four = document.getElementById('4');
+var five = document.getElementById('5');
+var six = document.getElementById('6');
+var seven = document.getElementById('7');
+var eight = document.getElementById('8');
+var nine = document.getElementById('9');
+var unit = document.getElementById('unit');
+var spell = document.getElementById('spell');
+var champion = document.getElementById('champion');
+var landmark = document.getElementById('landmark');
+var token = document.getElementById('token');
+var moveToEnd = document.getElementById('move-to-end');
+var restart = document.getElementById('restart');
+
+
+nextTurn.addEventListener("click", ButtonSelected('next-turn'));
+discardPlay.addEventListener("click", ButtonSelected('discard-play'));
+draw.addEventListener("click", ButtonSelected('draw'));
+create.addEventListener("click", ButtonSelected('create'));
+manifest.addEventListener("click", ButtonSelected('manifest'));
+fleeting.addEventListener("click", ButtonSelected('fleeting'));
+predictedDraw.addEventListener("click", ButtonSelected('predicted-draw'));
+shown.addEventListener("click", ButtonSelected('shown'));
+one.addEventListener("click", ButtonSelected('1'));
+two.addEventListener("click", ButtonSelected('2'));
+three.addEventListener("click", ButtonSelected('3'));
+four.addEventListener("click", ButtonSelected('4'));
+five.addEventListener("click", ButtonSelected('5'));
+six.addEventListener("click", ButtonSelected('6'));
+seven.addEventListener("click", ButtonSelected('7'));
+eight.addEventListener("click", ButtonSelected('8'));
+nine.addEventListener("click", ButtonSelected('9'));
+unit.addEventListener("click", ButtonSelected('unit'));
+spell.addEventListener("click", ButtonSelected('spell'));
+champion.addEventListener("click", ButtonSelected('champion'));
+landmark.addEventListener("click", ButtonSelected('landmark'));
+token.addEventListener("click", ButtonSelected('token'));
+moveToEnd.addEventListener("click", ButtonSelected('move-to-end'));
+/*restart.addEventListener("click", ButtonSelected('restart'));*/
+
 function ButtonSelected(buttonID)
 {
+    counterDisplayElem.innerHTML = "in button selected";
     //remove all other active button classes - set them to inactive
     var buttons = document.getElementsByClassName("button active");
 
@@ -164,6 +220,7 @@ function ButtonSelected(buttonID)
     }
     
     var pressedbutton = document.getElementById(buttonID);
+    counterDisplayElem.innerHTML = "button ID:" + buttonID;
 
 
     //if statement for non-toggle buttons - if they are non-toggle class, go into a switch case to do the correct thing-
@@ -174,22 +231,50 @@ function ButtonSelected(buttonID)
     }
     switch(buttonID) {
       case "next-turn":
+          break;
       case "draw":
           //drawCard(drawn); - drawn is to be appended to id
           drawCard();
-          return;
+          break;
       case "create":
+          break;
       case "manifest":
+          break;
       case "nab":
+          break;  
       case "fleeting":
+          break;
       case "predicted-draw":
+          break;
       case "restart":
-        counterDisplayElem.innerHTML = buttonID;
-        location.reload();
-        return false;
+          counterDisplayElem.innerHTML = buttonID;
+          location.reload();
+          break;
       default: throw "Issue with button selection occured";
     }
 }
+
+
+var card1 = document.getElementById("img-cards-1");
+var card2 = document.getElementById("img-cards-2");
+var card3 = document.getElementById("img-cards-3");
+var card4 = document.getElementById("img-cards-4");
+var card5 = document.getElementById("img-cards-5");
+var card6 = document.getElementById("img-cards-6");
+var card7 = document.getElementById("img-cards-7");
+var card8 = document.getElementById("img-cards-8");
+var card9 = document.getElementById("img-cards-9");
+var card10 = document.getElementById("img-cards-10");
+card1.addEventListener("click", cardSelected('LORCard1', 'LOR-Card-label1', 'img-cards1'));
+card2.addEventListener("click", cardSelected('LORCard1', 'LOR-Card-label1', 'img-cards1'));
+card3.addEventListener("click", cardSelected('LORCard1', 'LOR-Card-label1', 'img-cards1'));
+card4.addEventListener("click", cardSelected('LORCard1', 'LOR-Card-label1', 'img-cards1'));
+card5.addEventListener("click", cardSelected('LORCard1', 'LOR-Card-label1', 'img-cards1'));
+card6.addEventListener("click", cardSelected('LORCard1', 'LOR-Card-label1', 'img-cards1'));
+card7.addEventListener("click", cardSelected('LORCard1', 'LOR-Card-label1', 'img-cards1'));
+card8.addEventListener("click", cardSelected('LORCard1', 'LOR-Card-label1', 'img-cards1'));
+card9.addEventListener("click", cardSelected('LORCard1', 'LOR-Card-label1', 'img-cards1'));
+card10.addEventListener("click", cardSelected('LORCard1', 'LOR-Card-label1', 'img-cards1'));
 
 function cardSelected(selectedcard, cardlabel, wrapperID)
 {
@@ -199,6 +284,7 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
     switch(activeButton[0].id) {
       case "discard-play":
         Discardcard(selectedcard, cardlabel, wrapperID);
+        break;
       case "1":
         manalabel(cardlabel, 1);
         sortLabel(cardlabel);
@@ -258,13 +344,14 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
         document.getElementById(cardlabel).innerHTML += " <br /> shown";
         break;
       case "move-to-end":
-      default: //do nothing;
+        break;
+      default: break;//do nothing;
     }
     activeButton[0].classList.add("inactive");
     activeButton[0].classList.remove("active");
 }
 
-function drawCard(/*drawtype*/) {
+/*function drawCard(/*drawtype) {
   //var cardContainer = document.createElement('img-cards');
   //need to implement the container around the card, give it the correct id, etc.
   
@@ -275,4 +362,5 @@ function drawCard(/*drawtype*/) {
   //newCard.setAttribute("src", "Card-Back-Images/Summoner's-Rift.png");
   //newCard.setAttribute('class', 'img-cards');
   document.getElementById('flex-card-image-container').appendChild(newCard);
-}
+}*/
+
