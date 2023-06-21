@@ -1,8 +1,6 @@
 import { drawCard } from './toggleButtons.js';
 
 
-
-
 //turn counter
 let counterDisplayElem = document.querySelector('.counter-display');
 let counterPlusElem = document.getElementById('next-turn');
