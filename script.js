@@ -15,7 +15,7 @@ function updateDisplay(){
     counterDisplayElem.innerHTML = "Turn: " + count;
 }
 
-function Discardcard(cardID, cardlabel, wrapperID)
+function Discardcard(cardID, cardlabel, wrapperID, amtCards)
 {
     //document.getElementById(cardID).style.visibility = "hidden";//make display = "none" when needed for the cards to move
     //document.getElementById(cardlabel).style.visibility = "hidden";
@@ -28,7 +28,7 @@ function Discardcard(cardID, cardlabel, wrapperID)
     document.getElementById(wrapperID).style.display = "none";
 
     redoCardNums();
-
+    amtcards--;
     //document.getElementById('flex-card-image-container').style.justifyContent = 'center';
     //document.getElementById('flex-card-image-container').style.justifyContent = 'center';
     //counterDisplayElem.innerHTML = "hi";
@@ -165,7 +165,7 @@ function ButtonSelected(buttonID)
       case "next-turn":
       case "draw":
           //drawCard(drawn); - drawn is to be appended to id
-          drawCard();
+          amtcards = drawCard(amtcards);
           return;
       case "create":
       case "manifest":
@@ -188,7 +188,7 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
     var activeButton = document.getElementsByClassName("button active");
     switch(activeButton[0].id) {
       case "discard-play":
-        Discardcard(selectedcard, cardlabel, wrapperID);
+        Discardcard(selectedcard, cardlabel, wrapperID, amtcards);
       case "1":
         manalabel(cardlabel, 1);
         sortLabel(cardlabel);
