@@ -15,14 +15,6 @@ function updateDisplay(){
     counterDisplayElem.innerHTML = "Turn: " + count;
 }
 
-
-//MAKE AN addCard function here:
-/*function addCard(tag)
-{
-
-}*/
-
-
 function Discardcard(cardID, cardlabel, wrapperID)
 {
     //document.getElementById(cardID).style.visibility = "hidden";//make display = "none" when needed for the cards to move
@@ -44,6 +36,7 @@ function Discardcard(cardID, cardlabel, wrapperID)
     //document.getElementById(cardlabel).style.display = "none";
 }
 
+//need to set the card id numbers to be 1, 2, 3, 4, etc. after a card is deleted
 function redoCardNums() {
   //for each element in div id="flex-card-image-container"
 }
@@ -56,13 +49,8 @@ function manalabel(cardlabel, number)
   if(label.innerHTML.indexOf("mana") === -1){
     label.innerHTML += "<br> mana: " + number;
   }
-  //if mana: 1 already shown delete it
+  //if mana: 1 (already shown) delete it
   else if(label.innerHTML.indexOf("mana: " + number) !== -1){
-    //counterDisplayElem.innerHTML = "were here" + label.innerHTML.indexOf("mana") + " 0: " + label.innerHTML.charAt("1") + 
-    //  "char: " + label.innerHTML.charAt(12) + " length: " + label.innerText.length;
-    /*counterDisplayElem.innerHTML = "hi " + label.innerHTML.substring(0, label.innerHTML.indexOf("mana")-6);
-    label.innerHTML = label.innerHTML.substring(0, label.innerHTML.indexOf("<br /> mana")) + 
-      label.innerHTML.substring(label.innerHTML.indexOf("1"), label.innerHTML.length-1);//possible problem is label.length doesnt work*/
     const labelArray = label.innerHTML.split("<br>");
     label.innerHTML = "";
     for(var i = 0; i < labelArray.length; i++) {
@@ -89,6 +77,7 @@ function manalabel(cardlabel, number)
   }
 }
 
+//labels cardtype (unit, spell, champion, landmark)
 function cardtypelabel(cardlabel, cardtype)
 {
   const label = document.getElementById(cardlabel);
@@ -125,7 +114,7 @@ function cardtypelabel(cardlabel, cardtype)
   }
 }
 
-//sets the mana label to be the first label, then sorts the rest alphabeticalls
+//sets the mana label to be the first label, then sorts the rest alphabetically
 function sortLabel(cardlabel)
 {
   const label = document.getElementById(cardlabel);
@@ -146,7 +135,8 @@ function sortLabel(cardlabel)
 }
 
 
-//seperate all cards into a div class of toggle cards that interact with clicking the cards (this may also need to be split into markers and deleting/adding)
+//seperate all cards into a div class of toggle cards that interact with clicking the cards 
+//(this may also need to be split into markers and deleting/adding)
 //the second group are cards that do not interact with clicking the cards
 
 //main function for cards
@@ -154,8 +144,6 @@ function ButtonSelected(buttonID)
 {
     //remove all other active button classes - set them to inactive
     var buttons = document.getElementsByClassName("button active");
-
-    //var querybuttons = document.querySelectorAll(".button active");
     for(var i = 0; i < buttons.length; i++){
       if(buttons[i].classList.contains("active")){
         buttons[i].classList.add("inactive");
@@ -166,7 +154,8 @@ function ButtonSelected(buttonID)
     var pressedbutton = document.getElementById(buttonID);
 
 
-    //if statement for non-toggle buttons - if they are non-toggle class, go into a switch case to do the correct thing-
+    //if statement for non-toggle buttons - if they are non-toggle class, 
+    //go into a switch case to do the correct thing-
     if(pressedbutton.classList.contains("inactive")){
       pressedbutton.classList.remove("inactive");
       pressedbutton.classList.add("active");
@@ -194,7 +183,8 @@ function ButtonSelected(buttonID)
 function cardSelected(selectedcard, cardlabel, wrapperID)
 {
     //check which button is currently active
-    //use a switch case to choose the correct action based on which button is currently active
+    //use a switch case to choose the correct action based on 
+    //which button is currently active
     var activeButton = document.getElementsByClassName("button active");
     switch(activeButton[0].id) {
       case "discard-play":
@@ -262,17 +252,4 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
     }
     activeButton[0].classList.add("inactive");
     activeButton[0].classList.remove("active");
-}
-
-function drawCard(/*drawtype*/) {
-  //var cardContainer = document.createElement('img-cards');
-  //need to implement the container around the card, give it the correct id, etc.
-  
-  var newCard = document.createElement('img');
-  newCard.src = 'Card-Back-Images/Summoner\'s-Rift.png';
-  newCard.className = 'img-cards';
-  //newCard
-  //newCard.setAttribute("src", "Card-Back-Images/Summoner's-Rift.png");
-  //newCard.setAttribute('class', 'img-cards');
-  document.getElementById('flex-card-image-container').appendChild(newCard);
 }
