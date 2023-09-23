@@ -11,3 +11,17 @@ function drawCard(amtCards) {
     }
     return amtCards;
   }
+
+function Discardcard(cardID, cardlabel, wrapperID)
+{
+    const card = document.getElementById(cardID);
+    const label = document.getElementById(cardlabel);
+
+    card.style.display = "none";
+    label.style.display = "none";
+
+    document.getElementById(wrapperID).style.display = "none";
+
+    redoCardNums();
+    amtcards--;
+}
