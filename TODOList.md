@@ -9,6 +9,7 @@
 - User input needs to be allowed to add custom labels
 - Token should remove the label instead of adding more
 - Move to End needs to be created
+- manual input button needs to be created
 
 ## CSS Stuff
 - Blue background behind cards should be made more appealing 
@@ -16,6 +17,7 @@
 - Buttons should be seperated into 2 categories: cardManipulators, labelManipulators
 - Buttons should be redesigned to have a similar color palette to blue background redesign
 - Turn counter should be updated accordingly to fit in with the redesign
+- Toggle buttons should have an effect where the user knows that button is toggled (think button pushed down to indicate that button is on)
 
 
 # To Do List aftwerwards:
@@ -29,3 +31,5 @@
 ## Animations
 - Simple Fade-out for mulligan buttons into the rest of the buttons
 - Card drawing / discarding animation? At least slow down the cards moving so it's not instantaneous
+## Help Button
+- Small Question mark button in the bottom right / left which, when clicked on, opens a pop-up explaining basics of the website
