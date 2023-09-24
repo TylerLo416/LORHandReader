@@ -56,33 +56,27 @@
 </div>
 <div class="main-buttons">
     <button class="button" id="next-turn">Next Turn</button>
-    <button class="button inactive" id="discard-play" onclick="ButtonSelected('discard-play')">Discard/play (single toggle)</button>
+    <button class="button inactive" id="discard-play" onclick="ButtonSelected('discard-play')">Discard/Play</button>
     <button class="button" id="draw" onclick="ButtonSelected('draw')">Draw:</button>
     <button class="button" id="create" onclick="ButtonSelected('create')">Create:</button>
     <button class="button" id="manifest" onclick="ButtonSelected('manifest')">Manifest:</button>
     <button class="button" id="nab" onclick="ButtonSelected('nab')">Nab:</button>
     <button class="button" id="fleeting" onclick="ButtonSelected('fleeting')">fleeting</button>
-    <button class="button" id="shown" onclick="ButtonSelected('shown')">Shown(user input)</button>
-    <p> mana </p>
-    <button class="button inactive" id="1" onclick="ButtonSelected('1')">1</button>
-    <button class="button inactive" id="2" onclick="ButtonSelected('2')">2</button>
-    <button class="button inactive" id="3" onclick="ButtonSelected('3')">3</button>
-    <button class="button inactive" id="4" onclick="ButtonSelected('4')">4</button>
-    <button class="button inactive" id="5" onclick="ButtonSelected('5')">5</button>
-    <button class="button inactive" id="6" onclick="ButtonSelected('6')">6</button>
-    <button class="button inactive" id="7" onclick="ButtonSelected('7')">7</button>
-    <button class="button inactive" id="8" onclick="ButtonSelected('8')">8</button>
-    <button class="button inactive" id="9" onclick="ButtonSelected('9')">9</button>
-    <button class="button inactive" id="unit" onclick="ButtonSelected('unit')">unit</button>
-    <button class="button inactive" id="spell" onclick="ButtonSelected('spell')">spell</button>
-    <button class="button inactive" id="champion" onclick="ButtonSelected('champion')">champion</button>
-    <button class="button inactive" id="landmark" onclick="ButtonSelected('landmark')">landmark</button>
-    <button class="button inactive" id="equipment" onclick="ButtonSelected('equipment')">equipment</button>
-    <button class="button" id="predicted-draw" onclick="ButtonSelected('predicted-draw')">predicted</button>
-    <button class="button" id="reduced-cost" onclick="ButtonSelected('reduced cost')">reduced cost</button>
-    <button class="button inactive" id="token" onclick="ButtonSelected('token')">token</button>
-    <button class="button inactive" id="move-to-end" onclick="ButtonSelected('move-to-end')">move to end</button>
-    <button class="button" id="restart" onclick="ButtonSelected('restart')">restart</button>
+    <button class="button" id="shown" onclick="ButtonSelected('shown')">Shown</button>
+    <h1 class="mana-header">Mana</h1>
+
+    <input type="number" class="button inactive" id="mana-value" min="1" max="9" placeholder="Input Mana" style="width: 170px;">
+
+    <button class="button inactive" id="unit" onclick="ButtonSelected('unit')">Unit</button>
+    <button class="button inactive" id="spell" onclick="ButtonSelected('spell')">Spell</button>
+    <button class="button inactive" id="champion" onclick="ButtonSelected('champion')">Champion</button>
+    <button class="button inactive" id="landmark" onclick="ButtonSelected('landmark')">Landmark</button>
+    <button class="button inactive" id="equipment" onclick="ButtonSelected('equipment')">Equipment</button>
+    <button class="button" id="predicted-draw" onclick="ButtonSelected('predicted-draw')">Predicted</button>
+    <button class="button" id="reduced-cost" onclick="ButtonSelected('reduced cost')">Reduced Cost</button>
+    <button class="button inactive" id="token" onclick="ButtonSelected('token')">Token</button>
+    <button class="button inactive" id="move-to-end" onclick="ButtonSelected('move-to-end')">Move to End</button>
+    <button class="button" id="restart" onclick="ButtonSelected('restart')">Restart</button>
 </div>
     <script src="labelManipulators.js"></script> 
     <script src="cardManipulators.js"></script>
