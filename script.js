@@ -13,6 +13,7 @@ counterPlusElem.addEventListener("click",()=>{
 
 function updateDisplay(){
     counterDisplayElem.innerHTML = "Turn: " + turnCounter;
+    amtcards = drawCard(amtcards);
 }
 
 //seperate all cards into a div class of toggle cards that interact with clicking the cards 
@@ -122,7 +123,13 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
         sortLabel(cardlabel);
         break;
       case "token":
-        document.getElementById(cardlabel).innerHTML += " <br /> token";
+        if(!document.getElementById(cardlabel).innerHTML.includes("token")) {
+          document.getElementById(cardlabel).innerHTML += " <br /> token";
+        }
+        else {
+          var updatedContent = document.getElementById(cardlabel).innerHTML.replace('token', '');
+          document.getElementById(cardlabel).innerHTML = updatedContent;
+        }
         break;
       case "shown":
         document.getElementById(cardlabel).innerHTML += " <br /> shown";

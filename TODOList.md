@@ -1,15 +1,10 @@
 # MVP
 
 ## JavaScript Stuff
-- Next Turn should attempt to draw a card
 - Card Numbers and labels need to be updated for drawn cards
-- New buttons need to be added for new card types (equipment, reduced cost)
 - Other types of draw need to work (and add labels to cards)
-- Predicted Draw should move to labels
 - User input needs to be allowed to add custom labels
-- Token should remove the label instead of adding more
 - Move to End needs to be created
-- manual input button needs to be created
 
 ## CSS Stuff
 - Blue background behind cards should be made more appealing 
