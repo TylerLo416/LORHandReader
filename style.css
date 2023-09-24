@@ -20,6 +20,35 @@
   background-color: #2980b9;
 }
 
+.mana-button {
+  background-color: #0044aa;
+  border: none;
+  font-size: 22px;
+  color: #FFFFFF;
+  padding: 15px;
+  margin-top: 30px;
+  font-family: 'LORfontTwo';
+  width: 75px;
+  text-align: center;
+  border-radius: 5px;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.mana-button:hover {
+  background-color: #2980b9;
+}
+
+/* predicted checkbox */
+.checkbox {
+  width: 20px; /* Adjust the size */
+  height: 20px; /* Adjust the size */
+  vertical-align: middle
+}
+
 /* styling title */
 body {
   background-color: black;
@@ -63,13 +92,12 @@ body {
 
 /* turn counter */
 #turn-counter{
-  font-weight: 900;
-  font-size: 70px;
+  font-size: 60px;
 }
 
 /* adding margin underneath card labels */
 .counter-display {
-  margin-top: 100px;
+  margin-top: 26px;
 }
 
 @font-face {
@@ -95,3 +123,11 @@ body {
 /* then numbers are cost, we want to have user input limit it from 1 to 9 */
 /* when discard/play is clicked, it'll pick a card to discard/play */
 /* shown: manual input, notes, etc */
+
+.move-button {
+
+}
+
+.restart-button {
+  justify-content: right;
+}

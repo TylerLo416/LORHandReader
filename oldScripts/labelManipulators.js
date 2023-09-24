@@ -90,9 +90,3 @@ function sortLabel(cardlabel)
   }
   label.innerHTML = label.innerHTML.substring(0, label.innerHTML.lastIndexOf("<br>"));
 }
-
-//need to set the card id numbers to be 1, 2, 3, 4, etc. after a card is deleted
-function redoCardNums() {
-    //for each element in div id="flex-card-image-container"
-  }
-  

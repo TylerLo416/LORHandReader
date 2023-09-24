@@ -1,10 +1,12 @@
 # MVP
 
 ## JavaScript Stuff
-- Card Numbers and labels need to be updated for drawn cards
+- Card Numbers and labels need to be updated for drawn cards - move onclick from html to js
 - Other types of draw need to work (and add labels to cards)
 - User input needs to be allowed to add custom labels
 - Move to End needs to be created
+-move fleeting to labels, code so that when nextTurn is clicked, it automatically gets deleted
+- qol updates (right click is delete a card, etc. we'll think about it)
 
 ## CSS Stuff
 - Blue background behind cards should be made more appealing 

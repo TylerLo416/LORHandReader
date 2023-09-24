@@ -14,14 +14,23 @@ function drawCard(amtCards) {
 
 function Discardcard(cardID, cardlabel, wrapperID)
 {
+
     const card = document.getElementById(cardID);
     const label = document.getElementById(cardlabel);
+    const cardNum = wrapperID.split('-')[2];
 
-    card.style.display = "none";
-    label.style.display = "none";
+    //remove card that is being deleted
+    card.remove();
+    label.remove();
+    document.getElementById(wrapperID).remove();
 
-    document.getElementById(wrapperID).style.display = "none";
 
     redoCardNums();
     amtcards--;
 }
+
+//need to set the card id numbers to be 1, 2, 3, 4, etc. after a card is deleted
+function redoCardNums() {
+    //for each element in div id="flex-card-image-container"
+  }
+  

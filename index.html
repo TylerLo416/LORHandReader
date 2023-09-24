@@ -10,76 +10,61 @@
 </head>
 <body>
 <div id="flex-card-image-container">
-    <div class = "img-cards" id="img-cards-1">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard1', 'LORCard-label1', 'img-cards-1')" id = "LORCard1" alt="LOR Card" style="width:100%;height:100%;"/>
-        <p class="card-labels" id="LORCard-label1"> Card 1</p>    
-    </div>
-    <div class = "img-cards" id="img-cards-2">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard2', 'LORCard-label2', 'img-cards-2')" id = "LORCard2" alt="LOR Card" style="width:100%;height:100%;"/>
-        <p class="card-labels" id="LORCard-label2"> Card 2</p>    
-    </div>
-    <div class = "img-cards" id="img-cards-3">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard3', 'LORCard-label3', 'img-cards-3')" id = "LORCard3" alt="LOR Card" style="width:100%;height:100%;"/>
-        <p class="card-labels" id="LORCard-label3"> Card 3</p>    
-    </div>
-    <div class = "img-cards" id="img-cards-4">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard4', 'LORCard-label4', 'img-cards-4')" id = "LORCard4" alt="LOR Card" style="width:100%;height:100%;"/>
-        <p class="card-labels" id="LORCard-label4"> Card 4</p>    
-    </div>
-    <div class = "img-cards" id="img-cards-5">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard5', 'LORCard-label5', 'img-cards-5')" id = "LORCard5" alt="LOR Card" style="width:100%;height:100%;"/>
-        <p class="card-labels" id="LORCard-label5"> Card 5</p>    
-    </div>
-    <div class = "img-cards" id="img-cards-6">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard6', 'LORCard-label6', 'img-cards-6')" id = "LORCard6" alt="LOR Card" style="width:100%;height:100%;"/>
-        <p class="card-labels" id="LORCard-label6"> Card 6</p>   
-    </div>
-    <div class = "img-cards" id="img-cards-7">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard7', 'LORCard-label7', 'img-cards-7')" id = "LORCard7" alt="LOR Card" style="width:100%;height:100%;"/>
-        <p class="card-labels" id="LORCard-label7"> Card 7</p>    
-    </div>
-    <div class = "img-cards" id="img-cards-8">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard8', 'LORCard-label8', 'img-cards-8')" id = "LORCard8" alt="LOR Card" style="width:100%;height:100%;"/>
-        <p class="card-labels" id="LORCard-label8"> Card 8</p>    
-    </div>
-    <div class = "img-cards" id="img-cards-9">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard9', 'LORCard-label9', 'img-cards-9')" id = "LORCard9" alt="LOR Card" style="width:100%;height:100%;"/>
-        <p class="card-labels" id="LORCard-label9"> Card 9</p>    
-    </div>
-    <div class = "img-cards" id="img-cards-10">
-        <img src="Card-Back-Images/Summoner's-Rift.png" onclick = "cardSelected('LORCard10', 'LORCard-label10', 'img-cards-10')" id = "LORCard10" alt="LOR Card" style="width:100%;height:100%;"/>
-        <p class="card-labels" id="LORCard-label10"> Card 10</p>   
-    </div>
-</div>    
+    
+</div>
+</div>
 <div>
-  <h1 class="counter-display">Turn: 0</h1>
+  <h1 class="counter-display">Turn: <span id="turn-drawn">0</span></h1>
 </div>
 <div class="main-buttons">
-    <button class="button" id="next-turn">Next Turn</button>
-    <button class="button inactive" id="discard-play" onclick="ButtonSelected('discard-play')">Discard/Play</button>
-    <button class="button" id="draw" onclick="ButtonSelected('draw')">Draw:</button>
-    <button class="button" id="create" onclick="ButtonSelected('create')">Create:</button>
-    <button class="button" id="manifest" onclick="ButtonSelected('manifest')">Manifest:</button>
-    <button class="button" id="nab" onclick="ButtonSelected('nab')">Nab:</button>
-    <button class="button" id="fleeting" onclick="ButtonSelected('fleeting')">fleeting</button>
-    <button class="button" id="shown" onclick="ButtonSelected('shown')">Shown</button>
-    <h1 class="mana-header">Mana</h1>
-
-    <input type="number" class="button inactive" id="mana-value" min="1" max="9" placeholder="Input Mana" style="width: 170px;">
-
-    <button class="button inactive" id="unit" onclick="ButtonSelected('unit')">Unit</button>
-    <button class="button inactive" id="spell" onclick="ButtonSelected('spell')">Spell</button>
-    <button class="button inactive" id="champion" onclick="ButtonSelected('champion')">Champion</button>
-    <button class="button inactive" id="landmark" onclick="ButtonSelected('landmark')">Landmark</button>
-    <button class="button inactive" id="equipment" onclick="ButtonSelected('equipment')">Equipment</button>
-    <button class="button" id="predicted-draw" onclick="ButtonSelected('predicted-draw')">Predicted</button>
-    <button class="button" id="reduced-cost" onclick="ButtonSelected('reduced cost')">Reduced Cost</button>
-    <button class="button inactive" id="token" onclick="ButtonSelected('token')">Token</button>
-    <button class="button inactive" id="move-to-end" onclick="ButtonSelected('move-to-end')">Move to End</button>
-    <button class="button" id="restart" onclick="ButtonSelected('restart')">Restart</button>
+    <div>
+        <label for="shown">Shown:</label>
+        <input type="text" id="shown" placeholder="Enter Shown">
+    </div>
+    <div>
+        <label for="turn-drawn-input">Turn Drawn: 5</label>
+    </div>
+    <div>
+        <div id="mana-buttons">
+            <label>Mana:</label>
+            <button class="mana-button" id="mana-1">1</button>
+            <button class="mana-button" id="mana-2">2</button>
+            <button class="mana-button" id="mana-3">3</button>
+            <button class="mana-button" id="mana-4">4</button>
+            <button class="mana-button" id="mana-5">5</button>
+            <button class="mana-button" id="mana-6">6</button>
+            <button class="mana-button" id="mana-7">7</button>
+            <button class="mana-button" id="mana-8">8</button>
+            <button class="mana-button" id="mana-9">9</button>
+        </div>
+    </div>
+    <div>
+        <label>Type:</label>
+        <button class="button" id="type-fleeting">Fleeting</button>
+        <button class="button" id="type-spell">Spell</button>
+        <button class="button" id="type-unit">Unit</button>
+        <button class="button" id="type-champion">Champion</button>
+        <button class="button" id="type-equipment">Equipment</button>
+        <button class="button" id="type-landmark">Landmark</button>
+    </div>
+    <div>
+        <label for="predicted">Predicted:</label>
+        <input type="checkbox" id="predicted" class="checkbox">
+    </div>
+    <div>
+        <label for="reduced-cost-input">Reduced Cost:</label>
+        <input type="number" id="reduced-cost-input" min="0">
+    </div>
+    <div>
+        <label>Draw Type:</label>
+        <button class="button" id="draw-type-draw">Draw</button>
+        <button class="button" id="draw-type-create">Create</button>
+        <button class="button" id="draw-type-manifest">Manifest</button>
+        <button class="button" id="draw-type-nab">Nab</button>
+    </div>
+    <button class="move-button" id="move-to-end">Move to End</button>
+    <button class="restart-button" id="restart">Restart</button>
 </div>
-    <script src="labelManipulators.js"></script> 
-    <script src="cardManipulators.js"></script>
-    <script src="script.js"></script>
+<script src="newScript.js"></script>
 </body>
 </html>
