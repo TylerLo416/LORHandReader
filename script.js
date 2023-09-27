@@ -1,3 +1,33 @@
+//Generate (10) cards
+const numberOfCards = 10;  // Number of cards to generate
+const cardContainer = document.getElementById('flex-card-image-container');
+
+for (let i = 1; i <= numberOfCards; i++) {
+  const imgCardDiv = document.createElement('div');
+  imgCardDiv.className = 'img-cards';
+  imgCardDiv.id = `img-cards-${i}`;
+
+  const img = document.createElement('img');
+  img.src = "Card-Back-Images/Summoner's-Rift.png";
+  img.alt = "LOR Card";
+  img.style.width = "100%";
+  img.style.height = "100%";
+  img.id = `LORCard${i}`
+  img.onclick = () => cardSelected(`LORCard${i}`, `LORCard-label${i}`, `img-cards-${i}`);
+
+  const label = document.createElement('p');
+  label.className = 'card-labels';
+  label.id = `LORCard-label${i}`;
+  label.textContent = `Card ${i}`;
+
+  imgCardDiv.appendChild(img);
+  imgCardDiv.appendChild(label);
+  cardContainer.appendChild(imgCardDiv);
+
+  
+}
+
+
 //turn counter
 let counterDisplayElem = document.querySelector('.counter-display');
 let counterPlusElem = document.getElementById('next-turn');
@@ -63,6 +93,7 @@ function ButtonSelected(buttonID)
 
 function cardSelected(selectedcard, cardlabel, wrapperID)
 {
+  console.log(selectedcard,cardlabel,wrapperID);
     //check which button is currently active
     //use a switch case to choose the correct action based on 
     //which button is currently active
