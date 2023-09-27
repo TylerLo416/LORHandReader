@@ -23,8 +23,6 @@ for (let i = 1; i <= numberOfCards; i++) {
   imgCardDiv.appendChild(img);
   imgCardDiv.appendChild(label);
   cardContainer.appendChild(imgCardDiv);
-
-  
 }
 
 

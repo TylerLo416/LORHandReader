@@ -3,10 +3,28 @@ function drawCard(amtCards) {
     console.log(amtCards);
     if(amtCards < 10)
     {
-        var newCard = document.createElement('img');
-        newCard.src = 'Card-Back-Images/Summoner\'s-Rift.png';
-        newCard.className = 'img-cards';
-        document.getElementById('flex-card-image-container').appendChild(newCard);
+        const imgCardDiv = document.createElement('div');
+        imgCardDiv.className = 'img-cards';
+        imgCardDiv.id = `img-cards-${amtCards+1}`;
+
+        const img = document.createElement('img');
+        img.src = "Card-Back-Images/Summoner's-Rift.png";
+        img.alt = "LOR Card";
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.id = `LORCard${amtCards+1}`
+        img.onclick = () => cardSelected(`LORCard${amtCards+1}`, 
+            `LORCard-label${amtCards+1}`, `img-cards-${amtCards+1}`);
+        
+        const label = document.createElement('p');
+        label.className = 'card-labels';
+        label.id = `LORCard-label${amtCards+1}`;
+        label.textContent = `Card ${amtCards+1}`;
+        
+        imgCardDiv.appendChild(img);
+        imgCardDiv.appendChild(label);
+        cardContainer.appendChild(imgCardDiv);
+
         amtCards += 1;
     }
     return amtCards;
