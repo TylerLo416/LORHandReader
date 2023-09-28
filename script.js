@@ -1,6 +1,13 @@
 //Generate (10) cards
 const numberOfCards = 10;  // Number of cards to generate
 const cardContainer = document.getElementById('flex-card-image-container');
+const gv = {}; // gv is for storing potentially more than one global var
+gv.amtCards=10;
+//turn counter
+let counterDisplayElem = document.querySelector('.counter-display');
+let counterPlusElem = document.getElementById('next-turn');
+let turnCounter = 0;
+
 
 for (let i = 1; i <= numberOfCards; i++) {
   const imgCardDiv = document.createElement('div');
@@ -25,15 +32,6 @@ for (let i = 1; i <= numberOfCards; i++) {
   cardContainer.appendChild(imgCardDiv);
 }
 
-
-//turn counter
-let counterDisplayElem = document.querySelector('.counter-display');
-let counterPlusElem = document.getElementById('next-turn');
-
-let turnCounter = 0;
-
-var amtcards = 10;
-
 counterPlusElem.addEventListener("click",()=>{
     turnCounter++;
     updateDisplay();
@@ -41,7 +39,7 @@ counterPlusElem.addEventListener("click",()=>{
 
 function updateDisplay(){
     counterDisplayElem.innerHTML = "Turn: " + turnCounter;
-    amtcards = drawCard(amtcards);
+    drawCard();
 }
 
 //seperate all cards into a div class of toggle cards that interact with clicking the cards 
@@ -74,7 +72,7 @@ function ButtonSelected(buttonID)
       case "next-turn":
       case "draw":
           //drawCard(drawn); - drawn is to be appended to id
-          amtcards = drawCard(amtcards);
+          drawCard();
           return;
       case "create":
       case "manifest":
