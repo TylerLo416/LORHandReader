@@ -13,8 +13,8 @@ function drawCard(amtCards) {
         img.style.width = "100%";
         img.style.height = "100%";
         img.id = `LORCard${amtCards+1}`
-        img.onclick = () => cardSelected(`LORCard${amtCards+1}`, 
-            `LORCard-label${amtCards+1}`, `img-cards-${amtCards+1}`);
+        img.onclick = () => cardSelected(`LORCard${amtCards}`, 
+            `LORCard-label${amtCards}`, `img-cards-${amtCards}`);
         
         const label = document.createElement('p');
         label.className = 'card-labels';
@@ -48,25 +48,34 @@ function discardCard(cardNum) {
     const wrapper = document.getElementById(`img-cards-${cardNum}`);
     const label = document.getElementById(`LORCard-label${cardNum}`);
     const card = document.getElementById(`LORCard${cardNum}`);
+    card.onclick = null;
     card.remove();
     label.innerText = '';
     label.remove();
     wrapper.remove();
     //cardDiv.style.display = 'none';
-
+    console.log("cardNum " + cardNum);
     // Update card labels and IDs for cards after the deleted card
     for (let i = cardNum + 1; i <= amtcards; i++) {
         const currentCardDiv = document.getElementById(`img-cards-${i}`);
-        if (currentCardDiv) {
-            const currentCardLabel = document.getElementById(`LORCard-label${i}`);
-            const innerHTMLLabel = currentCardLabel.innerHTML;
-            const newCardNum = i - 1;
-            
-            currentCardDiv.id = `img-cards-${newCardNum}`;
-            currentCardLabel.id = `LORCard-label${newCardNum}`;
-            currentCardLabel.textContent = `Card ${newCardNum}`;
-            console.log(currentCardDiv.id + " " + currentCardLabel.id);
-        }
+        const currentCard = document.getElementById(`LORCard${i}`);
+        const currentCardLabel = document.getElementById(`LORCard-label${i}`);
+    
+        const newCardNum = i - 1;
+        let innerHTMLLabel = currentCardLabel.innerHTML;
+    
+        // Replace the numbers in the HTML content while preserving HTML tags
+        const updatedLabel = innerHTMLLabel.replace(/\d+/g, newCardNum);
+        
+    
+        currentCard.onclick = () => cardSelected(`LORCard${newCardNum}`, `LORCard-label${newCardNum}`, `img-cards-${newCardNum}`);
+    
+        currentCardDiv.id = `img-cards-${newCardNum}`;
+        currentCardLabel.id = `LORCard-label${newCardNum}`;
+        currentCard.id = `LORCard${newCardNum}`;
+    
+        currentCardLabel.innerHTML = updatedLabel;
+        console.log(currentCardDiv.id + " " + currentCardLabel.id);
     }
     // Adjust the total number of cards
     amtcards--;
