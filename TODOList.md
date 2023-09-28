@@ -1,7 +1,6 @@
 # MVP
 
 ## JavaScript Stuff
-- Card Numbers and labels need to be updated for drawn cards
 - Other types of draw need to work (and add labels to cards)
 - User input needs to be allowed to add custom labels
 - Move to End needs to be created

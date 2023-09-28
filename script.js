@@ -72,15 +72,27 @@ function ButtonSelected(buttonID)
     }
     switch(buttonID) {
       case "next-turn":
+          
       case "draw":
           //drawCard(drawn); - drawn is to be appended to id
-          amtcards = drawCard(amtcards);
+          amtcards = drawCard(amtcards, "drawn");
           return;
       case "create":
+          amtcards = drawCard(amtcards, "created");
+          sortLabel(cardlabel);
+          return;
       case "manifest":
+          amtcards = drawCard(amtcards, "manifested");
+          sortLabel(cardlabel);
+        return;
       case "nab":
+          amtcards = drawCard(amtcards, "nabbed");
+          sortLabel(cardlabel);
+        return;
       case "fleeting":
-      case "predicted-draw":
+          amtcards = drawCard(amtcards, "fleeting");
+          sortLabel(cardlabel);
+        return;
       case "restart":
         counterDisplayElem.innerHTML = buttonID;
         location.reload();
@@ -159,6 +171,15 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
         }
         else {
           var updatedContent = document.getElementById(cardlabel).innerHTML.replace('token', '');
+          document.getElementById(cardlabel).innerHTML = updatedContent;
+        }
+        break;
+      case "predicted":
+        if(!document.getElementById(cardlabel).innerHTML.includes("predicted")) {
+          document.getElementById(cardlabel).innerHTML += " <br /> predicted";
+        }
+        else {
+          var updatedContent = document.getElementById(cardlabel).innerHTML.replace('predicted', '');
           document.getElementById(cardlabel).innerHTML = updatedContent;
         }
         break;

@@ -1,4 +1,4 @@
-function drawCard(amtCards) {
+function drawCard(amtCards, drawtype) {
     //need to implement the container around the card, give it the correct id, etc.
     console.log(amtCards);
     if(amtCards < 10)
@@ -19,7 +19,7 @@ function drawCard(amtCards) {
         const label = document.createElement('p');
         label.className = 'card-labels';
         label.id = `LORCard-label${amtCards+1}`;
-        label.textContent = `Card ${amtCards+1}`;
+        label.innerHTML = `Card ${amtCards+1}<br>${drawtype}`;
         
         imgCardDiv.appendChild(img);
         imgCardDiv.appendChild(label);
