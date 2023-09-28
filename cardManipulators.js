@@ -30,7 +30,7 @@ function drawCard(amtCards) {
     return amtCards;
   }
 
-function Discardcard(cardID, cardlabel, wrapperID)
+/*function Discardcard(cardID, cardlabel, wrapperID)
 {
     const card = document.getElementById(cardID);
     const label = document.getElementById(cardlabel);
@@ -41,5 +41,34 @@ function Discardcard(cardID, cardlabel, wrapperID)
     document.getElementById(wrapperID).style.display = "none";
 
     redoCardNums();
+    amtcards--;
+}*/
+function discardCard(cardNum) {
+    // Remove the specified card
+    const wrapper = document.getElementById(`img-cards-${cardNum}`);
+    const label = document.getElementById(`LORCard-label${cardNum}`);
+    const card = document.getElementById(`LORCard${cardNum}`);
+    card.remove();
+    label.innerText = '';
+    label.remove();
+    wrapper.remove();
+    //cardDiv.style.display = 'none';
+
+    // Update card labels and IDs for cards after the deleted card
+    for (let i = cardNum + 1; i <= amtcards; i++) {
+        const currentCardDiv = document.getElementById(`img-cards-${i}`);
+        if (currentCardDiv) {
+            const currentCardLabel = document.getElementById(`LORCard-label${i}`);
+            const innerHTMLLabel = currentCardLabel.innerHTML
+x
+            const newCardNum = i - 1;
+            
+            currentCardDiv.id = `img-cards-${newCardNum}`;
+            currentCardLabel.id = `LORCard-label${newCardNum}`;
+            currentCardLabel.textContent = `Card ${newCardNum}`;
+            console.log(currentCardDiv.id + " " + currentCardLabel.id);
+        }
+    }
+    // Adjust the total number of cards
     amtcards--;
 }
