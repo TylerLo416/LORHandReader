@@ -98,7 +98,9 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
     var activeButton = document.getElementsByClassName("button active");
     switch(activeButton[0].id) {
       case "discard-play":
-        Discardcard(selectedcard, cardlabel, wrapperID);
+        const number = parseInt(wrapperID.split("-")[2]);
+        discardCard(number);
+        break;
       case "1":
         manalabel(cardlabel, 1);
         sortLabel(cardlabel);
