@@ -59,8 +59,7 @@ function discardCard(cardNum) {
         const currentCardDiv = document.getElementById(`img-cards-${i}`);
         if (currentCardDiv) {
             const currentCardLabel = document.getElementById(`LORCard-label${i}`);
-            const innerHTMLLabel = currentCardLabel.innerHTML
-x
+            const innerHTMLLabel = currentCardLabel.innerHTML;
             const newCardNum = i - 1;
             
             currentCardDiv.id = `img-cards-${newCardNum}`;
