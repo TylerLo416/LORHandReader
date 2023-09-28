@@ -2,45 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOR Hand Reader</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- this fucking blows-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- get the device disp specs?-->
+    <title>LOR Hand Reader</title> 
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico"> <!-- -->
+    <link rel="stylesheet" href="style.css"> <!-- define relationship between our hypertext ref, -->
 </head>
 <body>
-<div id="flex-card-image-container">
-    
-</div>    
-<div>
-  <h1 class="counter-display">Turn: 0</h1>
-</div>
-<div class="main-buttons">
-    <button class="button" id="next-turn">Next Turn</button>
-    <button class="button inactive" id="discard-play" onclick="ButtonSelected('discard-play')">Discard/Play</button>
-    <button class="button" id="draw" onclick="ButtonSelected('draw')">Draw:</button>
-    <button class="button" id="create" onclick="ButtonSelected('create')">Create:</button>
-    <button class="button" id="manifest" onclick="ButtonSelected('manifest')">Manifest:</button>
-    <button class="button" id="nab" onclick="ButtonSelected('nab')">Nab:</button>
-    <button class="button" id="fleeting" onclick="ButtonSelected('fleeting')">fleeting</button>
-    <button class="button" id="shown" onclick="ButtonSelected('shown')">Shown</button>
-    <h1 class="mana-header">Mana</h1>
+    <div class="fencepost"> </div>
 
-    <input type="number" class="button inactive" id="mana-value" min="1" max="9" placeholder="Input Mana" style="width: 170px;">
+    <div class = "fencepost">
+        <div id="flex-card-image-container">
+    </div>
+    </div>
+    <div class="fencepost">
+        <h1 class="counter-display">Turn: 0</h1>
+    </div>
+    <div class="fencepost">
+        <div class="main-buttons">
+            <button class="button" id="next-turn">Next Turn</button>
+            <button class="button inactive" id="discard-play" onclick="ButtonSelected('discard-play')">Discard/Play</button>
+            <button class="button" id="draw" onclick="ButtonSelected('draw')">Draw:</button>
+            <button class="button" id="create" onclick="ButtonSelected('create')">Create:</button>
+            <button class="button" id="manifest" onclick="ButtonSelected('manifest')">Manifest:</button>
+            <button class="button" id="nab" onclick="ButtonSelected('nab')">Nab:</button>
+            <button class="button" id="fleeting" onclick="ButtonSelected('fleeting')">fleeting</button>
+            <button class="button" id="shown" onclick="ButtonSelected('shown')">Shown</button>
+        </div>
+    </div>
+    <!-- <div class="fencepost">
+        <h1 class="mana-header">Mana</h1>
+    </div> -->
+    <div class="fencepost">
+        <div class="main-buttons">
+            <input type="number" class="button inactive" id="mana-value" min="1" max="9" placeholder="Input Mana" style="width: 170px;">
 
-    <button class="button inactive" id="unit" onclick="ButtonSelected('unit')">Unit</button>
-    <button class="button inactive" id="spell" onclick="ButtonSelected('spell')">Spell</button>
-    <button class="button inactive" id="champion" onclick="ButtonSelected('champion')">Champion</button>
-    <button class="button inactive" id="landmark" onclick="ButtonSelected('landmark')">Landmark</button>
-    <button class="button inactive" id="equipment" onclick="ButtonSelected('equipment')">Equipment</button>
-    <button class="button" id="predicted-draw" onclick="ButtonSelected('predicted-draw')">Predicted</button>
-    <button class="button" id="reduced-cost" onclick="ButtonSelected('reduced cost')">Reduced Cost</button>
-    <button class="button inactive" id="token" onclick="ButtonSelected('token')">Token</button>
-    <button class="button inactive" id="move-to-end" onclick="ButtonSelected('move-to-end')">Move to End</button>
-    <button class="button" id="restart" onclick="ButtonSelected('restart')">Restart</button>
-</div>
-    <script src="labelManipulators.js"></script> 
-    <script src="cardManipulators.js"></script>
-    <script src="script.js"></script>
+            <button class="button inactive" id="unit" onclick="ButtonSelected('unit')">Unit</button>
+            <button class="button inactive" id="spell" onclick="ButtonSelected('spell')">Spell</button>
+            <button class="button inactive" id="champion" onclick="ButtonSelected('champion')">Champion</button>
+            <button class="button inactive" id="landmark" onclick="ButtonSelected('landmark')">Landmark</button>
+            <button class="button inactive" id="equipment" onclick="ButtonSelected('equipment')">Equipment</button>
+            <button class="button" id="predicted-draw" onclick="ButtonSelected('predicted-draw')">Predicted</button>
+            <button class="button" id="reduced-cost" onclick="ButtonSelected('reduced cost')">Reduced Cost</button>
+            <button class="button inactive" id="token" onclick="ButtonSelected('token')">Token</button>
+            <button class="button inactive" id="move-to-end" onclick="ButtonSelected('move-to-end')">Move to End</button>
+            <button class="button" id="restart" onclick="ButtonSelected('restart')">Restart</button>
+        </div>
+    </div>
+    <div class="fencepost"> </div>
+        <script src="labelManipulators.js"></script> 
+        <script src="cardManipulators.js"></script>
+        <script src="script.js"></script>
 </body>
 </html>
