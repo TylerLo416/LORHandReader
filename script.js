@@ -41,7 +41,7 @@ counterPlusElem.addEventListener("click",()=>{
 
 function updateDisplay(){
     counterDisplayElem.innerHTML = "Turn: " + turnCounter;
-    amtcards = drawCard(amtcards);
+    amtcards = drawCard(amtcards, "drawn");
 }
 
 //seperate all cards into a div class of toggle cards that interact with clicking the cards 

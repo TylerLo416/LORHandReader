@@ -19,7 +19,7 @@ function drawCard(amtCards, drawtype) {
         const label = document.createElement('p');
         label.className = 'card-labels';
         label.id = `LORCard-label${amtCards+1}`;
-        label.innerHTML = `Card ${amtCards+1}<br>${drawtype}`;
+        label.innerHTML = `Card ${amtCards+1}<br>${drawtype}<br>Turn: ${turnCounter}`;
         
         imgCardDiv.appendChild(img);
         imgCardDiv.appendChild(label);
@@ -65,7 +65,7 @@ function discardCard(cardNum) {
         let innerHTMLLabel = currentCardLabel.innerHTML;
     
         // Replace the numbers in the HTML content while preserving HTML tags
-        const updatedLabel = innerHTMLLabel.replace(/\d+/g, newCardNum);
+        const updatedLabel = innerHTMLLabel.replace(/\b(?:[1-9]|10)\b/, newCardNum);
         
     
         currentCard.onclick = () => cardSelected(`LORCard${newCardNum}`, `LORCard-label${newCardNum}`, `img-cards-${newCardNum}`);
