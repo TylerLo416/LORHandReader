@@ -1,5 +1,5 @@
 //Generate (10) cards
-const numberOfCards = 10;  // Number of cards to generate
+const numberOfCards = 4;  // Number of cards to generate
 const cardContainer = document.getElementById('flex-card-image-container');
 
 for (let i = 1; i <= numberOfCards; i++) {
@@ -32,7 +32,7 @@ let counterPlusElem = document.getElementById('next-turn');
 
 let turnCounter = 0;
 
-var amtcards = 10;
+var amtcards = 4;
 
 counterPlusElem.addEventListener("click",()=>{
     turnCounter++;
