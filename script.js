@@ -36,12 +36,25 @@ var amtcards = 4;
 
 counterPlusElem.addEventListener("click",()=>{
     turnCounter++;
+    deleteFleeting();
     updateDisplay();
 });
 
 function updateDisplay(){
     counterDisplayElem.innerHTML = "Turn: " + turnCounter;
     amtcards = drawCard(amtcards, "drawn");
+}
+
+function deleteFleeting() {
+  for (let i = 1; i <= amtcards; i++) {
+    const currentCardDiv = document.getElementById(`img-cards-${i}`);
+    const currentCard = document.getElementById(`LORCard${i}`);
+    const currentCardLabel = document.getElementById(`LORCard-label${i}`);
+
+    if(currentCardLabel.innerHTML.includes("fleeting")) {
+      discardCard(i);
+    }
+  }
 }
 
 //seperate all cards into a div class of toggle cards that interact with clicking the cards 
