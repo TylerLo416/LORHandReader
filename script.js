@@ -178,6 +178,10 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
         cardtypelabel(cardlabel, "landmark");
         sortLabel(cardlabel);
         break;
+      case "equipment":
+        cardtypelabel(cardlabel, "equipment");
+        sortLabel(cardlabel);
+        break;
       case "token":
         if(!document.getElementById(cardlabel).innerHTML.includes("token")) {
           document.getElementById(cardlabel).innerHTML += " <br /> token";
