@@ -206,6 +206,19 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
         //getUserInput();
         break;
       case "move-to-end":
+        const cardNumber = parseInt(wrapperID.split("-")[2]);
+        let currentCardLabel = document.getElementById(`LORCard-label${cardNumber}`).innerHTML;
+        console.log("card number::" + `Card ${cardNumber}`);
+        console.log(currentCardLabel.includes(`Card ${cardNumber}`));
+        currentCardLabel = currentCardLabel.replace(`Card ${cardNumber}<br>`,"");
+        const regex = new RegExp('Turn: \\d+', 'g');
+        console.log("regex " + regex);
+        currentCardLabel = currentCardLabel.replace(regex, '');
+        console.log("innerhtml" + currentCardLabel);
+        discardCard(cardNumber);
+        console.log("innerhtml2 " + currentCardLabel);
+        amtcards = moveToEndCard(amtcards, currentCardLabel);
+        sortLabel(cardlabel);
       default: //do nothing;
     }
     activeButton[0].classList.add("inactive");
