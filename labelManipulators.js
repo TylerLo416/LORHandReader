@@ -90,3 +90,49 @@ function sortLabel(cardlabel)
   }
   label.innerHTML = label.innerHTML.substring(0, label.innerHTML.lastIndexOf("<br>"));
 }
+
+//Custom Labels
+function createInputArea(cardnumber) {
+  // Create the inputContainer and other elements
+  const inputContainer = document.createElement('div');
+  inputContainer.id = 'inputContainer';
+
+  const userInput = document.createElement('input');
+  userInput.type = 'text';
+  userInput.id = 'userInput';
+  userInput.placeholder = 'Enter text';
+  userInput.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      getUserInput(cardnumber); // Pass the cardnumber when Enter is pressed
+    }
+  });
+
+  const submitButton = document.createElement('button');
+  submitButton.textContent = 'Submit';
+  submitButton.onclick = function() {
+    getUserInput(cardnumber); // Pass the cardnumber when the button is clicked
+  };
+
+  inputContainer.appendChild(userInput);
+  inputContainer.appendChild(submitButton);
+
+  // Get the flex-card-image-container and append the inputContainer
+  const flexCardImageContainer = document.getElementById(`img-cards-${cardnumber}`);
+  flexCardImageContainer.appendChild(inputContainer);
+
+  // Set focus on the input field when displayed
+  userInput.focus();
+}
+
+function getUserInput(cardnumber) {
+  const userInputIntoLabel = document.getElementById('userInput').value;
+  if (userInputIntoLabel.trim() !== '') {
+    // Do something with the user's input
+    const currentCardLabel = document.getElementById(`LORCard-label${cardnumber}`);
+    currentCardLabel.innerHTML += '<br>' + userInputIntoLabel;
+
+    // Remove the inputContainer (which contains the input and submit button)
+    const inputContainer = document.getElementById('inputContainer');
+    inputContainer.parentNode.removeChild(inputContainer);
+  }
+}

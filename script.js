@@ -200,8 +200,10 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
           document.getElementById(cardlabel).innerHTML = updatedContent;
         }
         break;
-      case "shown":
-        document.getElementById(cardlabel).innerHTML += " <br /> shown";
+      case "manual-input":
+        const cardnumber = parseInt(wrapperID.split("-")[2]);
+        createInputArea(cardnumber);
+        //getUserInput();
         break;
       case "move-to-end":
       default: //do nothing;
