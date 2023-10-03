@@ -92,7 +92,8 @@ function sortLabel(cardlabel)
 }
 
 //Custom Labels
-function createInputArea(cardnumber) {
+function createInputArea(cardnumber, reducedCost) {
+  console.log("inputarea: " + reducedCost);
   // Create the inputContainer and other elements
   const inputContainer = document.createElement('div');
   inputContainer.id = 'inputContainer';
@@ -103,14 +104,14 @@ function createInputArea(cardnumber) {
   userInput.placeholder = 'Enter text';
   userInput.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
-      getUserInput(cardnumber); // Pass the cardnumber when Enter is pressed
+      getUserInput(cardnumber, reducedCost); // Pass the cardnumber when Enter is pressed
     }
   });
 
   const submitButton = document.createElement('button');
   submitButton.textContent = 'Submit';
   submitButton.onclick = function() {
-    getUserInput(cardnumber); // Pass the cardnumber when the button is clicked
+    getUserInput(cardnumber, reducedCost); // Pass the cardnumber when the button is clicked
   };
 
   inputContainer.appendChild(userInput);
@@ -124,12 +125,13 @@ function createInputArea(cardnumber) {
   userInput.focus();
 }
 
-function getUserInput(cardnumber) {
+function getUserInput(cardnumber, reducedCost) {
   const userInputIntoLabel = document.getElementById('userInput').value;
   if (userInputIntoLabel.trim() !== '') {
     // Do something with the user's input
     const currentCardLabel = document.getElementById(`LORCard-label${cardnumber}`);
-    currentCardLabel.innerHTML += '<br>' + userInputIntoLabel;
+    console.log(reducedCost);
+    currentCardLabel.innerHTML += '<br>' + reducedCost + userInputIntoLabel;
 
     // Remove the inputContainer (which contains the input and submit button)
     const inputContainer = document.getElementById('inputContainer');

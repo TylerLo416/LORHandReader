@@ -202,7 +202,12 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
         break;
       case "manual-input":
         const cardnumber = parseInt(wrapperID.split("-")[2]);
-        createInputArea(cardnumber);
+        createInputArea(cardnumber, "");
+        //getUserInput();
+        break;
+      case "reduced-cost":
+        const cardnumber1 = parseInt(wrapperID.split("-")[2]);
+        createInputArea(cardnumber1, "reduced mana: ");
         //getUserInput();
         break;
       case "move-to-end":
