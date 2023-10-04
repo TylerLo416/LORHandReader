@@ -1,4 +1,3 @@
-//Generate (10) cards
 const numberOfCards = 4;  // Number of cards to generate
 const cardContainer = document.getElementById('flex-card-image-container');
 
@@ -12,7 +11,7 @@ for (let i = 1; i <= numberOfCards; i++) {
   img.alt = "LOR Card";
   img.style.width = "100%";
   img.style.height = "100%";
-  img.id = `LORCard${i}`
+  img.id = `LORCard${i}`;
   img.onclick = () => cardSelected(`LORCard${i}`, `LORCard-label${i}`, `img-cards-${i}`);
 
   const label = document.createElement('p');
@@ -20,9 +19,43 @@ for (let i = 1; i <= numberOfCards; i++) {
   label.id = `LORCard-label${i}`;
   label.textContent = `Card ${i}`;
 
+  // Create "Mulliganed?" label
+  const mulliganLabel = document.createElement('p');
+  mulliganLabel.textContent = 'Mulliganed?';
+  mulliganLabel.id = `mulligan-label-${i}`;
+
+  // Create "Yes" button
+  const yesButton = document.createElement('button');
+  yesButton.textContent = 'Yes';
+  yesButton.onclick = () => handleButtonClick('Yes', i);
+
+  // Create "No" button
+  const noButton = document.createElement('button');
+  noButton.textContent = 'No';
+  noButton.onclick = () => handleButtonClick('No', i);
+
   imgCardDiv.appendChild(img);
   imgCardDiv.appendChild(label);
+  imgCardDiv.appendChild(mulliganLabel);
+  imgCardDiv.appendChild(yesButton);
+  imgCardDiv.appendChild(noButton);
   cardContainer.appendChild(imgCardDiv);
+}
+
+function handleButtonClick(answer, cardNumber) {
+  const label = document.getElementById(`LORCard-label${cardNumber}`);
+
+  if (answer === 'Yes') {
+    label.innerHTML += '<br>Mulliganed';
+  } else if (answer === 'No') {
+    label.innerHTML += '<br>Kept';
+  }
+
+  // Remove buttons and "Mulliganed?" label
+  const imgCardDiv = document.getElementById(`img-cards-${cardNumber}`);
+  imgCardDiv.removeChild(document.querySelector(`#img-cards-${cardNumber} button`));
+  imgCardDiv.removeChild(document.querySelector(`#img-cards-${cardNumber} button`));
+  imgCardDiv.removeChild(document.getElementById(`mulligan-label-${cardNumber}`));
 }
 
 
@@ -56,7 +89,6 @@ function deleteFleeting() {
     }
   }
 }
-
 //seperate all cards into a div class of toggle cards that interact with clicking the cards 
 //(this may also need to be split into markers and deleting/adding)
 //the second group are cards that do not interact with clicking the cards
@@ -213,16 +245,17 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
       case "move-to-end":
         const cardNumber = parseInt(wrapperID.split("-")[2]);
         let currentCardLabel = document.getElementById(`LORCard-label${cardNumber}`).innerHTML;
-        console.log("card number::" + `Card ${cardNumber}`);
-        console.log(currentCardLabel.includes(`Card ${cardNumber}`));
         currentCardLabel = currentCardLabel.replace(`Card ${cardNumber}<br>`,"");
+
         const regex = new RegExp('Turn: \\d+', 'g');
-        console.log("regex " + regex);
+        const regex1 = /\d+/g;
+        const matches = currentCardLabel.match(regex1);
+        const turn = parseInt(matches[0], 10);
+
         currentCardLabel = currentCardLabel.replace(regex, '');
-        console.log("innerhtml" + currentCardLabel);
+
         discardCard(cardNumber);
-        console.log("innerhtml2 " + currentCardLabel);
-        amtcards = moveToEndCard(amtcards, currentCardLabel);
+        amtcards = moveToEndCard(amtcards, currentCardLabel, turn);
         sortLabel(cardlabel);
       default: //do nothing;
     }
