@@ -64,7 +64,7 @@ body {
   padding: 2vh;
   display: flex;
   border-radius: 15px;
-  flex-direction: row;
+  flex-direction: row-reverse;
   text-align: center;
   justify-content: center;
   background-color: #0044aa;
