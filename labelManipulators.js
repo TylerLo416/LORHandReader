@@ -40,7 +40,8 @@ function cardtypelabel(cardlabel, cardtype)
   const label = document.getElementById(cardlabel);
   //if no cardtype
   if(label.innerHTML.indexOf("unit") === -1 && label.innerHTML.indexOf("spell") === -1
-    && label.innerHTML.indexOf("champion") === -1 && label.innerHTML.indexOf("landmark") === -1){
+    && label.innerHTML.indexOf("champion") === -1 && label.innerHTML.indexOf("landmark") === -1
+    && label.innerHTML.indexOf("equipment") === -1){
     label.innerHTML += "<br>" + cardtype;
   }
   //if same card type delete
@@ -60,7 +61,8 @@ function cardtypelabel(cardlabel, cardtype)
     label.innerHTML = "";
     for(var i = 0; i < labelArray.length; i++) {
       if(labelArray[i].indexOf("unit") === -1 && labelArray[i].indexOf("spell") === -1
-      && labelArray[i].indexOf("champion") === -1 && labelArray[i].indexOf("landmark") === -1) {
+      && labelArray[i].indexOf("champion") === -1 && labelArray[i].indexOf("landmark") === -1
+      && labelArray[i].indexOf("equipment") === -1) {
         label.innerHTML += labelArray[i] + "<br>";
       }
       else {
