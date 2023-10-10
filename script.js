@@ -39,10 +39,10 @@ for (let i = 1; i <= numberOfCards; i++) {
 
   //create right click functionality
   // Add contextmenu event listener for right-click
-  imgCardDiv.addEventListener('contextmenu', (event) => {
+  /*imgCardDiv.addEventListener('contextmenu', (event) => {
     event.preventDefault(); // Prevent default context menu
     discardCard(i); // Call discardCard function with card number i
-  });
+  });*/
 
   imgCardDiv.appendChild(img);
   imgCardDiv.appendChild(label);
@@ -278,4 +278,9 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
     }
     activeButton[0].classList.add("inactive");
     activeButton[0].classList.remove("active");
+}
+
+function showNotification() {
+  alert("Next Turn/Draw both draw cards. For Discard/Manual Input/Mana Label/Card Type/Predicted/MoveToEnd, " + 
+    "click on the button, then the card you want to affect. Go yell at me in discord if you find a bug (there are lots)");
 }

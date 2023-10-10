@@ -25,6 +25,14 @@ function drawCard(amtCards, drawtype) {
         imgCardDiv.appendChild(label);
         cardContainer.appendChild(imgCardDiv);
 
+        //create right click functionality
+        // Add contextmenu event listener for right-click
+        /*const curAmtCards = amtCards;
+        imgCardDiv.addEventListener('contextmenu', (event) => {
+            event.preventDefault(); // Prevent default context menu
+            discardCard(curAmtCards); // Call discardCard function with card number i
+        });*/
+
         amtCards += 1;
     }
     return amtCards;
