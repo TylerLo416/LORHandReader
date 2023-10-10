@@ -1,6 +1,7 @@
 const numberOfCards = 4;  // Number of cards to generate
 const cardContainer = document.getElementById('flex-card-image-container');
 
+//generate initial set of 4 cards
 for (let i = 1; i <= numberOfCards; i++) {
   const imgCardDiv = document.createElement('div');
   imgCardDiv.className = 'img-cards';
@@ -26,13 +27,22 @@ for (let i = 1; i <= numberOfCards; i++) {
 
   // Create "Yes" button
   const yesButton = document.createElement('button');
+  yesButton.className = 'mulligan-button';
   yesButton.textContent = 'Yes';
   yesButton.onclick = () => handleButtonClick('Yes', i);
 
   // Create "No" button
   const noButton = document.createElement('button');
+  noButton.className = 'mulligan-button';
   noButton.textContent = 'No';
   noButton.onclick = () => handleButtonClick('No', i);
+
+  //create right click functionality
+  // Add contextmenu event listener for right-click
+  imgCardDiv.addEventListener('contextmenu', (event) => {
+    event.preventDefault(); // Prevent default context menu
+    discardCard(i); // Call discardCard function with card number i
+  });
 
   imgCardDiv.appendChild(img);
   imgCardDiv.appendChild(label);
@@ -235,19 +245,25 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
       case "manual-input":
         const cardnumber = parseInt(wrapperID.split("-")[2]);
         createInputArea(cardnumber, "");
-        //getUserInput();
         break;
       case "reduced-cost":
         const cardnumber1 = parseInt(wrapperID.split("-")[2]);
-        createInputArea(cardnumber1, "reduced mana: ");
-        //getUserInput();
+        createInputArea(cardnumber1, "reduced cost: ");
         break;
       case "move-to-end":
         const cardNumber = parseInt(wrapperID.split("-")[2]);
         let currentCardLabel = document.getElementById(`LORCard-label${cardNumber}`).innerHTML;
+
+        if(currentCardLabel.includes('Kept') || currentCardLabel.includes('Mulliganed')) {
+          currentCardLabel = currentCardLabel.replace(`Card ${cardNumber}<br>`,"");
+          discardCard(cardNumber);
+          amtcards = moveToEndCard(amtcards, currentCardLabel, 0);
+          break;
+        }
         currentCardLabel = currentCardLabel.replace(`Card ${cardNumber}<br>`,"");
 
         const regex = new RegExp('Turn: \\d+', 'g');
+        console.log('regex:' + regex);
         const regex1 = /\d+/g;
         const matches = currentCardLabel.match(regex1);
         const turn = parseInt(matches[0], 10);
@@ -257,6 +273,7 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
         discardCard(cardNumber);
         amtcards = moveToEndCard(amtcards, currentCardLabel, turn);
         sortLabel(cardlabel);
+        break;
       default: //do nothing;
     }
     activeButton[0].classList.add("inactive");
