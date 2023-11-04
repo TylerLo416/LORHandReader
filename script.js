@@ -18,12 +18,7 @@ for (let i = 1; i <= numberOfCards; i++) {
   const label = document.createElement('p');
   label.className = 'card-labels';
   label.id = `LORCard-label${i}`;
-  label.textContent = `Card ${i}`;
-
-  // Create "Mulliganed?" label
-  const mulliganLabel = document.createElement('p');
-  mulliganLabel.textContent = 'Mulliganed?';
-  mulliganLabel.id = `mulligan-label-${i}`;
+  label.innerHTML = `Card ${i} <br> Mulliganed?`;
 
   // Create "Yes" button
   const yesButton = document.createElement('button');
@@ -37,24 +32,16 @@ for (let i = 1; i <= numberOfCards; i++) {
   noButton.textContent = 'No';
   noButton.onclick = () => handleButtonClick('No', i);
 
-  //create right click functionality
-  // Add contextmenu event listener for right-click
-  /*imgCardDiv.addEventListener('contextmenu', (event) => {
-    event.preventDefault(); // Prevent default context menu
-    discardCard(i); // Call discardCard function with card number i
-  });*/
-
   imgCardDiv.appendChild(img);
   imgCardDiv.appendChild(label);
-  imgCardDiv.appendChild(mulliganLabel);
   imgCardDiv.appendChild(yesButton);
   imgCardDiv.appendChild(noButton);
   cardContainer.appendChild(imgCardDiv);
 }
 
 function handleButtonClick(answer, cardNumber) {
-  const label = document.getElementById(`LORCard-label${cardNumber}`);
-
+  let label = document.getElementById(`LORCard-label${cardNumber}`);
+  label.innerHTML = label.innerHTML.replace('<br> Mulliganed?', '');
   if (answer === 'Yes') {
     label.innerHTML += '<br>Mulliganed';
   } else if (answer === 'No') {
@@ -64,8 +51,7 @@ function handleButtonClick(answer, cardNumber) {
   // Remove buttons and "Mulliganed?" label
   const imgCardDiv = document.getElementById(`img-cards-${cardNumber}`);
   imgCardDiv.removeChild(document.querySelector(`#img-cards-${cardNumber} button`));
-  imgCardDiv.removeChild(document.querySelector(`#img-cards-${cardNumber} button`));
-  imgCardDiv.removeChild(document.getElementById(`mulligan-label-${cardNumber}`));
+  imgCardDiv.removeChild(document.querySelector(`#img-cards-${cardNumber} button`));;
 }
 
 

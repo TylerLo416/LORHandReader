@@ -29,6 +29,7 @@
     color: #39739d;
     cursor: pointer;
     display: inline-block;
+    width: 50px;
     font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
     font-size: 13px;
     font-weight: 400;
@@ -68,7 +69,7 @@ body {
   height:96vh;
   display: flex;
   background-color: black;
-  color: #ffdd1b;
+  color: #ffffff;
   font-family: 'LORfont', sans-serif;
   font-size: 2vw;
   flex-direction: column;
@@ -123,6 +124,7 @@ body {
   justify-content: center;
 }
 
+
 #flex-card-image-container {
   inset: 2vw;
   margin-top: 0vh;
@@ -132,7 +134,10 @@ body {
   flex-direction: row-reverse;
   text-align: center;
   justify-content: center;
-  background-color: #0044aa;
+  background-image: url('Card-Back-Images/tint1.png');
+  background-repeat: no-repeat;
+  background-position: center calc(50% - 10%);
+  background-size: 100%;
   /* min-height: 200px; */
   justify-content: space-between;
   align-items: center;
@@ -186,3 +191,4 @@ h1 {
 /* then numbers are cost, we want to have user input limit it from 1 to 9 */
 /* when discard/play is clicked, it'll pick a card to discard/play */
 /* shown: manual input, notes, etc */
+
