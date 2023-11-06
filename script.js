@@ -18,18 +18,18 @@ for (let i = 1; i <= numberOfCards; i++) {
   const label = document.createElement('p');
   label.className = 'card-labels';
   label.id = `LORCard-label${i}`;
-  label.innerHTML = `Card ${i} <br> Mulliganed?`;
+  label.innerHTML = `Card ${i}`;
 
   // Create "Yes" button
   const yesButton = document.createElement('button');
   yesButton.className = 'mulligan-button';
-  yesButton.textContent = 'Yes';
+  yesButton.textContent = 'Mulled';
   yesButton.onclick = () => handleButtonClick('Yes', i);
 
   // Create "No" button
   const noButton = document.createElement('button');
   noButton.className = 'mulligan-button';
-  noButton.textContent = 'No';
+  noButton.textContent = 'Kept';
   noButton.onclick = () => handleButtonClick('No', i);
 
   imgCardDiv.appendChild(img);
