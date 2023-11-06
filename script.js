@@ -43,7 +43,7 @@ function handleButtonClick(answer, cardNumber) {
   let label = document.getElementById(`LORCard-label${cardNumber}`);
   label.innerHTML = label.innerHTML.replace('<br> Mulliganed?', '');
   if (answer === 'Yes') {
-    label.innerHTML += '<br>Mulliganed';
+    label.innerHTML += '<br>Mulled';
   } else if (answer === 'No') {
     label.innerHTML += '<br>Kept';
   }

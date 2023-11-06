@@ -15,48 +15,56 @@
     </div>
     <div class="fencepost">
         <h1 class="counter-display">Turn: 0</h1>
-        <button class="button" id="next-turn">Next Turn</button>
-        <div class="dropdown">
-            <button class="button" id="draw" onclick="ButtonSelected('draw')">Draw:</button>
-            <div class="dropdown-content">
-                <button class="button" id="create" onclick="ButtonSelected('create')">Create:</button>
-                <button class="button" id="manifest" onclick="ButtonSelected('manifest')">Manifest:</button>
-                <button class="button" id="nab" onclick="ButtonSelected('nab')">Nab:</button>
-                <button class="button" id="fleeting" onclick="ButtonSelected('fleeting')">draw fleeting:</button>
+        <div class="button-row">
+            <div class="button-column">
+                <button class="button" id="next-turn">Next Turn</button>
+                <div class="dropdown">
+                    <button class="button" id="draw" onclick="ButtonSelected('draw')">Draw:</button>
+                    <div class="dropdown-content">
+                        <button class="button" id="create" onclick="ButtonSelected('create')">Create:</button>
+                        <button class="button" id="manifest" onclick="ButtonSelected('manifest')">Manifest:</button>
+                        <button class="button" id="nab" onclick="ButtonSelected('nab')">Nab:</button>
+                        <button class="button" id="fleeting" onclick="ButtonSelected('fleeting')">draw fleeting:</button>
+                    </div>
+                </div>
+                <button class="button inactive" id="discard-play" onclick="ButtonSelected('discard-play')">Discard</button>
+            </div>
+            <div class="button-column">
+                <button class="button inactive" id="manual-input" onclick="ButtonSelected('manual-input')">Manual Input</button>
+                <div class="dropdown">
+                    <button class="button inactive" id="mana-button" onclick="ToggleManaDropdown()">Mana Label</button>
+                    <div class="dropdown-content" id="mana-dropdown">
+                        <button class="button inactive" id="1" onclick="ButtonSelected('1')">1</button>
+                        <button class="button inactive" id="2" onclick="ButtonSelected('2')">2</button>
+                        <button class="button inactive" id="3" onclick="ButtonSelected('3')">3</button>
+                        <button class="button inactive" id="4" onclick="ButtonSelected('4')">4</button>
+                        <button class="button inactive" id="5" onclick="ButtonSelected('5')">5</button>
+                        <button class="button inactive" id="6" onclick="ButtonSelected('6')">6</button>
+                        <button class="button inactive" id="7" onclick="ButtonSelected('7')">7</button>
+                        <button class="button inactive" id="8" onclick="ButtonSelected('8')">8</button>
+                        <button class="button inactive" id="9" onclick="ButtonSelected('9')">9</button>
+                        <button class="button inactive" id="reduced-cost" onclick="ButtonSelected('reduced-cost')">Reduced Cost</button>
+                    </div>
+                </div>
+                    <div class="dropdown">
+                    <button class="button inactive" id="card-type" onclick="ToggleCardTypeDropdown()">Card Type</button>
+                    <div class="dropdown-content" id="card-type-dropdown">
+                        <button class="button inactive" id="unit" onclick="ButtonSelected('unit')">Unit</button>
+                        <button class="button inactive" id="spell" onclick="ButtonSelected('spell')">Spell</button>
+                        <button class="button inactive" id="champion" onclick="ButtonSelected('champion')">Champion</button>
+                        <button class="button inactive" id="landmark" onclick="ButtonSelected('landmark')">Landmark</button>
+                        <button class="button inactive" id="equipment" onclick="ButtonSelected('equipment')">Equipment</button>
+                        <button class="button inactive" id="predicted" onclick="ButtonSelected('predicted')">Predicted</button>
+                        <button class="button inactive" id="token" onclick="ButtonSelected('token')">Token</button>
+                    </div>
+                    </div>
+            </div>
+            <div class="button-column">
+                <button class="button inactive" id="move-to-end" onclick="ButtonSelected('move-to-end')">Move to End</button>
+                <button class="button" id="restart" onclick="ButtonSelected('restart')">Restart</button>
+                <button class="button" id="info" onclick="showNotification()">Info</button>
             </div>
         </div>
-        <button class="button inactive" id="discard-play" onclick="ButtonSelected('discard-play')">Discard</button>
-        <button class="button inactive" id="manual-input" onclick="ButtonSelected('manual-input')">Manual Input</button>
-        <div class="dropdown">
-            <button class="button inactive" id="mana-button" onclick="ToggleManaDropdown()">Mana Label</button>
-            <div class="dropdown-content" id="mana-dropdown">
-                <button class="button inactive" id="1" onclick="ButtonSelected('1')">1</button>
-                <button class="button inactive" id="2" onclick="ButtonSelected('2')">2</button>
-                <button class="button inactive" id="3" onclick="ButtonSelected('3')">3</button>
-                <button class="button inactive" id="4" onclick="ButtonSelected('4')">4</button>
-                <button class="button inactive" id="5" onclick="ButtonSelected('5')">5</button>
-                <button class="button inactive" id="6" onclick="ButtonSelected('6')">6</button>
-                <button class="button inactive" id="7" onclick="ButtonSelected('7')">7</button>
-                <button class="button inactive" id="8" onclick="ButtonSelected('8')">8</button>
-                <button class="button inactive" id="9" onclick="ButtonSelected('9')">9</button>
-                <button class="button inactive" id="reduced-cost" onclick="ButtonSelected('reduced-cost')">Reduced Cost</button>
-            </div>
-        </div>
-            <div class="dropdown">
-            <button class="button inactive" id="card-type" onclick="ToggleCardTypeDropdown()">Card Type</button>
-            <div class="dropdown-content" id="card-type-dropdown">
-                <button class="button inactive" id="unit" onclick="ButtonSelected('unit')">Unit</button>
-                <button class="button inactive" id="spell" onclick="ButtonSelected('spell')">Spell</button>
-                <button class="button inactive" id="champion" onclick="ButtonSelected('champion')">Champion</button>
-                <button class="button inactive" id="landmark" onclick="ButtonSelected('landmark')">Landmark</button>
-                <button class="button inactive" id="equipment" onclick="ButtonSelected('equipment')">Equipment</button>
-                <button class="button inactive" id="token" onclick="ButtonSelected('token')">Token</button>
-            </div>
-            </div>
-        <button class="button inactive" id="predicted" onclick="ButtonSelected('predicted')">Predicted</button>
-        <button class="button inactive" id="move-to-end" onclick="ButtonSelected('move-to-end')">Move to End</button>
-        <button class="button" id="restart" onclick="ButtonSelected('restart')">Restart</button>
-        <button class="button" id="info" onclick="showNotification()">Info</button>
     </div>
     <div class="fencepost"> </div>
         <script src="labelManipulators.js"></script> 

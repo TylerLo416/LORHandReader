@@ -1,3 +1,12 @@
+.button-row {
+  display: flex;
+}
+.button-column {
+  flex: 30%;
+  padding: 10px;
+}
+
+
 /* styling buttons */
 .button {
   background-color: #0044aa;
