@@ -2,10 +2,10 @@
   display: flex;
 }
 .button-column {
+  display: block;
   flex: 30%;
   padding: 10px;
 }
-
 
 /* styling buttons */
 .button {
@@ -23,10 +23,48 @@
   overflow: hidden;
   cursor: pointer;
   margin: 5px;
+  display: block; /* Set the display property to 'block' to make buttons stack vertically */
 }
 
 .button:hover {
   background-color: #2980b9;
+}
+
+#draw::after {
+  content: '(w)';
+  position: relative;
+  left: 42px;
+  top: 13px;
+  font-size: 14px; /* Adjust the font size for the "c" */
+  color: white; /* Customize the color of the "c" */
+}
+
+#next-turn::after {
+  content: '(q)';
+  position: relative;
+  top: 15px; /* Adjust the distance from the bottom */
+  left: 24px; /* Adjust the distance from the right */
+  font-size: 14px; /* Adjust the font size for the "c" */
+  color: white; /* Customize the color of the "c" */
+}
+
+#discard-play::after {
+  content: '(e)';
+  position: relative;
+  top: 15px; /* Adjust the distance from the bottom */
+  left: 35px; /* Adjust the distance from the right */
+  font-size: 14px; /* Adjust the font size for the "c" */
+  color: white; /* Customize the color of the "c" */
+}
+
+#manual-input::after {
+  content: '(r)';
+  position: relative;
+  top: 15px; /* Adjust the distance from the bottom */
+  left: 19px; /* Adjust the distance from the right */
+  font-size: 14px; /* Adjust the font size for the "c" */
+  color: white; /* Customize the color of the "c" */
+  z-index: 1;
 }
 
 .mulligan-button {
@@ -86,14 +124,9 @@ body {
   justify-content: space-between;
 }
 
-.fencepost {
-  align-items:center;
-}
-
 /* Styling dropdown */
 .dropdown {
   position: relative;
-  display: inline-block;
 }
 
 .dropdown-content {
@@ -119,8 +152,6 @@ body {
   width: 8%;
   height: 8%;
   padding: 0px;
-  /* margin-right: 1%; */ /*bro why did u do this*/
-  /*position: relative;*/
   box-sizing: border-box;
   place-items: center;
 }
@@ -160,21 +191,26 @@ body {
 }
 
 /* turn counter */
-#turn-counter{
+#counter-display{
   font-weight: 900;
-  font-size: 70px;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 20.5px;
+  margin-left: 79px;
 }
 
 /* adding margin underneath card labels */
 /* bro why do u need this */
 h1 {
   margin-top: 0px;
+  margin-bottom: 0px;
 
 }
-/* Remove mana-header -> no longer needed */
-/* .mana-header {
-  margin-top, margin-bottom: 0px;
-} */
+
+#third-column {
+  justify-content: center;
+  align-items: center;
+}
 
 @font-face {
   font-family: 'LORfont';
@@ -201,4 +237,3 @@ h1 {
 /* then numbers are cost, we want to have user input limit it from 1 to 9 */
 /* when discard/play is clicked, it'll pick a card to discard/play */
 /* shown: manual input, notes, etc */
-

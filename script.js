@@ -56,20 +56,14 @@ function handleButtonClick(answer, cardNumber) {
 
 
 //turn counter
-let counterDisplayElem = document.querySelector('.counter-display');
 let counterPlusElem = document.getElementById('next-turn');
 
 let turnCounter = 0;
 
 var amtcards = 4;
 
-counterPlusElem.addEventListener("click",()=>{
-    turnCounter++;
-    deleteFleeting();
-    updateDisplay();
-});
-
 function updateDisplay(){
+    let counterDisplayElem = document.getElementById('counter-display');
     counterDisplayElem.innerHTML = "Turn: " + turnCounter;
     amtcards = drawCard(amtcards, "drawn");
 }
@@ -113,7 +107,10 @@ function ButtonSelected(buttonID)
     }
     switch(buttonID) {
       case "next-turn":
-          
+          turnCounter++;
+          deleteFleeting();
+          updateDisplay();
+          return;
       case "draw":
           //drawCard(drawn); - drawn is to be appended to id
           amtcards = drawCard(amtcards, "drawn");
@@ -135,7 +132,6 @@ function ButtonSelected(buttonID)
           sortLabel(cardlabel);
         return;
       case "restart":
-        counterDisplayElem.innerHTML = buttonID;
         location.reload();
         return false;
       default: throw "Issue with button selection occured";

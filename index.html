@@ -14,10 +14,9 @@
         <div id="flex-card-image-container">
     </div>
     <div class="fencepost">
-        <h1 class="counter-display">Turn: 0</h1>
         <div class="button-row">
             <div class="button-column">
-                <button class="button" id="next-turn">Next Turn</button>
+                <button class="button" id="next-turn" onclick="ButtonSelected('next-turn')">Next Turn</button>
                 <div class="dropdown">
                     <button class="button" id="draw" onclick="ButtonSelected('draw')">Draw:</button>
                     <div class="dropdown-content">
@@ -30,7 +29,19 @@
                 <button class="button inactive" id="discard-play" onclick="ButtonSelected('discard-play')">Discard</button>
             </div>
             <div class="button-column">
-                <button class="button inactive" id="manual-input" onclick="ButtonSelected('manual-input')">Manual Input</button>
+                <button class="button inactive" id="manual-input" onclick="ButtonSelected('manual-input')">Input Label</button>
+                <div class="dropdown">
+                    <button class="button inactive" id="card-type" onclick="ToggleCardTypeDropdown()">Card Type</button>
+                    <div class="dropdown-content" id="card-type-dropdown">
+                        <button class="button inactive" id="unit" onclick="ButtonSelected('unit')">Unit</button>
+                        <button class="button inactive" id="spell" onclick="ButtonSelected('spell')">Spell</button>
+                        <button class="button inactive" id="champion" onclick="ButtonSelected('champion')">Champion</button>
+                        <button class="button inactive" id="landmark" onclick="ButtonSelected('landmark')">Landmark</button>
+                        <button class="button inactive" id="equipment" onclick="ButtonSelected('equipment')">Equipment</button>
+                        <button class="button inactive" id="predicted" onclick="ButtonSelected('predicted')">Predicted</button>
+                        <button class="button inactive" id="token" onclick="ButtonSelected('token')">Token</button>
+                    </div>
+                </div>
                 <div class="dropdown">
                     <button class="button inactive" id="mana-button" onclick="ToggleManaDropdown()">Mana Label</button>
                     <div class="dropdown-content" id="mana-dropdown">
@@ -46,23 +57,16 @@
                         <button class="button inactive" id="reduced-cost" onclick="ButtonSelected('reduced-cost')">Reduced Cost</button>
                     </div>
                 </div>
-                    <div class="dropdown">
-                    <button class="button inactive" id="card-type" onclick="ToggleCardTypeDropdown()">Card Type</button>
-                    <div class="dropdown-content" id="card-type-dropdown">
-                        <button class="button inactive" id="unit" onclick="ButtonSelected('unit')">Unit</button>
-                        <button class="button inactive" id="spell" onclick="ButtonSelected('spell')">Spell</button>
-                        <button class="button inactive" id="champion" onclick="ButtonSelected('champion')">Champion</button>
-                        <button class="button inactive" id="landmark" onclick="ButtonSelected('landmark')">Landmark</button>
-                        <button class="button inactive" id="equipment" onclick="ButtonSelected('equipment')">Equipment</button>
-                        <button class="button inactive" id="predicted" onclick="ButtonSelected('predicted')">Predicted</button>
-                        <button class="button inactive" id="token" onclick="ButtonSelected('token')">Token</button>
-                    </div>
-                    </div>
             </div>
-            <div class="button-column">
-                <button class="button inactive" id="move-to-end" onclick="ButtonSelected('move-to-end')">Move to End</button>
-                <button class="button" id="restart" onclick="ButtonSelected('restart')">Restart</button>
-                <button class="button" id="info" onclick="showNotification()">Info</button>
+            <div class="button-column" id="third-column">
+                <h1 id="counter-display">Turn: 0</h1>
+                <button class="button inactive" id="move-to-end" onclick="ButtonSelected('move-to-end')">Move to End</button> 
+                <a href="#" id="restart" onclick="ButtonSelected('restart')">
+                    <img src="Card-Back-Images/restart.png" alt="Info" width="60" height="60">
+                </a>
+                <a href="#" onclick="showNotification()">
+                    <img src="Card-Back-Images/question-mark.png" alt="Info" width="60" height="60">
+                </a>
             </div>
         </div>
     </div>

@@ -1,6 +1,5 @@
 function drawCard(amtCards, drawtype) {
     //need to implement the container around the card, give it the correct id, etc.
-    console.log(amtCards);
     if(amtCards < 10)
     {
         const imgCardDiv = document.createElement('div');
