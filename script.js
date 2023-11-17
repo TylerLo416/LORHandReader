@@ -83,6 +83,33 @@ function deleteFleeting() {
 //(this may also need to be split into markers and deleting/adding)
 //the second group are cards that do not interact with clicking the cards
 
+//keybindings
+let ignoreEventListener = false;
+document.addEventListener('keydown', function(event) {
+  if(ignoreEventListener) {
+    return;
+  }
+  switch (event.key) {
+    case 'q':
+      console.log(ignoreEventListener+"script");
+      ButtonSelected('next-turn');
+      break;
+    case 'w':
+      ButtonSelected('draw');
+      break;
+    case 'e':
+      ButtonSelected('discard-play');
+      break;
+    case 'r':
+      ButtonSelected('manual-input');
+      break;
+    // Add more cases for other keys if needed
+    default:
+      break;
+  }
+});
+
+
 //main function for cards
 function ButtonSelected(buttonID)
 {
@@ -133,7 +160,7 @@ function ButtonSelected(buttonID)
         return;
       case "restart":
         location.reload();
-        return false;
+        return;
       default: throw "Issue with button selection occured";
     }
 }

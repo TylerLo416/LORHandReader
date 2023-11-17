@@ -95,6 +95,7 @@ function sortLabel(cardlabel)
 
 //Custom Labels
 function createInputArea(cardnumber, reducedCost) {
+  ignoreEventListener = true;
   console.log("inputarea: " + reducedCost);
   // Create the inputContainer and other elements
   const inputContainer = document.createElement('div');
@@ -107,6 +108,7 @@ function createInputArea(cardnumber, reducedCost) {
   userInput.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
       getUserInput(cardnumber, reducedCost); // Pass the cardnumber when Enter is pressed
+      ignoreEventListener = false;
     }
   });
 
@@ -114,6 +116,7 @@ function createInputArea(cardnumber, reducedCost) {
   submitButton.textContent = 'Submit';
   submitButton.onclick = function() {
     getUserInput(cardnumber, reducedCost); // Pass the cardnumber when the button is clicked
+    ignoreEventListener = false;
   };
 
   inputContainer.appendChild(userInput);
@@ -125,6 +128,7 @@ function createInputArea(cardnumber, reducedCost) {
 
   // Set focus on the input field when displayed
   userInput.focus();
+  console.log(ignoreEventListener);
 }
 
 function getUserInput(cardnumber, reducedCost) {
