@@ -39,7 +39,6 @@ function drawCard(amtCards, drawtype) {
 
   function moveToEndCard(amtCards, drawlabel, turnNumber) {
     //need to implement the container around the card, give it the correct id, etc.
-    console.log(amtCards);
     if(amtCards < 10)
     {
         const imgCardDiv = document.createElement('div');
@@ -58,8 +57,7 @@ function drawCard(amtCards, drawtype) {
         const label = document.createElement('p');
         label.className = 'card-labels';
         label.id = `LORCard-label${amtCards+1}`;
-        console.log((drawlabel.includes('Mulliganed') || drawlabel.includes('Kept')));
-        if(!(drawlabel.includes('Mulliganed') || drawlabel.includes('Kept'))) {
+        if(!(drawlabel.includes('Mulled') || drawlabel.includes('Kept'))) {
             label.innerHTML = `Card ${amtCards+1}<br>${drawlabel}Turn: ${turnNumber}`;
         }
         else {

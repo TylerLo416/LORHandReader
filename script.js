@@ -41,14 +41,13 @@ for (let i = 1; i <= numberOfCards; i++) {
 
 function handleButtonClick(answer, cardNumber) {
   let label = document.getElementById(`LORCard-label${cardNumber}`);
-  label.innerHTML = label.innerHTML.replace('<br> Mulliganed?', '');
   if (answer === 'Yes') {
     label.innerHTML += '<br>Mulled';
   } else if (answer === 'No') {
     label.innerHTML += '<br>Kept';
   }
 
-  // Remove buttons and "Mulliganed?" label
+  // Remove buttons
   const imgCardDiv = document.getElementById(`img-cards-${cardNumber}`);
   imgCardDiv.removeChild(document.querySelector(`#img-cards-${cardNumber} button`));
   imgCardDiv.removeChild(document.querySelector(`#img-cards-${cardNumber} button`));;
@@ -91,7 +90,6 @@ document.addEventListener('keydown', function(event) {
   }
   switch (event.key) {
     case 'q':
-      console.log(ignoreEventListener+"script");
       ButtonSelected('next-turn');
       break;
     case 'w':
@@ -263,7 +261,8 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
         const cardNumber = parseInt(wrapperID.split("-")[2]);
         let currentCardLabel = document.getElementById(`LORCard-label${cardNumber}`).innerHTML;
 
-        if(currentCardLabel.includes('Kept') || currentCardLabel.includes('Mulliganed')) {
+        if(currentCardLabel.includes('Kept') || currentCardLabel.includes('Mulled')) {
+          console.log("mulled=true");
           currentCardLabel = currentCardLabel.replace(`Card ${cardNumber}<br>`,"");
           discardCard(cardNumber);
           amtcards = moveToEndCard(amtcards, currentCardLabel, 0);
@@ -290,6 +289,7 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
 }
 
 function showNotification() {
-  alert("Next Turn/Draw both draw cards. For Discard/Manual Input/Mana Label/Card Type/Predicted/MoveToEnd, " + 
-    "click on the button, then the card you want to affect. Go yell at me in discord if you find a bug (there are lots)");
+  alert("Next Turn/Draw both draw cards. For Discard/Mana Label/Card Type/MoveToEnd, " + 
+    "Click on the button, then the card you want to affect. " + 
+    "Q,W,E,R are hotkeys for the corresponding buttons. Go yell at me in discord if you find a bug (there are lots)");
 }
