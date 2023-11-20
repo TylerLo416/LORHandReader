@@ -165,7 +165,6 @@ function ButtonSelected(buttonID)
 
 function cardSelected(selectedcard, cardlabel, wrapperID)
 {
-  console.log(selectedcard,cardlabel,wrapperID);
     //check which button is currently active
     //use a switch case to choose the correct action based on 
     //which button is currently active
