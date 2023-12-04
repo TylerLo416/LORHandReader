@@ -190,16 +190,14 @@ body {
 }
 
 #flex-card-image-container {
-  inset: 2vw;
   margin-top: 0vh;
-  margin: 20px;
+  margin: 0px;
   padding: 2vh;
   display: flex;
-  border-radius: 15px;
   flex-direction: row-reverse;
   text-align: center;
   justify-content: center;
-  background-image: url('Card-Back-Images/tint1.png');
+  background-image: url('Card-Back-Images/cardBackground.png');
   background-repeat: no-repeat;
   background-position: center calc(50% - 10%);
   background-size: 100%;
