@@ -37,6 +37,13 @@ for (let i = 1; i <= numberOfCards; i++) {
   imgCardDiv.appendChild(yesButton);
   imgCardDiv.appendChild(noButton);
   cardContainer.appendChild(imgCardDiv);
+
+  //Add right click to delete
+  img.addEventListener('contextmenu', (e) => {
+    console.log("hi!!");
+    e.preventDefault(); // Prevent default context menu
+    discardCard(i); // Call the deleteCard function passing the card number
+  });
 }
 
 function handleButtonClick(answer, cardNumber) {
