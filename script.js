@@ -38,7 +38,7 @@ for (let i = 1; i <= numberOfCards; i++) {
   imgCardDiv.appendChild(noButton);
   cardContainer.appendChild(imgCardDiv);
 
-  //Add right click to delete
+  //Add right click to delete TODO
   img.addEventListener('contextmenu', (e) => {
     console.log("hi!!");
     e.preventDefault(); // Prevent default context menu
