@@ -198,6 +198,16 @@ body {
 .flex-buttons {
   width: 80%;
   height: 20%;
+  margin-bottom:5px;
+}
+#undo {
+  width: 60%;
+  height: 15%;
+  margin-top: 6px;
+}
+#new-game {
+  width: 60%;
+  height: 15%;
 }
 #flex-button-column {
   margin-left: 6vmin;
