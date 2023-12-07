@@ -177,6 +177,7 @@ body {
   display: inline-block;
   width: 8%;
   height: 8%;
+  transition: width 0.3s ease, height 0.3s ease;
   margin-left: 1vw;
   margin-right: 1vw;
   box-sizing: border-box;
@@ -189,10 +190,12 @@ body {
 .card-labels{
   text-align: center;
   height:10vh;
+  margin-bottom: 0vh;
   display: flex;
   max-height: 100%;
   flex-direction: column;
   justify-content: center;
+  font-size: calc(7px + 0.5vw);
 }
 
 .flex-buttons {
@@ -221,6 +224,7 @@ body {
   width:90vw;
 }
 #flex-background {
+  margin-top: 10vh;
   background-image: url('Card-Back-Images/cardBackground.png');
   display:flex;
   flex-direction: row;
@@ -239,6 +243,7 @@ body {
   background-position: center calc(50% - 10%);
   background-size: 100%;
   max-width: 70vw;
+  min-height: 30vh;
   /* min-height: 200px; */
   align-items: center;
 }

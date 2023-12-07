@@ -20,8 +20,8 @@ function drawCard(amtCards, drawtype) {
         label.id = `LORCard-label${amtCards+1}`;
         label.innerHTML = `Card ${amtCards+1}<br>${drawtype}<br>Turn: ${turnCounter}`;
         
-        imgCardDiv.appendChild(img);
         imgCardDiv.appendChild(label);
+        imgCardDiv.appendChild(img);
         cardContainer.appendChild(imgCardDiv);
 
         //create right click functionality

@@ -32,8 +32,8 @@ for (let i = 1; i <= numberOfCards; i++) {
   noButton.textContent = 'Kept';
   noButton.onclick = () => handleButtonClick('No', i);
 
-  imgCardDiv.appendChild(img);
   imgCardDiv.appendChild(label);
+  imgCardDiv.appendChild(img);
   imgCardDiv.appendChild(yesButton);
   imgCardDiv.appendChild(noButton);
   cardContainer.appendChild(imgCardDiv);
@@ -138,7 +138,7 @@ function ButtonSelected(buttonID)
       return;
     }
     switch(buttonID) {
-      case "next-turn":
+      case "next":
           turnCounter++;
           deleteFleeting();
           updateDisplay();
@@ -276,7 +276,7 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
         }
         currentCardLabel = currentCardLabel.replace(`Card ${cardNumber}<br>`,"");
 
-        const regex = new RegExp('Turn: \\d+', 'g');
+        const regex = new RegExp('Turn:  \\d+', 'g');
         console.log('regex:' + regex);
         const regex1 = /\d+/g;
         const matches = currentCardLabel.match(regex1);
