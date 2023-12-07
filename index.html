@@ -10,15 +10,22 @@
 </head>
 <body>
     <div class = "fencepost" id="background">
-
-        <div id="flex-card-image-container">
+        <div id="flex-background">
+            <div id="flex-button-column">
+                <img src="Card-Back-Images/nextButtonStandard.png" onclick="ButtonSelected('next-turn')" id = "next" class="flex-buttons" alt="nextButton"/>
+                <img src="Card-Back-Images/drawButtonStandard.png" onclick="ButtonSelected('create')" id = "create" class="flex-buttons" alt="createButton"/>
+            </div>
+            <div id="flex-card-column">
+                <div id="flex-card-image-container">
+            </div>
+            
+            </div>
+        </div>
     </div>
     <div class="fencepost">
         <div class="button-row">
             <div class="button-column">
-                <button class="button" id="next-turn" onclick="ButtonSelected('next-turn')">Next Turn</button>
                 <div class="dropdown">
-                    <button class="button" id="draw" onclick="ButtonSelected('draw')">Draw:</button>
                     <div class="dropdown-content">
                         <button class="button" id="create" onclick="ButtonSelected('create')">Create:</button>
                         <button class="button" id="manifest" onclick="ButtonSelected('manifest')">Manifest:</button>

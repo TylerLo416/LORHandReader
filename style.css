@@ -6,7 +6,6 @@
   flex: 30%;
   padding: 10px;
 }
-
 /* styling buttons */
 .button {
   background-color: #ADD8E6;
@@ -189,6 +188,27 @@ body {
   justify-content: center;
 }
 
+.flex-buttons {
+  width: 100%;
+  height: 20%;
+}
+#flex-button-column {
+  margin-left: 8vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 12vw;
+}
+#flex-card-column {
+  width:80vw;
+}
+#flex-background {
+  background-image: url('Card-Back-Images/cardBackground.png');
+  display:flex;
+  flex-direction: row;
+}
+
 #flex-card-image-container {
   margin-top: 0vh;
   margin: 0px;
@@ -197,7 +217,6 @@ body {
   flex-direction: row-reverse;
   text-align: center;
   justify-content: center;
-  background-image: url('Card-Back-Images/cardBackground.png');
   background-repeat: no-repeat;
   background-position: center calc(50% - 10%);
   background-size: 100%;
