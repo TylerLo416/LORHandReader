@@ -1,13 +1,23 @@
 #oldButtons {
   display: none;
 }
+#game-phase {
+  margin-top: 3vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#flex-button-column {
+  margin-left: 6vmin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 14vw;
+}
 .button-row {
   display: flex;
-}
-.button-column {
-  display: block;
-  flex: 30%;
-  padding: 10px;
 }
 /* styling buttons */
 .button {
@@ -35,6 +45,11 @@
 .button:hover {
   background-color: #2980b9;
   transform: scale(1.05); /* Enlarge the button on hover */
+}
+
+#start-game {
+  width: 80%;
+  height: 80%;
 }
 
 #draw::after {
@@ -173,7 +188,6 @@ body {
 }
 /* Styling Cards */
 .img-cards {
-  /*float: right;*/
   display: inline-block;
   width: 8%;
   height: 8%;
@@ -185,7 +199,13 @@ body {
   flex-shrink: 0; /* Prevent cards from shrinking too much */
   position: relative; /* Enable overlapping by using position */
   z-index: 1; /* Set a higher z-index to overlap cards */
-
+  text-align: center;
+  vertical-align: middle;
+}
+.LORCardClass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .card-labels{
   text-align: center;
@@ -201,24 +221,23 @@ body {
 .flex-buttons {
   width: 80%;
   height: 20%;
-  margin-bottom:5px;
+  margin-top: 2.5px;
+  margin-bottom:2.5px;
+  display: 0;
 }
 #undo {
   width: 60%;
-  height: 15%;
+  height: 14%;
   margin-top: 6px;
 }
-#new-game {
+#restart {
   width: 60%;
-  height: 15%;
+  height: 14%;
 }
-#flex-button-column {
-  margin-left: 6vmin;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 12vw;
+
+#replace {
+  width: 60%;
+  height: 14%;
 }
 #flex-card-column {
   width:90vw;

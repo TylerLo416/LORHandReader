@@ -10,6 +10,7 @@ for (let i = 1; i <= numberOfCards; i++) {
   const img = document.createElement('img');
   img.src = "Card-Back-Images/Summoner's-Rift.png";
   img.alt = "LOR Card";
+  img.className = "LORCardClass";
   img.style.width = "100%";
   img.style.height = "100%";
   img.id = `LORCard${i}`;
@@ -19,6 +20,12 @@ for (let i = 1; i <= numberOfCards; i++) {
   label.className = 'card-labels';
   label.id = `LORCard-label${i}`;
   label.innerHTML = `Card ${i}`;
+
+  const mulliganButton = document.createElement('img');
+  mulliganButton.src = "Card-Back-Images/replaceButtonStandard.png";
+  mulliganButton.alt = "replaceButton";
+  mulliganButton.id = 'replace';
+  mulliganButton.onclick = () => handleMulliganButton(i);
 
   // Create "Yes" button
   const yesButton = document.createElement('button');
@@ -34,8 +41,7 @@ for (let i = 1; i <= numberOfCards; i++) {
 
   imgCardDiv.appendChild(label);
   imgCardDiv.appendChild(img);
-  imgCardDiv.appendChild(yesButton);
-  imgCardDiv.appendChild(noButton);
+  imgCardDiv.appendChild(mulliganButton);
   cardContainer.appendChild(imgCardDiv);
 
   //Add right click to delete TODO
@@ -165,6 +171,10 @@ function ButtonSelected(buttonID)
         return;
       case "restart":
         location.reload();
+        return;
+      case "start-game":
+        document.getElementById('mulligan-phase').style.display = 'none';
+        document.getElementById('game-phase').style.display = 'flex';
         return;
       default: throw "Issue with button selection occured";
     }

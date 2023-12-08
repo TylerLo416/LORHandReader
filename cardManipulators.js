@@ -11,7 +11,8 @@ function drawCard(amtCards, drawtype) {
         img.alt = "LOR Card";
         img.style.width = "100%";
         img.style.height = "100%";
-        img.id = `LORCard${amtCards+1}`
+        img.id = `LORCard${amtCards+1}`;
+        img.className = 'LORCardClass';
         img.onclick = () => cardSelected(`LORCard${amtCards}`, 
             `LORCard-label${amtCards}`, `img-cards-${amtCards}`);
         
