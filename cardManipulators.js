@@ -74,19 +74,6 @@ function drawCard(amtCards, drawtype) {
     return amtCards;
   }
 
-/*function Discardcard(cardID, cardlabel, wrapperID)
-{
-    const card = document.getElementById(cardID);
-    const label = document.getElementById(cardlabel);
-
-    card.style.display = "none";
-    label.style.display = "none";
-
-    document.getElementById(wrapperID).style.display = "none";
-
-    redoCardNums();
-    amtcards--;
-}*/
 function discardCard(cardNum) {
     // Remove the specified card
     const wrapper = document.getElementById(`img-cards-${cardNum}`);
@@ -123,4 +110,31 @@ function discardCard(cardNum) {
     }
     // Adjust the total number of cards
     amtcards--;
+}
+
+document.getElementById("next").addEventListener('mouseover', function() {
+    ChangeButton('next', 'Hover');
+});
+
+document.getElementById("next").addEventListener('mouseout', function() {
+    ChangeButton('next', 'Standard');
+});
+
+document.getElementById("next").addEventListener('click', function() {
+    ChangeButton('next', 'Selected');
+});
+
+document.getElementById("draw").addEventListener('mouseover', function() {
+    ChangeButton('draw', 'Hover');
+});
+
+document.getElementById("draw").addEventListener('mouseout', function() {
+    ChangeButton('draw', 'Standard');
+});
+
+document.getElementById("draw").addEventListener('click', function() {
+    ChangeButton('draw', 'Selected');
+});
+function ChangeButton(buttonId, functiontype) {
+    document.getElementById(buttonId).src = `Card-Back-Images/${buttonId}Button${functiontype}.png`;
 }
