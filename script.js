@@ -34,7 +34,6 @@ for (let i = 1; i <= numberOfCards; i++) {
 
   //Add right click to delete TODO
   img.addEventListener('contextmenu', (e) => {
-    console.log("hi!!");
     e.preventDefault(); // Prevent default context menu
     discardCard(i); // Call the deleteCard function passing the card number
   });
@@ -42,7 +41,13 @@ for (let i = 1; i <= numberOfCards; i++) {
 
 //toggles whether or not card should have the mulled or kept tag
 function handleReplaceButton(cardNumber) {
-  console.log('hi');
+  let card = document.getElementById(`LORCard${cardNumber}`).src;
+  if(!card.includes("Card-Back-Images/Summoner's-Rift-faded.png")) {
+    document.getElementById(`LORCard${cardNumber}`).src = "Card-Back-Images/Summoner's-Rift-faded.png";
+  }
+  else {
+    document.getElementById(`LORCard${cardNumber}`).src = "Card-Back-Images/Summoner's-Rift-old.png";
+  }
 }
 
 
@@ -82,7 +87,7 @@ document.addEventListener('keydown', function(event) {
   }
   switch (event.key) {
     case 'q':
-      ButtonSelected('next-turn');
+      ButtonSelected('next');
       break;
     case 'w':
       ButtonSelected('draw');
@@ -257,7 +262,6 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
         let currentCardLabel = document.getElementById(`LORCard-label${cardNumber}`).innerHTML;
 
         if(currentCardLabel.includes('Kept') || currentCardLabel.includes('Mulled')) {
-          console.log("mulled=true");
           currentCardLabel = currentCardLabel.replace(`Card ${cardNumber}<br>`,"");
           discardCard(cardNumber);
           amtcards = moveToEndCard(amtcards, currentCardLabel, 0);
@@ -330,7 +334,6 @@ function ChangeButton(buttonId, functiontype) {
   const prev = document.getElementById(buttonId).src;
   let buttonIdNoNums = buttonId.replace(/\d+$/, '');
   document.getElementById(buttonId).src = `Button-Images/${buttonIdNoNums}Button${functiontype}.png`;
-  console.log("hi"+`Button-Images/${buttonIdNoNums}Button${functiontype}.png`);
   
   if(functiontype == 'Selected') {
       setTimeout(() => {
