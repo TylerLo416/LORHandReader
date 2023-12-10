@@ -21,23 +21,11 @@ for (let i = 1; i <= numberOfCards; i++) {
   label.id = `LORCard-label${i}`;
   label.innerHTML = `Card ${i}`;
 
-  const mulliganButton = document.createElement('img');
+  let mulliganButton = document.createElement('img');
   mulliganButton.src = "Button-Images/replaceButtonStandard.png";
   mulliganButton.alt = "replaceButton";
-  mulliganButton.id = 'replace';
-  mulliganButton.onclick = () => handleMulliganButton(i);
-
-  // Create "Yes" button
-  const yesButton = document.createElement('button');
-  yesButton.className = 'mulligan-button';
-  yesButton.textContent = 'Mulled';
-  yesButton.onclick = () => handleButtonClick('Yes', i);
-
-  // Create "No" button
-  const noButton = document.createElement('button');
-  noButton.className = 'mulligan-button';
-  noButton.textContent = 'Kept';
-  noButton.onclick = () => handleButtonClick('No', i);
+  mulliganButton.id = `replace${i}`;
+  mulliganButton.onclick = () => handleReplaceButton(i);
 
   imgCardDiv.appendChild(label);
   imgCardDiv.appendChild(img);
@@ -52,18 +40,9 @@ for (let i = 1; i <= numberOfCards; i++) {
   });
 }
 
-function handleButtonClick(answer, cardNumber) {
-  let label = document.getElementById(`LORCard-label${cardNumber}`);
-  if (answer === 'Yes') {
-    label.innerHTML += '<br>Mulled';
-  } else if (answer === 'No') {
-    label.innerHTML += '<br>Kept';
-  }
-
-  // Remove buttons
-  const imgCardDiv = document.getElementById(`img-cards-${cardNumber}`);
-  imgCardDiv.removeChild(document.querySelector(`#img-cards-${cardNumber} button`));
-  imgCardDiv.removeChild(document.querySelector(`#img-cards-${cardNumber} button`));;
+//toggles whether or not card should have the mulled or kept tag
+function handleReplaceButton(cardNumber) {
+  console.log('hi');
 }
 
 
@@ -308,4 +287,54 @@ function showNotification() {
   alert("Next Turn/Draw both draw cards. For Discard/Mana Label/Card Type/MoveToEnd, " + 
     "Click on the button, then the card you want to affect. " + 
     "Q,W,E,R are hotkeys for the corresponding buttons. Go yell at me in discord if you find a bug (there are lots)");
+}
+
+//add graphics to buttons
+function addButtonEventListeners(buttonId, clickAction) {
+  const button = document.getElementById(buttonId);
+
+  button.addEventListener('mouseover', function() {
+      ChangeButton(buttonId, 'Hover');
+  });
+
+  button.addEventListener('mouseout', function() {
+      ChangeButton(buttonId, 'Standard');
+  });
+
+  if (clickAction) {
+      button.addEventListener('click', function() {
+          ChangeButton(buttonId, 'Selected');
+      });
+  }
+}
+
+// List of buttons and their associated click actions (if any)
+const buttons = [
+  { id: 'next', clickAction: true },
+  { id: 'draw', clickAction: true },
+  { id: 'start-game' },
+  { id: 'restart' },
+  { id: 'undo', clickAction: true },
+  { id: 'replace1', clickAction: true },
+  { id: 'replace2', clickAction: true },
+  { id: 'replace3', clickAction: true },
+  { id: 'replace4', clickAction: true }
+];
+
+// Loop through the buttons and add event listeners
+buttons.forEach(button => {
+  addButtonEventListeners(button.id, button.clickAction);
+});
+
+function ChangeButton(buttonId, functiontype) {
+  const prev = document.getElementById(buttonId).src;
+  let buttonIdNoNums = buttonId.replace(/\d+$/, '');
+  document.getElementById(buttonId).src = `Button-Images/${buttonIdNoNums}Button${functiontype}.png`;
+  console.log("hi"+`Button-Images/${buttonIdNoNums}Button${functiontype}.png`);
+  
+  if(functiontype == 'Selected') {
+      setTimeout(() => {
+          document.getElementById(buttonId).src = prev;
+      }, 100)
+  }
 }
