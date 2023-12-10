@@ -7,7 +7,7 @@ function drawCard(amtCards, drawtype) {
         imgCardDiv.id = `img-cards-${amtCards+1}`;
 
         const img = document.createElement('img');
-        img.src = "Card-Back-Images/Summoner's-Rift.png";
+        img.src = "Card-Back-Images/Summoner's-Rift-old.png";
         img.alt = "LOR Card";
         img.style.width = "100%";
         img.style.height = "100%";
@@ -113,29 +113,46 @@ function discardCard(cardNum) {
     amtcards--;
 }
 
-document.getElementById("next").addEventListener('mouseover', function() {
-    ChangeButton('next', 'Hover');
+function addButtonEventListeners(buttonId, clickAction) {
+    const button = document.getElementById(buttonId);
+
+    button.addEventListener('mouseover', function() {
+        ChangeButton(buttonId, 'Hover');
+    });
+
+    button.addEventListener('mouseout', function() {
+        ChangeButton(buttonId, 'Standard');
+    });
+
+    if (clickAction) {
+        button.addEventListener('click', function() {
+            ChangeButton(buttonId, 'Selected');
+        });
+    }
+}
+
+// List of buttons and their associated click actions (if any)
+const buttons = [
+    { id: 'next', clickAction: true },
+    { id: 'draw', clickAction: true },
+    { id: 'start-game' },
+    { id: 'restart' },
+    { id: 'undo', clickAction: true },
+    { id: 'replace', clickAction: true }
+];
+
+// Loop through the buttons and add event listeners
+buttons.forEach(button => {
+    addButtonEventListeners(button.id, button.clickAction);
 });
 
-document.getElementById("next").addEventListener('mouseout', function() {
-    ChangeButton('next', 'Standard');
-});
-
-document.getElementById("next").addEventListener('click', function() {
-    ChangeButton('next', 'Selected');
-});
-
-document.getElementById("draw").addEventListener('mouseover', function() {
-    ChangeButton('draw', 'Hover');
-});
-
-document.getElementById("draw").addEventListener('mouseout', function() {
-    ChangeButton('draw', 'Standard');
-});
-
-document.getElementById("draw").addEventListener('click', function() {
-    ChangeButton('draw', 'Selected');
-});
 function ChangeButton(buttonId, functiontype) {
-    document.getElementById(buttonId).src = `Card-Back-Images/${buttonId}Button${functiontype}.png`;
+    const prev = document.getElementById(buttonId).src;
+    document.getElementById(buttonId).src = `Button-Images/${buttonId}Button${functiontype}.png`;
+    
+    if(functiontype == 'Selected') {
+        setTimeout(() => {
+            document.getElementById(buttonId).src = prev;
+        }, 100)
+    }
 }

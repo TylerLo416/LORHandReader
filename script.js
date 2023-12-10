@@ -8,7 +8,7 @@ for (let i = 1; i <= numberOfCards; i++) {
   imgCardDiv.id = `img-cards-${i}`;
 
   const img = document.createElement('img');
-  img.src = "Card-Back-Images/Summoner's-Rift.png";
+  img.src = "Card-Back-Images/Summoner's-Rift-old.png";
   img.alt = "LOR Card";
   img.className = "LORCardClass";
   img.style.width = "100%";
@@ -22,7 +22,7 @@ for (let i = 1; i <= numberOfCards; i++) {
   label.innerHTML = `Card ${i}`;
 
   const mulliganButton = document.createElement('img');
-  mulliganButton.src = "Card-Back-Images/replaceButtonStandard.png";
+  mulliganButton.src = "Button-Images/replaceButtonStandard.png";
   mulliganButton.alt = "replaceButton";
   mulliganButton.id = 'replace';
   mulliganButton.onclick = () => handleMulliganButton(i);
