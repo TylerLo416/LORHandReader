@@ -50,6 +50,21 @@ function handleReplaceButton(cardNumber) {
   }
 }
 
+function handleStartButton() {
+  for (let i = 1; i <= numberOfCards; i++) {
+    curCardImg = document.getElementById(`LORCard${i}`);
+    let label = document.getElementById(`LORCard-label${i}`);
+    if(curCardImg.src.includes("Card-Back-Images/Summoner's-Rift-faded.png")) {
+      label.innerHTML += '<br>Mulled';
+      curCardImg.src = "Card-Back-Images/Summoner's-Rift-old.png";
+    }
+    else {
+      label.innerHTML += '<br>Kept';
+    }
+    document.getElementById(`replace${i}`).remove();
+  }
+}
+
 
 //turn counter
 let counterPlusElem = document.getElementById('next-turn');
@@ -159,6 +174,7 @@ function ButtonSelected(buttonID)
       case "start-game":
         document.getElementById('mulligan-phase').style.display = 'none';
         document.getElementById('game-phase').style.display = 'flex';
+        handleStartButton();
         return;
       default: throw "Issue with button selection occured";
     }
