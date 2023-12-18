@@ -180,7 +180,12 @@ function ButtonSelected(buttonID)
     }
 }
 
-function cardSelected(selectedcard, cardlabel, wrapperID)
+function cardSelected(selectedcard, cardlabel, wrapperID) {
+  const cardnumber = parseInt(wrapperID.split("-")[2]);
+  createInputArea(cardnumber, "");
+}
+
+/*function cardSelected(selectedcard, cardlabel, wrapperID)
 {
     //check which button is currently active
     //use a switch case to choose the correct action based on 
@@ -301,7 +306,7 @@ function cardSelected(selectedcard, cardlabel, wrapperID)
     }
     activeButton[0].classList.add("inactive");
     activeButton[0].classList.remove("active");
-}
+}*/
 
 function showNotification() {
   alert("Next Turn/Draw both draw cards. For Discard/Mana Label/Card Type/MoveToEnd, " + 

@@ -13,8 +13,8 @@ function drawCard(amtCards, drawtype) {
         img.style.height = "100%";
         img.id = `LORCard${amtCards+1}`;
         img.className = 'LORCardClass';
-        img.onclick = () => cardSelected(`LORCard${amtCards}`, 
-            `LORCard-label${amtCards}`, `img-cards-${amtCards}`);
+        img.onclick = () => cardSelected(`LORCard${amtCards+1}`, 
+            `LORCard-label${amtCards+1}`, `img-cards-${amtCards+1}`);
         
         const label = document.createElement('p');
         label.className = 'card-labels';
@@ -27,11 +27,11 @@ function drawCard(amtCards, drawtype) {
 
         //create right click functionality
         // Add contextmenu event listener for right-click
-        /*const curAmtCards = amtCards;
+        const curAmtCards = amtCards+1;
         imgCardDiv.addEventListener('contextmenu', (event) => {
             event.preventDefault(); // Prevent default context menu
             discardCard(curAmtCards); // Call discardCard function with card number i
-        });*/
+        });
 
         amtCards += 1;
     }
@@ -80,6 +80,7 @@ function discardCard(cardNum) {
     const wrapper = document.getElementById(`img-cards-${cardNum}`);
     const label = document.getElementById(`LORCard-label${cardNum}`);
     const card = document.getElementById(`LORCard${cardNum}`);
+    console.log(cardNum + "hui " + card);
     card.onclick = null;
     card.remove();
     label.innerText = '';
@@ -108,6 +109,11 @@ function discardCard(cardNum) {
     
         currentCardLabel.innerHTML = updatedLabel;
         console.log(currentCardDiv.id + " " + currentCardLabel.id);
+
+        currentCard.addEventListener('contextmenu', (e) => {
+            e.preventDefault(); // Prevent default context menu
+            discardCard(i); // Call the deleteCard function passing the card number
+        });
     }
     // Adjust the total number of cards
     amtcards--;

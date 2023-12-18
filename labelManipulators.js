@@ -96,7 +96,6 @@ function sortLabel(cardlabel)
 //Custom Labels
 function createInputArea(cardnumber, reducedCost) {
   ignoreEventListener = true;
-  console.log("inputarea: " + reducedCost);
   // Create the inputContainer and other elements
   const inputContainer = document.createElement('div');
   inputContainer.id = 'inputContainer';
@@ -136,7 +135,6 @@ function getUserInput(cardnumber, reducedCost) {
   if (userInputIntoLabel.trim() !== '') {
     // Do something with the user's input
     const currentCardLabel = document.getElementById(`LORCard-label${cardnumber}`);
-    console.log(reducedCost);
     currentCardLabel.innerHTML += '<br>' + reducedCost + userInputIntoLabel;
 
     // Remove the inputContainer (which contains the input and submit button)
