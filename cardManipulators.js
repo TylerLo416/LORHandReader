@@ -27,11 +27,8 @@ function drawCard(amtCards, drawtype) {
 
         //create right click functionality
         // Add contextmenu event listener for right-click
-        const curAmtCards = amtCards+1;
-        imgCardDiv.addEventListener('contextmenu', (event) => {
-            event.preventDefault(); // Prevent default context menu
-            discardCard(curAmtCards); // Call discardCard function with card number i
-        });
+        const contextMenuHandler = (e) => handleContextMenu(e, amtCards);
+        img.addEventListener('contextmenu', contextMenuHandler);
 
         amtCards += 1;
     }
@@ -62,7 +59,6 @@ function drawCard(amtCards, drawtype) {
             label.innerHTML = `Card ${amtCards+1}<br>${drawlabel}Turn: ${turnNumber}`;
         }
         else {
-            console.log("drawlabel:" + drawlabel)
             label.innerHTML = `Card ${amtCards+1}<br>${drawlabel}`
         } 
         
@@ -80,27 +76,27 @@ function discardCard(cardNum) {
     const wrapper = document.getElementById(`img-cards-${cardNum}`);
     const label = document.getElementById(`LORCard-label${cardNum}`);
     const card = document.getElementById(`LORCard${cardNum}`);
-    console.log(cardNum + "hui " + card);
     card.onclick = null;
     card.remove();
     label.innerText = '';
     label.remove();
     wrapper.remove();
     //cardDiv.style.display = 'none';
-    console.log("cardNum " + cardNum);
     // Update card labels and IDs for cards after the deleted card
-    for (let i = cardNum + 1; i <= amtcards; i++) {
+    for (let i = cardNum; i <= amtcards; i++) {
         const currentCardDiv = document.getElementById(`img-cards-${i}`);
         const currentCard = document.getElementById(`LORCard${i}`);
-        const currentCardLabel = document.getElementById(`LORCard-label${i}`);
-    
-        const newCardNum = i - 1;
-        let innerHTMLLabel = currentCardLabel.innerHTML;
-    
-        // Replace the numbers in the HTML content while preserving HTML tags
-        const updatedLabel = innerHTMLLabel.replace(/\b(?:[1-9]|10)\b/, newCardNum);
+        let currentCardLabel = document.getElementById(`LORCard-label${i}`);
         
     
+        const newCardNum = i - 1;
+        //let innerHTMLLabel = currentCardLabel.innerHTML;
+    
+        // Replace the numbers in the HTML content while preserving HTML tags
+        console.log("label " + currentCardLabel);
+        const updatedLabel = innerHTMLLabel.replace(/\b(?:[1-9]|10)\b/, newCardNum);
+        
+        currentCard.onclick = null;
         currentCard.onclick = () => cardSelected(`LORCard${newCardNum}`, `LORCard-label${newCardNum}`, `img-cards-${newCardNum}`);
     
         currentCardDiv.id = `img-cards-${newCardNum}`;
@@ -108,12 +104,10 @@ function discardCard(cardNum) {
         currentCard.id = `LORCard${newCardNum}`;
     
         currentCardLabel.innerHTML = updatedLabel;
-        console.log(currentCardDiv.id + " " + currentCardLabel.id);
 
-        currentCard.addEventListener('contextmenu', (e) => {
-            e.preventDefault(); // Prevent default context menu
-            discardCard(i); // Call the deleteCard function passing the card number
-        });
+        const contextMenuHandler = (e) => handleContextMenu(e, newCardNum);
+        currentCard.removeEventListener('contextmenu', contextMenuHandler);
+        img.addEventListener('contextmenu', contextMenuHandler);
     }
     // Adjust the total number of cards
     amtcards--;

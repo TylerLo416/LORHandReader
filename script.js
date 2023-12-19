@@ -33,11 +33,10 @@ for (let i = 1; i <= numberOfCards; i++) {
   cardContainer.appendChild(imgCardDiv);
 
   //Add right click to delete TODO
-  img.addEventListener('contextmenu', (e) => {
-    e.preventDefault(); // Prevent default context menu
-    discardCard(i); // Call the deleteCard function passing the card number
-  });
+  const contextMenuHandler = (e) => handleContextMenu(e, i);
+  img.addEventListener('contextmenu', contextMenuHandler);
 }
+
 
 //toggles whether or not card should have the mulled or kept tag
 function handleReplaceButton(cardNumber) {
@@ -361,4 +360,17 @@ function ChangeButton(buttonId, functiontype) {
           document.getElementById(buttonId).src = prev;
       }, 100)
   }
+}
+
+//stops right click menu from showing up
+function preventDefault() {
+  let background = document.getElementById('flex-background');
+  background.addEventListener('contextmenu', (e) => {
+    e.preventDefault(); // Prevent default context menu
+  });
+}
+
+function handleContextMenu(e, cardNumber) {
+  e.preventDefault(); // Prevent default context menu
+  discardCard(cardNumber); // Call the deleteCard function passing the card number
 }
