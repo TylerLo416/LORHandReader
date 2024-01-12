@@ -1,5 +1,6 @@
 const numberOfCards = 4;  // Number of cards to generate
 const cardContainer = document.getElementById('flex-card-image-container');
+let amtcards = 4;
 
 //generate initial set of 4 cards
 for (let i = 1; i <= numberOfCards; i++) {
@@ -32,9 +33,12 @@ for (let i = 1; i <= numberOfCards; i++) {
   imgCardDiv.appendChild(mulliganButton);
   cardContainer.appendChild(imgCardDiv);
 
-  //Add right click to delete TODO
-  const contextMenuHandler = (e) => handleContextMenu(e, i);
-  img.addEventListener('contextmenu', contextMenuHandler);
+  //Add right click to delete onto the image (LORCard${i})
+  const contextMenuHandlerDiscard = (e) => handleContextMenu(e, i);
+  //img.addEventListener('contextmenu', contextMenuHandlerDiscard);
+
+  //new generic right click
+  img.addEventListener('contextmenu', rightClickHandler);
 }
 
 
@@ -70,25 +74,23 @@ let counterPlusElem = document.getElementById('next-turn');
 
 let turnCounter = 0;
 
-var amtcards = 4;
-
 function updateDisplay(){
     let counterDisplayElem = document.getElementById('counter-display');
     counterDisplayElem.innerHTML = "Turn: " + turnCounter;
     amtcards = drawCard(amtcards, "drawn");
 }
 
-function deleteFleeting() {
+/*function deleteFleeting() {
   for (let i = 1; i <= amtcards; i++) {
     const currentCardDiv = document.getElementById(`img-cards-${i}`);
     const currentCard = document.getElementById(`LORCard${i}`);
     const currentCardLabel = document.getElementById(`LORCard-label${i}`);
 
     if(currentCardLabel.innerHTML.includes("fleeting")) {
-      discardCard(i);
+      amtcards = discardCard(i);
     }
   }
-}
+}*/
 //seperate all cards into a div class of toggle cards that interact with clicking the cards 
 //(this may also need to be split into markers and deleting/adding)
 //the second group are cards that do not interact with clicking the cards
@@ -144,7 +146,7 @@ function ButtonSelected(buttonID)
     switch(buttonID) {
       case "next":
           turnCounter++;
-          deleteFleeting();
+          //deleteFleeting();
           updateDisplay();
           return;
       case "draw":
@@ -183,129 +185,6 @@ function cardSelected(selectedcard, cardlabel, wrapperID) {
   const cardnumber = parseInt(wrapperID.split("-")[2]);
   createInputArea(cardnumber, "");
 }
-
-/*function cardSelected(selectedcard, cardlabel, wrapperID)
-{
-    //check which button is currently active
-    //use a switch case to choose the correct action based on 
-    //which button is currently active
-    var activeButton = document.getElementsByClassName("button active");
-    switch(activeButton[0].id) {
-      case "discard-play":
-        const number = parseInt(wrapperID.split("-")[2]);
-        discardCard(number);
-        break;
-      case "1":
-        manalabel(cardlabel, 1);
-        sortLabel(cardlabel);
-        break;
-      case "2":
-        manalabel(cardlabel, 2);
-        sortLabel(cardlabel);
-        break;
-      case "3":
-        manalabel(cardlabel, 3);
-        sortLabel(cardlabel);
-        break;
-      case "4":
-        manalabel(cardlabel, 4);
-        sortLabel(cardlabel);
-        break;
-      case "5":
-        manalabel(cardlabel, 5);
-        sortLabel(cardlabel);
-        break;
-      case "6":
-        manalabel(cardlabel, 6);
-        sortLabel(cardlabel);
-        break;
-      case "7":
-        manalabel(cardlabel, 7);
-        sortLabel(cardlabel);
-        break;
-      case "8":
-        manalabel(cardlabel, 8);
-        sortLabel(cardlabel);
-        break;
-      case "9":
-        manalabel(cardlabel, 9);
-        sortLabel(cardlabel);
-        break;
-      case "unit":
-        cardtypelabel(cardlabel, "unit");
-        sortLabel(cardlabel);
-        break;
-      case "spell":
-        cardtypelabel(cardlabel, "spell");
-        sortLabel(cardlabel);
-        break;
-      case "champion":
-        cardtypelabel(cardlabel, "champion");
-        sortLabel(cardlabel);
-        break;
-      case "landmark":
-        cardtypelabel(cardlabel, "landmark");
-        sortLabel(cardlabel);
-        break;
-      case "equipment":
-        cardtypelabel(cardlabel, "equipment");
-        sortLabel(cardlabel);
-        break;
-      case "token":
-        if(!document.getElementById(cardlabel).innerHTML.includes("token")) {
-          document.getElementById(cardlabel).innerHTML += " <br /> token";
-        }
-        else {
-          var updatedContent = document.getElementById(cardlabel).innerHTML.replace('token', '');
-          document.getElementById(cardlabel).innerHTML = updatedContent;
-        }
-        break;
-      case "predicted":
-        if(!document.getElementById(cardlabel).innerHTML.includes("predicted")) {
-          document.getElementById(cardlabel).innerHTML += " <br /> predicted";
-        }
-        else {
-          var updatedContent = document.getElementById(cardlabel).innerHTML.replace('predicted', '');
-          document.getElementById(cardlabel).innerHTML = updatedContent;
-        }
-        break;
-      case "manual-input":
-        const cardnumber = parseInt(wrapperID.split("-")[2]);
-        createInputArea(cardnumber, "");
-        break;
-      case "reduced-cost":
-        const cardnumber1 = parseInt(wrapperID.split("-")[2]);
-        createInputArea(cardnumber1, "reduced cost: ");
-        break;
-      case "move-to-end":
-        const cardNumber = parseInt(wrapperID.split("-")[2]);
-        let currentCardLabel = document.getElementById(`LORCard-label${cardNumber}`).innerHTML;
-
-        if(currentCardLabel.includes('Kept') || currentCardLabel.includes('Mulled')) {
-          currentCardLabel = currentCardLabel.replace(`Card ${cardNumber}<br>`,"");
-          discardCard(cardNumber);
-          amtcards = moveToEndCard(amtcards, currentCardLabel, 0);
-          break;
-        }
-        currentCardLabel = currentCardLabel.replace(`Card ${cardNumber}<br>`,"");
-
-        const regex = new RegExp('Turn:  \\d+', 'g');
-        console.log('regex:' + regex);
-        const regex1 = /\d+/g;
-        const matches = currentCardLabel.match(regex1);
-        const turn = parseInt(matches[0], 10);
-
-        currentCardLabel = currentCardLabel.replace(regex, '');
-
-        discardCard(cardNumber);
-        amtcards = moveToEndCard(amtcards, currentCardLabel, turn);
-        sortLabel(cardlabel);
-        break;
-      default: //do nothing;
-    }
-    activeButton[0].classList.add("inactive");
-    activeButton[0].classList.remove("active");
-}*/
 
 function showNotification() {
   alert("Next Turn/Draw both draw cards. For Discard/Mana Label/Card Type/MoveToEnd, " + 
@@ -370,7 +249,79 @@ function preventDefault() {
   });
 }
 
-function handleContextMenu(e, cardNumber) {
-  e.preventDefault(); // Prevent default context menu
-  discardCard(cardNumber); // Call the deleteCard function passing the card number
+//delete a Card on Right Click
+function rightClickHandler(event) {
+  event.preventDefault(); // Prevent the default context menu
+
+  //get Id's
+  const clickedElement = event.target;
+  const imgId = clickedElement.id;
+  let cardNum = imgId.match(/\d+/g);
+  const joinedString = cardNum ? cardNum.join('') : '';
+  cardNum = parseInt(joinedString, 10);
+
+  //remove the specified card
+  const wrapper = document.getElementById(`img-cards-${cardNum}`);
+  const label = document.getElementById(`LORCard-label${cardNum}`);
+  const card = document.getElementById(`LORCard${cardNum}`);
+  card.remove();
+  label.remove();
+  wrapper.remove();
+  for (let i = cardNum+1; i <= amtcards; i++) {
+      let currentCardDiv = document.getElementById(`img-cards-${i}`)
+      let currentCard = document.getElementById(`LORCard${i}`);
+      let currentCardLabel = document.getElementById(`LORCard-label${i}`);
+ 
+      const newCardNum = i - 1;
+      let innerHTMLLabel = currentCardLabel.innerHTML;
+
+      // Replace the numbers in the HTML content while preserving HTML tags
+      const updatedLabel = innerHTMLLabel.replace(/\b(?:[1-9]|10)\b/, newCardNum);
+      console.log("updated label" + updatedLabel);
+      currentCard.onclick = () => cardSelected(`LORCard${newCardNum}`, `LORCard-label${newCardNum}`, `img-cards-${newCardNum}`);
+
+      //set the id's to be reduced by 1
+      currentCardLabel.innerHTML = updatedLabel;
+      currentCardDiv.id = `img-cards-${newCardNum}`;
+      currentCardLabel.id = `LORCard-label${newCardNum}`;
+      currentCard.id = `LORCard${newCardNum}`;
+
+  }
+  amtcards--;
+
+}
+
+function drawCard(amtCards, drawtype) {
+  console.log(amtCards);
+  if(amtCards < 10)
+  {
+      amtCards += 1;
+      const imgCardDiv = document.createElement('div');
+      imgCardDiv.className = 'img-cards';
+      imgCardDiv.id = `img-cards-${amtCards}`;
+
+      const img = document.createElement('img');
+      img.src = "Card-Back-Images/Summoner's-Rift-old.png";
+      img.alt = "LOR Card";   
+      img.style.width = "100%";
+      img.style.height = "100%";
+      img.id = `LORCard${amtCards}`;
+      img.className = 'LORCardClass';
+      img.onclick = () => cardSelected(`LORCard${amtCards}`, 
+          `LORCard-label${amtCards}`, `img-cards-${amtCards}`);
+      
+      const label = document.createElement('p');
+      label.className = 'card-labels';
+      label.id = `LORCard-label${amtCards}`;
+      label.innerHTML = `Card ${amtCards}<br>${drawtype}<br>Turn: ${turnCounter}`;
+      
+      imgCardDiv.appendChild(label);
+      imgCardDiv.appendChild(img);
+      cardContainer.appendChild(imgCardDiv);
+
+      //create right click functionality
+      // Add contextmenu event listener for right-click
+      img.addEventListener('contextmenu', rightClickHandler);
+  }
+  return amtCards;
 }
