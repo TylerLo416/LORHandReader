@@ -3,6 +3,7 @@ const cardContainer = document.getElementById('flex-card-image-container');
 let amtcards = 4;
 let counterPlusElem = document.getElementById('next-turn');
 let turnCounter = 0;
+let ignoreEventListener = false;
 
 function init() {
   // Perform initialization tasks here
@@ -14,7 +15,6 @@ function init() {
     message: 'Initialization completed successfully!',
   };
 }
-
 
 function initializeMulligan() {
   //generate initial set of 4 cards
@@ -81,7 +81,6 @@ function handleStartButton() {
 }
 
 function initializeKeybindings() {
-    let ignoreEventListener = false;
     document.addEventListener('keydown', function(event) {
       if(ignoreEventListener) {
         return;
@@ -165,7 +164,6 @@ function updateDisplay(){
     amtcards = drawCard(amtcards, "drawn");
 }
 
-
 //main function for cards
 function ButtonSelected(buttonID)
 {
@@ -224,11 +222,6 @@ function ButtonSelected(buttonID)
         return;
       default: throw "Issue with button selection occured";
     }
-}
-
-function cardSelected(selectedcard, cardlabel, wrapperID) {
-  const cardnumber = parseInt(wrapperID.split("-")[2]);
-  createInputArea(cardnumber, "");
 }
 
 function showNotification() {
@@ -318,4 +311,82 @@ function drawCard(amtCards, drawtype) {
       img.addEventListener('contextmenu', rightClickHandler);
   }
   return amtCards;
+}
+
+//sets the mana label to be the first label, then sorts the rest alphabetically
+function sortLabel(cardlabel)
+{
+  const label = document.getElementById(cardlabel);
+  const labelArray = label.innerHTML.split("<br>");
+  label.innerHTML = labelArray[0] + "<br>";
+
+  for(var i = 0; i < labelArray.length; i++) {
+    if(labelArray[i].indexOf("mana") === 1) {
+      label.innerHTML += labelArray[i] + "<br>";
+    }
+  }
+  for(var i = 1; i < labelArray.length; i++) {
+    if(labelArray[i].indexOf("mana") === -1) {
+      label.innerHTML += labelArray[i] + "<br>";
+    }
+  }
+  label.innerHTML = label.innerHTML.substring(0, label.innerHTML.lastIndexOf("<br>"));
+}
+
+function cardSelected(selectedcard, cardlabel, wrapperID) {
+  const cardnumber = parseInt(wrapperID.split("-")[2]);
+  createInputArea(cardnumber, "");
+}
+
+//Custom Labels
+function createInputArea(cardnumber, reducedCost) {
+  console.log('cardnum' + cardnumber);
+  ignoreEventListener = true;
+  // Create the inputContainer and other elements
+  const inputContainer = document.createElement('div');
+  inputContainer.id = 'inputContainer';
+
+  const userInput = document.createElement('input');
+  userInput.type = 'text';
+  userInput.id = 'userInput';
+  userInput.placeholder = 'Enter text';
+  userInput.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      getUserInput(cardnumber, reducedCost); // Pass the cardnumber when Enter is pressed
+      ignoreEventListener = false;
+    }
+  });
+
+  const submitButton = document.createElement('button');
+  submitButton.textContent = 'Submit';
+  submitButton.onclick = function() {
+    getUserInput(cardnumber, reducedCost); // Pass the cardnumber when the button is clicked
+    ignoreEventListener = false;
+  };
+
+  inputContainer.appendChild(userInput);
+  inputContainer.appendChild(submitButton);
+
+  // Get the flex-card-image-container and append the inputContainer
+  const flexCardImageContainer = document.getElementById(`img-cards-${cardnumber}`);
+  console.log('fcimagec' + cardnumber + ' ' + flexCardImageContainer);
+  flexCardImageContainer.appendChild(inputContainer);
+
+  // Set focus on the input field when displayed
+  userInput.focus();
+  console.log(ignoreEventListener);
+}
+
+//helper function for createInputArea
+function getUserInput(cardnumber, reducedCost) {
+  const userInputIntoLabel = document.getElementById('userInput').value;
+  if (userInputIntoLabel.trim() !== '') {
+    // Do something with the user's input
+    const currentCardLabel = document.getElementById(`LORCard-label${cardnumber}`);
+    currentCardLabel.innerHTML += '<br>' + reducedCost + userInputIntoLabel;
+
+    // Remove the inputContainer (which contains the input and submit button)
+    const inputContainer = document.getElementById('inputContainer');
+    inputContainer.parentNode.removeChild(inputContainer);
+  }
 }
