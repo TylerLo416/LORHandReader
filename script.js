@@ -1,46 +1,57 @@
 const numberOfCards = 4;  // Number of cards to generate
 const cardContainer = document.getElementById('flex-card-image-container');
 let amtcards = 4;
+let counterPlusElem = document.getElementById('next-turn');
+let turnCounter = 0;
 
-//generate initial set of 4 cards
-for (let i = 1; i <= numberOfCards; i++) {
-  const imgCardDiv = document.createElement('div');
-  imgCardDiv.className = 'img-cards';
-  imgCardDiv.id = `img-cards-${i}`;
+function init() {
+  // Perform initialization tasks here
+  initializeMulligan();
+  initializeKeybindings();
+  initializeButtons();
 
-  const img = document.createElement('img');
-  img.src = "Card-Back-Images/Summoner's-Rift-old.png";
-  img.alt = "LOR Card";
-  img.className = "LORCardClass";
-  img.style.width = "100%";
-  img.style.height = "100%";
-  img.id = `LORCard${i}`;
-  img.onclick = () => cardSelected(`LORCard${i}`, `LORCard-label${i}`, `img-cards-${i}`);
-
-  const label = document.createElement('p');
-  label.className = 'card-labels';
-  label.id = `LORCard-label${i}`;
-  label.innerHTML = `Card ${i}`;
-
-  let mulliganButton = document.createElement('img');
-  mulliganButton.src = "Button-Images/replaceButtonStandard.png";
-  mulliganButton.alt = "replaceButton";
-  mulliganButton.id = `replace${i}`;
-  mulliganButton.onclick = () => handleReplaceButton(i);
-
-  imgCardDiv.appendChild(label);
-  imgCardDiv.appendChild(img);
-  imgCardDiv.appendChild(mulliganButton);
-  cardContainer.appendChild(imgCardDiv);
-
-  //Add right click to delete onto the image (LORCard${i})
-  const contextMenuHandlerDiscard = (e) => handleContextMenu(e, i);
-  //img.addEventListener('contextmenu', contextMenuHandlerDiscard);
-
-  //new generic right click
-  img.addEventListener('contextmenu', rightClickHandler);
+  return {
+    message: 'Initialization completed successfully!',
+  };
 }
 
+
+function initializeMulligan() {
+  //generate initial set of 4 cards
+  for (let i = 1; i <= numberOfCards; i++) {
+    const imgCardDiv = document.createElement('div');
+    imgCardDiv.className = 'img-cards';
+    imgCardDiv.id = `img-cards-${i}`;
+
+    const img = document.createElement('img');
+    img.src = "Card-Back-Images/Summoner's-Rift-old.png";
+    img.alt = "LOR Card";
+    img.className = "LORCardClass";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.id = `LORCard${i}`;
+    img.onclick = () => cardSelected(`LORCard${i}`, `LORCard-label${i}`, `img-cards-${i}`);
+
+    const label = document.createElement('p');
+    label.className = 'card-labels';
+    label.id = `LORCard-label${i}`;
+    label.innerHTML = `Card ${i}`;
+
+    let mulliganButton = document.createElement('img');
+    mulliganButton.src = "Button-Images/replaceButtonStandard.png";
+    mulliganButton.alt = "replaceButton";
+    mulliganButton.id = `replace${i}`;
+    mulliganButton.onclick = () => handleReplaceButton(i);
+
+    imgCardDiv.appendChild(label);
+    imgCardDiv.appendChild(img);
+    imgCardDiv.appendChild(mulliganButton);
+    cardContainer.appendChild(imgCardDiv);
+
+    //Add right click to delete onto the image (LORCard${i})
+    img.addEventListener('contextmenu', rightClickHandler);
+  }
+}
 
 //toggles whether or not card should have the mulled or kept tag
 function handleReplaceButton(cardNumber) {
@@ -53,6 +64,7 @@ function handleReplaceButton(cardNumber) {
   }
 }
 
+//function for startGame Button
 function handleStartButton() {
   for (let i = 1; i <= numberOfCards; i++) {
     curCardImg = document.getElementById(`LORCard${i}`);
@@ -68,57 +80,90 @@ function handleStartButton() {
   }
 }
 
+function initializeKeybindings() {
+    let ignoreEventListener = false;
+    document.addEventListener('keydown', function(event) {
+      if(ignoreEventListener) {
+        return;
+      }
+      switch (event.key) {
+        case 'q':
+          ButtonSelected('next');
+          break;
+        case 'w':
+          ButtonSelected('draw');
+          break;
+        case 'e':
+          ButtonSelected('discard-play');
+          break;
+        case 'r':
+          ButtonSelected('manual-input');
+          break;
+        // Add more cases for other keys if needed
+        default:
+          break;
+      }
+  });
+  }
 
-//turn counter
-let counterPlusElem = document.getElementById('next-turn');
+  function initializeButtons() {
+    // List of buttons and their associated click actions (if any)
+    const buttons = [
+      { id: 'next', clickAction: true },
+      { id: 'draw', clickAction: true },
+      { id: 'start-game' },
+      { id: 'restart' },
+      { id: 'undo', clickAction: true },
+      { id: 'replace1', clickAction: true },
+      { id: 'replace2', clickAction: true },
+      { id: 'replace3', clickAction: true },
+      { id: 'replace4', clickAction: true }
+    ];
 
-let turnCounter = 0;
+    // Loop through the buttons and add event listeners
+    buttons.forEach(button => {
+      addButtonEventListeners(button.id, button.clickAction);
+    });
+  }
+  initConfirmation = init();
+  console.log(initConfirmation);
+
+  //add graphics to buttons
+  function addButtonEventListeners(buttonId, clickAction) {
+    const button = document.getElementById(buttonId);
+
+    button.addEventListener('mouseover', function() {
+        ChangeButton(buttonId, 'Hover');
+    });
+
+    button.addEventListener('mouseout', function() {
+        ChangeButton(buttonId, 'Standard');
+    });
+
+    if (clickAction) {
+        button.addEventListener('click', function() {
+            ChangeButton(buttonId, 'Selected');
+        });
+    }
+  }
+
+  function ChangeButton(buttonId, functiontype) {
+    const prev = document.getElementById(buttonId).src;
+    let buttonIdNoNums = buttonId.replace(/\d+$/, '');
+    document.getElementById(buttonId).src = `Button-Images/${buttonIdNoNums}Button${functiontype}.png`;
+    
+    if(functiontype == 'Selected') {
+        setTimeout(() => {
+            document.getElementById(buttonId).src = prev;
+        }, 100)
+    }
+  }
 
 function updateDisplay(){
     let counterDisplayElem = document.getElementById('counter-display');
     counterDisplayElem.innerHTML = "Turn: " + turnCounter;
     amtcards = drawCard(amtcards, "drawn");
 }
-
-/*function deleteFleeting() {
-  for (let i = 1; i <= amtcards; i++) {
-    const currentCardDiv = document.getElementById(`img-cards-${i}`);
-    const currentCard = document.getElementById(`LORCard${i}`);
-    const currentCardLabel = document.getElementById(`LORCard-label${i}`);
-
-    if(currentCardLabel.innerHTML.includes("fleeting")) {
-      amtcards = discardCard(i);
-    }
-  }
-}*/
-//seperate all cards into a div class of toggle cards that interact with clicking the cards 
-//(this may also need to be split into markers and deleting/adding)
-//the second group are cards that do not interact with clicking the cards
-
-//keybindings
-let ignoreEventListener = false;
-document.addEventListener('keydown', function(event) {
-  if(ignoreEventListener) {
-    return;
-  }
-  switch (event.key) {
-    case 'q':
-      ButtonSelected('next');
-      break;
-    case 'w':
-      ButtonSelected('draw');
-      break;
-    case 'e':
-      ButtonSelected('discard-play');
-      break;
-    case 'r':
-      ButtonSelected('manual-input');
-      break;
-    // Add more cases for other keys if needed
-    default:
-      break;
-  }
-});
 
 
 //main function for cards
@@ -192,55 +237,6 @@ function showNotification() {
     "Q,W,E,R are hotkeys for the corresponding buttons. Go yell at me in discord if you find a bug (there are lots)");
 }
 
-//add graphics to buttons
-function addButtonEventListeners(buttonId, clickAction) {
-  const button = document.getElementById(buttonId);
-
-  button.addEventListener('mouseover', function() {
-      ChangeButton(buttonId, 'Hover');
-  });
-
-  button.addEventListener('mouseout', function() {
-      ChangeButton(buttonId, 'Standard');
-  });
-
-  if (clickAction) {
-      button.addEventListener('click', function() {
-          ChangeButton(buttonId, 'Selected');
-      });
-  }
-}
-
-// List of buttons and their associated click actions (if any)
-const buttons = [
-  { id: 'next', clickAction: true },
-  { id: 'draw', clickAction: true },
-  { id: 'start-game' },
-  { id: 'restart' },
-  { id: 'undo', clickAction: true },
-  { id: 'replace1', clickAction: true },
-  { id: 'replace2', clickAction: true },
-  { id: 'replace3', clickAction: true },
-  { id: 'replace4', clickAction: true }
-];
-
-// Loop through the buttons and add event listeners
-buttons.forEach(button => {
-  addButtonEventListeners(button.id, button.clickAction);
-});
-
-function ChangeButton(buttonId, functiontype) {
-  const prev = document.getElementById(buttonId).src;
-  let buttonIdNoNums = buttonId.replace(/\d+$/, '');
-  document.getElementById(buttonId).src = `Button-Images/${buttonIdNoNums}Button${functiontype}.png`;
-  
-  if(functiontype == 'Selected') {
-      setTimeout(() => {
-          document.getElementById(buttonId).src = prev;
-      }, 100)
-  }
-}
-
 //stops right click menu from showing up
 function preventDefault() {
   let background = document.getElementById('flex-background');
@@ -277,7 +273,6 @@ function rightClickHandler(event) {
 
       // Replace the numbers in the HTML content while preserving HTML tags
       const updatedLabel = innerHTMLLabel.replace(/\b(?:[1-9]|10)\b/, newCardNum);
-      console.log("updated label" + updatedLabel);
       currentCard.onclick = () => cardSelected(`LORCard${newCardNum}`, `LORCard-label${newCardNum}`, `img-cards-${newCardNum}`);
 
       //set the id's to be reduced by 1
@@ -292,7 +287,6 @@ function rightClickHandler(event) {
 }
 
 function drawCard(amtCards, drawtype) {
-  console.log(amtCards);
   if(amtCards < 10)
   {
       amtCards += 1;
