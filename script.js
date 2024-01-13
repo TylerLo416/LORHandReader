@@ -1,11 +1,13 @@
-const numberOfCards = 4;  // Number of cards to generate
-const cardContainer = document.getElementById('flex-card-image-container');
+// Game State
+const numberOfCards = 4;
 let amtcards = 4;
-let counterPlusElem = document.getElementById('next-turn');
 let turnCounter = 0;
-let ignoreEventListener = false;
 let undoStack = [];
 let baseState;
+let ignoreEventListener = false;
+
+// UI Elements
+const cardContainer = document.getElementById('flex-card-image-container');
 
 function init() {
   // Perform initialization tasks here
@@ -52,6 +54,7 @@ function initializeMulligan() {
     //Add right click to delete onto the image (LORCard${i})
     img.addEventListener('contextmenu', discardCard);
   }
+  document.getElementById("cardCount").innerHTML = amtcards;
 }
 
 //toggles whether or not card should have the mulled or kept tag
@@ -204,50 +207,8 @@ function ChangeButton(buttonId, functiontype) {
 }
 
 function updateDisplay(){
-    //let counterDisplayElem = document.getElementById('counter-display');
-    //counterDisplayElem.innerHTML = "Turn: " + turnCounter;
     amtcards = drawCard(amtcards, "drawn");
-}
-
-//main function for cards
-function ButtonSelected(buttonID)
-{
-    //remove all other active button classes - set them to inactive
-    var buttons = document.getElementsByClassName("button active");
-    for(var i = 0; i < buttons.length; i++){
-      if(buttons[i].classList.contains("active")){
-        buttons[i].classList.add("inactive");
-        buttons[i].classList.remove("active");
-      }
-    }
-    var pressedbutton = document.getElementById(buttonID);
-
-    //if statement for non-toggle buttons - if they are non-toggle class, 
-    //go into a switch case to do the correct thing-
-    switch(buttonID) {
-      case "next":
-          turnCounter++;
-          //deleteFleeting();
-          updateDisplay();
-          break;
-      case "draw":
-          amtcards = drawCard(amtcards, "drawn");
-          break;
-      case "restart":
-        location.reload();
-        break;
-      case "start-game":
-        document.getElementById('mulligan-phase').style.display = 'none';
-        document.getElementById('game-phase').style.display = 'flex';
-        handleStartButton();
-        break;
-      case "undo": //must be last case
-        undoUpdateCards();
-        return;
-      default: throw "Issue with button selection occured";
-    }
-    const curState = currentState();
-    undoStack.push(curState);
+    document.getElementById("turnCount").innerHTML = parseInt(document.getElementById("turnCount").innerHTML)+1;
 }
 
 function showNotification() {
@@ -304,7 +265,7 @@ function discardCard(event) {
   amtcards--;
   const curState = currentState();
   undoStack.push(curState);
-  console.log(curState);
+  document.getElementById("cardCount").innerHTML = amtcards;
 }
 
 function drawCard(amtCards, drawtype) {
@@ -359,11 +320,6 @@ function sortLabel(cardlabel)
     }
   }
   label.innerHTML = label.innerHTML.substring(0, label.innerHTML.lastIndexOf("<br>"));
-}
-
-function cardSelected(selectedcard, cardlabel, wrapperID) {
-  const cardnumber = parseInt(wrapperID.split("-")[2]);
-  createInputArea(cardnumber, "");
 }
 
 //Custom Labels
@@ -432,4 +388,52 @@ function currentState() {
 
   // Log the array to the console
   return labelsArray;
+}
+
+//main function for buttons
+function ButtonSelected(buttonID)
+{
+    //remove all other active button classes - set them to inactive
+    var buttons = document.getElementsByClassName("button active");
+    for(var i = 0; i < buttons.length; i++){
+      if(buttons[i].classList.contains("active")){
+        buttons[i].classList.add("inactive");
+        buttons[i].classList.remove("active");
+      }
+    }
+    var pressedbutton = document.getElementById(buttonID);
+
+    //if statement for non-toggle buttons - if they are non-toggle class, 
+    //go into a switch case to do the correct thing-
+    switch(buttonID) {
+      case "next":
+          turnCounter++;
+          //deleteFleeting();
+          updateDisplay();
+          break;
+      case "draw":
+          amtcards = drawCard(amtcards, "drawn");
+          break;
+      case "restart":
+        location.reload();
+        break;
+      case "start-game":
+        document.getElementById('mulligan-phase').style.display = 'none';
+        document.getElementById('game-phase').style.display = 'flex';
+        handleStartButton();
+        break;
+      case "undo": //must be last case
+        undoUpdateCards();
+        return;
+      default: throw "Issue with button selection occured";
+    }
+    const curState = currentState();
+    undoStack.push(curState);
+    document.getElementById("cardCount").innerHTML = amtcards;
+}
+
+//main function for cards
+function cardSelected(selectedcard, cardlabel, wrapperID) {
+  const cardnumber = parseInt(wrapperID.split("-")[2]);
+  createInputArea(cardnumber, "");
 }

@@ -273,15 +273,6 @@ body {
   display: table;
 }
 
-/* turn counter */
-#counter-display{
-  font-weight: 900;
-  font-size: 30px;
-  margin-top: 10px;
-  margin-bottom: 20.5px;
-  margin-left: 79px;
-}
-
 /* adding margin underneath card labels */
 /* bro why do u need this */
 h1 {
@@ -293,6 +284,11 @@ h1 {
 #third-column {
   justify-content: center;
   align-items: center;
+}
+
+#gameInfo {
+  text-align: center;
+  margin-right: 7.2vw;
 }
 
 @font-face {
