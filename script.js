@@ -9,6 +9,7 @@ let ignoreEventListener = false;
 // UI Elements
 const cardContainer = document.getElementById('flex-card-image-container');
 
+//initialize
 function init() {
   // Perform initialization tasks here
   initializeMulligan();
@@ -85,6 +86,7 @@ function handleStartButton() {
   baseState = currentState();
 }
 
+//function for initializing q,w
 function initializeKeybindings() {
     document.addEventListener('keydown', function(event) {
       if(ignoreEventListener) {
@@ -104,6 +106,7 @@ function initializeKeybindings() {
   });
   }
 
+//initializes all buttons
 function initializeButtons() {
   // List of buttons and their associated click actions (if any)
   const buttons = [
@@ -127,13 +130,13 @@ function initializeButtons() {
 initConfirmation = init();
 console.log(initConfirmation);
 
+//main function for undo button
 function undoUpdateCards() {
   const cardContainer = document.getElementById('flex-card-image-container');
   if(undoStack.length == 0) {
     undoStack.push(baseState);
   }
   let labelArr = undoStack.pop();
-  console.log(undoStack);
   if(JSON.stringify(labelArr) === JSON.stringify(currentState())) {
     labelArr = undoStack.pop()
   }
@@ -175,6 +178,7 @@ function undoUpdateCards() {
   amtcards = labelArr.length;
   
 }
+
 //add graphics to buttons
 function addButtonEventListeners(buttonId, clickAction) {
   const button = document.getElementById(buttonId);
@@ -194,6 +198,7 @@ function addButtonEventListeners(buttonId, clickAction) {
   }
 }
 
+//function for button graphics
 function ChangeButton(buttonId, functiontype) {
   const prev = document.getElementById(buttonId).src;
   let buttonIdNoNums = buttonId.replace(/\d+$/, '');
@@ -206,15 +211,10 @@ function ChangeButton(buttonId, functiontype) {
   }
 }
 
+//turn counter function
 function updateDisplay(){
     amtcards = drawCard(amtcards, "drawn");
     document.getElementById("turnCount").innerHTML = parseInt(document.getElementById("turnCount").innerHTML)+1;
-}
-
-function showNotification() {
-  alert("Next Turn/Draw both draw cards. For Discard/Mana Label/Card Type/MoveToEnd, " + 
-    "Click on the button, then the card you want to affect. " + 
-    "Q,W,E,R are hotkeys for the corresponding buttons. Go yell at me in discord if you find a bug (there are lots)");
 }
 
 //stops right click menu from showing up
@@ -268,6 +268,7 @@ function discardCard(event) {
   document.getElementById("cardCount").innerHTML = amtcards;
 }
 
+//drawCard on button press
 function drawCard(amtCards, drawtype) {
   if(amtCards < 10)
   {
