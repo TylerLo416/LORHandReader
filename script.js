@@ -4,13 +4,14 @@ let amtcards = 4;
 let counterPlusElem = document.getElementById('next-turn');
 let turnCounter = 0;
 let ignoreEventListener = false;
+let undoStack = [];
+let baseState;
 
 function init() {
   // Perform initialization tasks here
   initializeMulligan();
   initializeKeybindings();
   initializeButtons();
-
   return {
     message: 'Initialization completed successfully!',
   };
@@ -49,7 +50,7 @@ function initializeMulligan() {
     cardContainer.appendChild(imgCardDiv);
 
     //Add right click to delete onto the image (LORCard${i})
-    img.addEventListener('contextmenu', rightClickHandler);
+    img.addEventListener('contextmenu', discardCard);
   }
 }
 
@@ -78,6 +79,7 @@ function handleStartButton() {
     }
     document.getElementById(`replace${i}`).remove();
   }
+  baseState = currentState();
 }
 
 function initializeKeybindings() {
@@ -92,12 +94,6 @@ function initializeKeybindings() {
         case 'w':
           ButtonSelected('draw');
           break;
-        case 'e':
-          ButtonSelected('discard-play');
-          break;
-        case 'r':
-          ButtonSelected('manual-input');
-          break;
         // Add more cases for other keys if needed
         default:
           break;
@@ -105,62 +101,111 @@ function initializeKeybindings() {
   });
   }
 
-  function initializeButtons() {
-    // List of buttons and their associated click actions (if any)
-    const buttons = [
-      { id: 'next', clickAction: true },
-      { id: 'draw', clickAction: true },
-      { id: 'start-game' },
-      { id: 'restart' },
-      { id: 'undo', clickAction: true },
-      { id: 'replace1', clickAction: true },
-      { id: 'replace2', clickAction: true },
-      { id: 'replace3', clickAction: true },
-      { id: 'replace4', clickAction: true }
-    ];
+function initializeButtons() {
+  // List of buttons and their associated click actions (if any)
+  const buttons = [
+    { id: 'next', clickAction: true },
+    { id: 'draw', clickAction: true },
+    { id: 'start-game' },
+    { id: 'restart' },
+    { id: 'undo', clickAction: true },
+    { id: 'replace1', clickAction: true },
+    { id: 'replace2', clickAction: true },
+    { id: 'replace3', clickAction: true },
+    { id: 'replace4', clickAction: true }
+  ];
 
-    // Loop through the buttons and add event listeners
-    buttons.forEach(button => {
-      addButtonEventListeners(button.id, button.clickAction);
-    });
+  // Loop through the buttons and add event listeners
+  buttons.forEach(button => {
+    addButtonEventListeners(button.id, button.clickAction);
+  });
+}
+
+initConfirmation = init();
+console.log(initConfirmation);
+
+function undoUpdateCards() {
+  const cardContainer = document.getElementById('flex-card-image-container');
+  if(undoStack.length == 0) {
+    undoStack.push(baseState);
   }
-  initConfirmation = init();
-  console.log(initConfirmation);
-
-  //add graphics to buttons
-  function addButtonEventListeners(buttonId, clickAction) {
-    const button = document.getElementById(buttonId);
-
-    button.addEventListener('mouseover', function() {
-        ChangeButton(buttonId, 'Hover');
-    });
-
-    button.addEventListener('mouseout', function() {
-        ChangeButton(buttonId, 'Standard');
-    });
-
-    if (clickAction) {
-        button.addEventListener('click', function() {
-            ChangeButton(buttonId, 'Selected');
-        });
-    }
+  let labelArr = undoStack.pop();
+  console.log(undoStack);
+  if(JSON.stringify(labelArr) === JSON.stringify(currentState())) {
+    labelArr = undoStack.pop()
+  }
+  if(JSON.stringify(currentState()) === JSON.stringify(baseState)) {
+    return;
   }
 
-  function ChangeButton(buttonId, functiontype) {
-    const prev = document.getElementById(buttonId).src;
-    let buttonIdNoNums = buttonId.replace(/\d+$/, '');
-    document.getElementById(buttonId).src = `Button-Images/${buttonIdNoNums}Button${functiontype}.png`;
-    
-    if(functiontype == 'Selected') {
-        setTimeout(() => {
-            document.getElementById(buttonId).src = prev;
-        }, 100)
-    }
+  while (cardContainer.firstChild) {
+    cardContainer.removeChild(cardContainer.firstChild);
   }
+  for (let i = 1; i <= labelArr.length; i++) {
+    const imgCardDiv = document.createElement('div');
+    imgCardDiv.className = 'img-cards';
+    imgCardDiv.id = `img-cards-${i}`;
+
+    const img = document.createElement('img');
+    img.src = "Card-Back-Images/Summoner's-Rift-old.png";
+    img.alt = "LOR Card";
+    img.className = "LORCardClass";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.id = `LORCard${i}`;
+    img.onclick = () => cardSelected(`LORCard${i}`, `LORCard-label${i}`, `img-cards-${i}`);
+
+    const label = document.createElement('p');
+    label.className = 'card-labels';
+    label.id = `LORCard-label${i}`;
+    //label.innerHTML = `Card ${i}`;
+    label.innerHTML = labelArr[i-1];
+    //TODO for every label in the undo stack, append it to the card
+
+    imgCardDiv.appendChild(label);
+    imgCardDiv.appendChild(img);
+    cardContainer.appendChild(imgCardDiv);
+
+    //Add right click to delete onto the image (LORCard${i})
+    img.addEventListener('contextmenu', discardCard);
+  }
+  amtcards = labelArr.length;
+  
+}
+//add graphics to buttons
+function addButtonEventListeners(buttonId, clickAction) {
+  const button = document.getElementById(buttonId);
+
+  button.addEventListener('mouseover', function() {
+      ChangeButton(buttonId, 'Hover');
+  });
+
+  button.addEventListener('mouseout', function() {
+      ChangeButton(buttonId, 'Standard');
+  });
+
+  if (clickAction) {
+      button.addEventListener('click', function() {
+          ChangeButton(buttonId, 'Selected');
+      });
+  }
+}
+
+function ChangeButton(buttonId, functiontype) {
+  const prev = document.getElementById(buttonId).src;
+  let buttonIdNoNums = buttonId.replace(/\d+$/, '');
+  document.getElementById(buttonId).src = `Button-Images/${buttonIdNoNums}Button${functiontype}.png`;
+  
+  if(functiontype == 'Selected') {
+      setTimeout(() => {
+          document.getElementById(buttonId).src = prev;
+      }, 100)
+  }
+}
 
 function updateDisplay(){
-    let counterDisplayElem = document.getElementById('counter-display');
-    counterDisplayElem.innerHTML = "Turn: " + turnCounter;
+    //let counterDisplayElem = document.getElementById('counter-display');
+    //counterDisplayElem.innerHTML = "Turn: " + turnCounter;
     amtcards = drawCard(amtcards, "drawn");
 }
 
@@ -175,53 +220,34 @@ function ButtonSelected(buttonID)
         buttons[i].classList.remove("active");
       }
     }
-    
     var pressedbutton = document.getElementById(buttonID);
-
 
     //if statement for non-toggle buttons - if they are non-toggle class, 
     //go into a switch case to do the correct thing-
-    if(pressedbutton.classList.contains("inactive")){
-      pressedbutton.classList.remove("inactive");
-      pressedbutton.classList.add("active");
-      return;
-    }
     switch(buttonID) {
       case "next":
           turnCounter++;
           //deleteFleeting();
           updateDisplay();
-          return;
+          break;
       case "draw":
-          //drawCard(drawn); - drawn is to be appended to id
           amtcards = drawCard(amtcards, "drawn");
-          return;
-      case "create":
-          amtcards = drawCard(amtcards, "created");
-          sortLabel(cardlabel);
-          return;
-      case "manifest":
-          amtcards = drawCard(amtcards, "manifested");
-          sortLabel(cardlabel);
-        return;
-      case "nab":
-          amtcards = drawCard(amtcards, "nabbed");
-          sortLabel(cardlabel);
-        return;
-      case "fleeting":
-          amtcards = drawCard(amtcards, "fleeting");
-          sortLabel(cardlabel);
-        return;
+          break;
       case "restart":
         location.reload();
-        return;
+        break;
       case "start-game":
         document.getElementById('mulligan-phase').style.display = 'none';
         document.getElementById('game-phase').style.display = 'flex';
         handleStartButton();
+        break;
+      case "undo": //must be last case
+        undoUpdateCards();
         return;
       default: throw "Issue with button selection occured";
     }
+    const curState = currentState();
+    undoStack.push(curState);
 }
 
 function showNotification() {
@@ -239,7 +265,7 @@ function preventDefault() {
 }
 
 //delete a Card on Right Click
-function rightClickHandler(event) {
+function discardCard(event) {
   event.preventDefault(); // Prevent the default context menu
 
   //get Id's
@@ -276,7 +302,9 @@ function rightClickHandler(event) {
 
   }
   amtcards--;
-
+  const curState = currentState();
+  undoStack.push(curState);
+  console.log(curState);
 }
 
 function drawCard(amtCards, drawtype) {
@@ -308,7 +336,7 @@ function drawCard(amtCards, drawtype) {
 
       //create right click functionality
       // Add contextmenu event listener for right-click
-      img.addEventListener('contextmenu', rightClickHandler);
+      img.addEventListener('contextmenu', discardCard);
   }
   return amtCards;
 }
@@ -340,41 +368,38 @@ function cardSelected(selectedcard, cardlabel, wrapperID) {
 
 //Custom Labels
 function createInputArea(cardnumber, reducedCost) {
-  console.log('cardnum' + cardnumber);
-  ignoreEventListener = true;
-  // Create the inputContainer and other elements
-  const inputContainer = document.createElement('div');
-  inputContainer.id = 'inputContainer';
+    ignoreEventListener = true;
+    // Create the inputContainer and other elements
+    const inputContainer = document.createElement('div');
+    inputContainer.id = 'inputContainer';
 
-  const userInput = document.createElement('input');
-  userInput.type = 'text';
-  userInput.id = 'userInput';
-  userInput.placeholder = 'Enter text';
-  userInput.addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
-      getUserInput(cardnumber, reducedCost); // Pass the cardnumber when Enter is pressed
+    const userInput = document.createElement('input');
+    userInput.type = 'text';
+    userInput.id = 'userInput';
+    userInput.placeholder = 'Enter text';
+    userInput.addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        getUserInput(cardnumber, reducedCost); // Pass the cardnumber when Enter is pressed
+        ignoreEventListener = false;
+      }
+    });
+
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Submit';
+    submitButton.onclick = function() {
+      getUserInput(cardnumber, reducedCost); // Pass the cardnumber when the button is clicked
       ignoreEventListener = false;
-    }
-  });
+    };
 
-  const submitButton = document.createElement('button');
-  submitButton.textContent = 'Submit';
-  submitButton.onclick = function() {
-    getUserInput(cardnumber, reducedCost); // Pass the cardnumber when the button is clicked
-    ignoreEventListener = false;
-  };
+    inputContainer.appendChild(userInput);
+    inputContainer.appendChild(submitButton);
 
-  inputContainer.appendChild(userInput);
-  inputContainer.appendChild(submitButton);
+    // Get the flex-card-image-container and append the inputContainer
+    const flexCardImageContainer = document.getElementById(`img-cards-${cardnumber}`);
+    flexCardImageContainer.appendChild(inputContainer);
 
-  // Get the flex-card-image-container and append the inputContainer
-  const flexCardImageContainer = document.getElementById(`img-cards-${cardnumber}`);
-  console.log('fcimagec' + cardnumber + ' ' + flexCardImageContainer);
-  flexCardImageContainer.appendChild(inputContainer);
-
-  // Set focus on the input field when displayed
-  userInput.focus();
-  console.log(ignoreEventListener);
+    // Set focus on the input field when displayed
+    userInput.focus();
 }
 
 //helper function for createInputArea
@@ -384,9 +409,27 @@ function getUserInput(cardnumber, reducedCost) {
     // Do something with the user's input
     const currentCardLabel = document.getElementById(`LORCard-label${cardnumber}`);
     currentCardLabel.innerHTML += '<br>' + reducedCost + userInputIntoLabel;
-
-    // Remove the inputContainer (which contains the input and submit button)
-    const inputContainer = document.getElementById('inputContainer');
-    inputContainer.parentNode.removeChild(inputContainer);
   }
+  // Remove the inputContainer (which contains the input and submit button)
+  const inputContainer = document.getElementById('inputContainer');
+  inputContainer.parentNode.removeChild(inputContainer);
+
+  const curState = currentState();
+  undoStack.push([curState]);
+}
+
+//returns current cards
+function currentState() {
+  const cardLabelsElements = document.querySelectorAll('.card-labels');
+
+  // Initialize an array to store the labels
+  const labelsArray = [];
+
+  // Iterate through each element and store its content in the array
+  cardLabelsElements.forEach(element => {
+    labelsArray.push(element.innerHTML);
+  });
+
+  // Log the array to the console
+  return labelsArray;
 }
