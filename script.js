@@ -213,7 +213,7 @@ function ChangeButton(buttonId, functiontype) {
 
 //turn counter function
 function updateDisplay(){
-    amtcards = drawCard(amtcards, "drawn");
+    amtcards = drawCard(amtcards);
     document.getElementById("turnCount").innerHTML = parseInt(document.getElementById("turnCount").innerHTML)+1;
 }
 
@@ -269,7 +269,7 @@ function discardCard(event) {
 }
 
 //drawCard on button press
-function drawCard(amtCards, drawtype) {
+function drawCard(amtCards) {
   if(amtCards < 10)
   {
       amtCards += 1;
@@ -290,7 +290,7 @@ function drawCard(amtCards, drawtype) {
       const label = document.createElement('p');
       label.className = 'card-labels';
       label.id = `LORCard-label${amtCards}`;
-      label.innerHTML = `Card ${amtCards}<br>${drawtype}<br>Turn: ${turnCounter}`;
+      label.innerHTML = `Card ${amtCards}<br>Turn: ${turnCounter}`;
       
       imgCardDiv.appendChild(label);
       imgCardDiv.appendChild(img);
@@ -413,7 +413,7 @@ function ButtonSelected(buttonID)
           updateDisplay();
           break;
       case "draw":
-          amtcards = drawCard(amtcards, "drawn");
+          amtcards = drawCard(amtcards);
           break;
       case "restart":
         location.reload();
