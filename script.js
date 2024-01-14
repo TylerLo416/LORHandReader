@@ -6,6 +6,7 @@ let undoStack = [];
 let baseState;
 let ignoreEventListener = false;
 let isInputArea = true;
+let mulliganPhase = true;
 
 // UI Elements
 const cardContainer = document.getElementById('flex-card-image-container');
@@ -85,6 +86,7 @@ function handleStartButton() {
     document.getElementById(`replace${i}`).remove();
   }
   baseState = currentState();
+  mulliganPhase = false;
 }
 
 //function for initializing q,w
@@ -448,5 +450,10 @@ function ButtonSelected(buttonID)
 //main function for cards
 function cardSelected(selectedcard, cardlabel, wrapperID) {
   const cardnumber = parseInt(wrapperID.split("-")[2]);
-  createInputArea(cardnumber, "");
+  if(mulliganPhase) {
+    handleReplaceButton(cardnumber);
+  }
+  else {
+    createInputArea(cardnumber, "");
+  }
 }

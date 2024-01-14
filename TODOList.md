@@ -1,8 +1,6 @@
 # MVP
 
 ## JavaScript Stuff
-- only allow one submit text input area
-- clicking on card during mulligan should change the card, not create text input
 - labels are still going into the cards
 - auto draw a card and start at turn one on game start
 
