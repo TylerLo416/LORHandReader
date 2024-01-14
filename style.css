@@ -248,6 +248,7 @@ body {
   background-image: url('Card-Back-Images/cardBackground.png');
   display:flex;
   flex-direction: row;
+  max-width: 100vw;
 }
 
 #flex-card-image-container {
