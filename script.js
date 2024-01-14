@@ -5,6 +5,7 @@ let turnCounter = 0;
 let undoStack = [];
 let baseState;
 let ignoreEventListener = false;
+let isInputArea = true;
 
 // UI Elements
 const cardContainer = document.getElementById('flex-card-image-container');
@@ -325,6 +326,17 @@ function sortLabel(cardlabel)
 
 //Custom Labels
 function createInputArea(cardnumber, reducedCost) {
+    if(isInputArea == false) {
+      // Remove the inputContainer (which contains the input and submit button)
+      const inputContainer = document.getElementById('inputContainer');
+      const userInput = document.getElementById('userInput');
+
+      userInput.removeEventListener('keyup', getUserInput);
+      inputContainer.remove();
+    }
+    else {
+      isInputArea = false;
+    }
     ignoreEventListener = true;
     // Create the inputContainer and other elements
     const inputContainer = document.createElement('div');
@@ -370,9 +382,9 @@ function getUserInput(cardnumber, reducedCost) {
   // Remove the inputContainer (which contains the input and submit button)
   const inputContainer = document.getElementById('inputContainer');
   inputContainer.parentNode.removeChild(inputContainer);
-
   const curState = currentState();
   undoStack.push([curState]);
+  isInputArea = true;
 }
 
 //returns current cards
