@@ -87,6 +87,7 @@ function handleStartButton() {
   }
   baseState = currentState();
   mulliganPhase = false;
+  updateDisplay();
 }
 
 //function for initializing q,w
@@ -216,8 +217,9 @@ function ChangeButton(buttonId, functiontype) {
 
 //turn counter function
 function updateDisplay(){
+    turnCounter++;
+    document.getElementById("turnCount").innerHTML = turnCounter;
     amtcards = drawCard(amtcards);
-    document.getElementById("turnCount").innerHTML = parseInt(document.getElementById("turnCount").innerHTML)+1;
 }
 
 //stops right click menu from showing up
@@ -422,7 +424,6 @@ function ButtonSelected(buttonID)
     //go into a switch case to do the correct thing-
     switch(buttonID) {
       case "next":
-          turnCounter++;
           //deleteFleeting();
           updateDisplay();
           break;

@@ -1,8 +1,6 @@
 # MVP
 
 ## JavaScript Stuff
-- labels are still going into the cards
-- auto draw a card and start at turn one on game start
 
 ## CSS Stuff
 - responsiveness
