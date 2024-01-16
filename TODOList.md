@@ -3,8 +3,6 @@
 ## JavaScript Stuff
 
 ## CSS Stuff
-- responsiveness
-- the entire page is too wide
 - add styling for the text input
 
 
