@@ -30,7 +30,7 @@ function initializeMulligan() {
     imgCardDiv.id = `img-cards-${i}`;
 
     const img = document.createElement('img');
-    img.src = "Card-Back-Images/Summoner's-Rift-old.png";
+    img.src = "Card-Back-Images/Summoner's-Rift.png";
     img.alt = "LOR Card";
     img.className = "LORCardClass";
     img.style.width = "100%";
@@ -65,9 +65,10 @@ function handleReplaceButton(cardNumber) {
   let card = document.getElementById(`LORCard${cardNumber}`).src;
   if(!card.includes("Card-Back-Images/Summoner's-Rift-faded.png")) {
     document.getElementById(`LORCard${cardNumber}`).src = "Card-Back-Images/Summoner's-Rift-faded.png";
+
   }
   else {
-    document.getElementById(`LORCard${cardNumber}`).src = "Card-Back-Images/Summoner's-Rift-old.png";
+    document.getElementById(`LORCard${cardNumber}`).src = "Card-Back-Images/Summoner's-Rift.png";
   }
 }
 
@@ -78,7 +79,7 @@ function handleStartButton() {
     let label = document.getElementById(`LORCard-label${i}`);
     if(curCardImg.src.includes("Card-Back-Images/Summoner's-Rift-faded.png")) {
       label.innerHTML += '<br>Mulled';
-      curCardImg.src = "Card-Back-Images/Summoner's-Rift-old.png";
+      curCardImg.src = "Card-Back-Images/Summoner's-Rift.png";
     }
     else {
       label.innerHTML += '<br>Kept';
@@ -127,7 +128,7 @@ function initializeButtons() {
 
   // Loop through the buttons and add event listeners
   buttons.forEach(button => {
-    addButtonEventListeners(button.id, button.clickAction);
+    addButtonGraphics(button.id, button.clickAction);
   });
 }
 
@@ -157,7 +158,7 @@ function undoUpdateCards() {
     imgCardDiv.id = `img-cards-${i}`;
 
     const img = document.createElement('img');
-    img.src = "Card-Back-Images/Summoner's-Rift-old.png";
+    img.src = "Card-Back-Images/Summoner's-Rift.png";
     img.alt = "LOR Card";
     img.className = "LORCardClass";
     img.style.width = "100%";
@@ -184,7 +185,7 @@ function undoUpdateCards() {
 }
 
 //add graphics to buttons
-function addButtonEventListeners(buttonId, clickAction) {
+function addButtonGraphics(buttonId, clickAction) {
   const button = document.getElementById(buttonId);
 
   button.addEventListener('mouseover', function() {
@@ -262,7 +263,7 @@ function discardCard(event) {
 
       //set the id's to be reduced by 1
       currentCardLabel.innerHTML = updatedLabel;
-      currentCardDiv.id = `img-cards-${newCardNum}`;
+      currentCardDiv.id = `img-cards-${newCardNum}`;x``
       currentCardLabel.id = `LORCard-label${newCardNum}`;
       currentCard.id = `LORCard${newCardNum}`;
 
@@ -283,7 +284,7 @@ function drawCard(amtCards) {
       imgCardDiv.id = `img-cards-${amtCards}`;
 
       const img = document.createElement('img');
-      img.src = "Card-Back-Images/Summoner's-Rift-old.png";
+      img.src = "Card-Back-Images/Summoner's-Rift.png";
       img.alt = "LOR Card";   
       img.style.width = "100%";
       img.style.height = "100%";
