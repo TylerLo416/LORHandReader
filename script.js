@@ -67,7 +67,7 @@ function handleReplaceButton(cardNumber) {
     document.getElementById(`LORCard${cardNumber}`).src = "Card-Back-Images/Summoner's-Rift-faded.png";
 
   }
-  else {
+  else if(card.includes("Card-Back-Images/Summoner's-Rift-faded.png")){
     document.getElementById(`LORCard${cardNumber}`).src = "Card-Back-Images/Summoner's-Rift.png";
   }
 }
