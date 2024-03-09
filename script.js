@@ -36,7 +36,7 @@ function initializeMulligan() {
     img.style.width = "100%";
     img.style.height = "100%";
     img.id = `LORCard${i}`;
-    img.onclick = () => cardSelected(`LORCard${i}`, `LORCard-label${i}`, `img-cards-${i}`);
+    img.onclick = () => cardSelected(`img-cards-${i}`);
 
     const label = document.createElement('p');
     label.className = 'card-labels';
@@ -165,7 +165,7 @@ function undoUpdateCards() {
     img.style.width = "100%";
     img.style.height = "100%";
     img.id = `LORCard${i}`;
-    img.onclick = () => cardSelected(`LORCard${i}`, `LORCard-label${i}`, `img-cards-${i}`);
+    img.onclick = () => cardSelected(`img-cards-${i}`);
 
     const label = document.createElement('p');
     label.className = 'card-labels';
@@ -260,7 +260,7 @@ function discardCard(event) {
 
       // Replace the numbers in the HTML content while preserving HTML tags
       const updatedLabel = innerHTMLLabel.replace(/\b(?:[1-9]|10)\b/, newCardNum);
-      currentCard.onclick = () => cardSelected(`LORCard${newCardNum}`, `LORCard-label${newCardNum}`, `img-cards-${newCardNum}`);
+      currentCard.onclick = () => cardSelected(`img-cards-${newCardNum}`);
 
       //set the id's to be reduced by 1
       currentCardLabel.innerHTML = updatedLabel;
@@ -291,8 +291,7 @@ function drawCard(amtCards) {
       img.style.height = "100%";
       img.id = `LORCard${amtCards}`;
       img.className = 'LORCardClass';
-      img.onclick = () => cardSelected(`LORCard${amtCards}`, 
-          `LORCard-label${amtCards}`, `img-cards-${amtCards}`);
+      img.onclick = () => cardSelected(`img-cards-${amtCards}`);
       
       const label = document.createElement('p');
       label.className = 'card-labels';
@@ -389,7 +388,7 @@ function getUserInput(cardnumber, reducedCost) {
   const inputContainer = document.getElementById('inputContainer');
   inputContainer.parentNode.removeChild(inputContainer);
   const curState = currentState();
-  undoStack.push([curState]);
+  undoStack.push(curState);
   isInputArea = true;
 }
 
@@ -421,7 +420,6 @@ function ButtonSelected(buttonID)
         buttons[i].classList.remove("active");
       }
     }
-    var pressedbutton = document.getElementById(buttonID);
 
     //if statement for non-toggle buttons - if they are non-toggle class, 
     //go into a switch case to do the correct thing-
@@ -452,7 +450,7 @@ function ButtonSelected(buttonID)
 }
 
 //main function for cards
-function cardSelected(selectedcard, cardlabel, wrapperID) {
+function cardSelected(wrapperID) {
   const cardnumber = parseInt(wrapperID.split("-")[2]);
   if(mulliganPhase) {
     handleReplaceButton(cardnumber);
