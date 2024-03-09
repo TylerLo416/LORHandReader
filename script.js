@@ -263,7 +263,7 @@ function discardCard(event) {
 
       //set the id's to be reduced by 1
       currentCardLabel.innerHTML = updatedLabel;
-      currentCardDiv.id = `img-cards-${newCardNum}`;x``
+      currentCardDiv.id = `img-cards-${newCardNum}`;
       currentCardLabel.id = `LORCard-label${newCardNum}`;
       currentCard.id = `LORCard${newCardNum}`;
 
