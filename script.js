@@ -87,6 +87,7 @@ function handleStartButton() {
     document.getElementById(`replace${i}`).remove();
   }
   baseState = currentState();
+  undoStack.push(baseState);
   mulliganPhase = false;
   updateDisplay();
 }
@@ -109,7 +110,7 @@ function initializeKeybindings() {
           break;
       }
   });
-  }
+}
 
 //initializes all buttons
 function initializeButtons() {
@@ -405,6 +406,7 @@ function currentState() {
   });
 
   // Log the array to the console
+  console.log(undoStack);
   return labelsArray;
 }
 
