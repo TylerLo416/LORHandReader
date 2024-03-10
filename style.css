@@ -323,9 +323,3 @@ h1 {
   color: white;
   font-size: 22px;
 }
-
-
-
-/* then numbers are cost, we want to have user input limit it from 1 to 9 */
-/* when discard/play is clicked, it'll pick a card to discard/play */
-/* shown: manual input, notes, etc */
