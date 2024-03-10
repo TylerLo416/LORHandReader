@@ -292,6 +292,18 @@ h1 {
   margin-right: 1.1vw;
 }
 
+#help {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 10vh;
+  height: 10vh;
+  max-width: 100px; /* Maximum width */
+  max-height: 100px; /* Maximum height */
+  min-width: 20px; /* Minimum width */
+  min-height: 20px; /* Minimum height */
+}
+
 @font-face {
   font-family: 'LORfont';
   src: url('LOR Fonts/Finlandica-Regular.ttf') format('truetype');

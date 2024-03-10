@@ -442,6 +442,9 @@ function ButtonSelected(buttonID)
       case "undo": //must be last case
         undoUpdateCards();
         return;
+      case "help":
+        alert('left click to add a label\nright click to delete a card');
+        return;
       default: throw "Issue with button selection occured";
     }
     const curState = currentState();
