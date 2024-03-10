@@ -443,7 +443,7 @@ function ButtonSelected(buttonID)
         undoUpdateCards();
         return;
       case "help":
-        alert('left click to add a label\nright click to delete a card');
+        alert('Left click to add a label\nRight click to delete a card');
         return;
       default: throw "Issue with button selection occured";
     }
