@@ -217,6 +217,11 @@ body {
   z-index: 1000000000;
 }
 
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
 .flex-buttons {
   width: 80%;
   height: 20%;
@@ -298,6 +303,19 @@ h1 {
   right: 10px;
   width: 10vh;
   height: 10vh;
+  max-width: 100px; /* Maximum width */
+  max-height: 100px; /* Maximum height */
+  min-width: 20px; /* Minimum width */
+  min-height: 20px; /* Minimum height */
+}
+
+#github {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 10vh;
+  height: 10vh;
+  margin-bottom: 10vh;
   max-width: 100px; /* Maximum width */
   max-height: 100px; /* Maximum height */
   min-width: 20px; /* Minimum width */
